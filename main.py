@@ -1,13 +1,15 @@
 # importing necessary modules
 import pygame as pg
-import scene, text
+import scene, dialogue
 
 
 class Game:
 
     def __init__(self):
-        pg.init()
 
+        pg.init()
+        self.scenes = []
+        self.
         self.width, self.height = (800, 700)
         self.running = True
 
@@ -27,17 +29,18 @@ class Game:
             if event.type == pg.QUIT:
                 self.running = False
 
-    def render_stuff_loop(self):
+    def     render_stuff_loop(self):
 
         self.screen.blit(self.bg_image, (0, 0))
-        pg.display.update()
+
 
     def mainLoop(self):
 
         while self.running:
-            self.handle_events()
 
+            self.handle_events()
             self.render_stuff_loop()
+            pg.display.update()
 
 
 if __name__ == "__main__":
