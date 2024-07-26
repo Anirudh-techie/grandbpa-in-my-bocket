@@ -9,7 +9,7 @@ class Game:
 
         pg.init()
         self.scenes = []
-        self.
+        self.dialogue = []
         self.width, self.height = (800, 700)
         self.running = True
 
