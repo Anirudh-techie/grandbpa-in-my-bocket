@@ -3,6 +3,5 @@ class Scene:
         pass
 
     def render(self):
-
         pass
 
