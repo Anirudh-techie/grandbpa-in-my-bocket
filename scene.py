@@ -1,5 +1,5 @@
 class Scene:
-    def __init__(self, background, characters, dialogue):
+    def __init__(self, background, sprites, dialogue):
         pass
 
     def render(self):

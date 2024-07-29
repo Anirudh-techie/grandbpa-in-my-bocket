@@ -1,4 +1,11 @@
 {
+
+   "sprites":{
+      "john":{
+         "name":"John",
+         
+      }
+   },
     "scenes": [
       {
          "bg":"asd.png",
