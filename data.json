@@ -1,0 +1,22 @@
+{
+    "scenes": [
+      {
+         "bg":"asd.png",
+         "dialogues": [
+            {
+               "sprite_states":{
+                  "john": {
+                     "position": [100,200]
+                  }
+               },
+               "text": "Hello, I am John"
+            },
+            {
+              
+               "text": "Will you marry me",
+               "choices":["Yes", "No"]
+            }
+         ]
+      }
+    ]
+}
