@@ -1,15 +1,22 @@
 import json
 from dialogue import Dialogue
 import pygame
-def get_scene_data():
+from scene import Scene
+# from sprite import Sprite
+def get_scene_data(screen)-> list[Scene]:
     with open("./data.json") as f:
          data = json.load(f)
          scenes = data["scenes"]
+         sprites = data["sprites"]
+         for s_id in sprites:
+            #  sprites[s_id] = Sprite(screen, sprites[s_id]["name"], s_id, [0,0], )
+             sprites[s_id] = None
          for i,scene in enumerate(scenes):
-             background = pygame.image.load(scene["background"]).convert()
+             background = pygame.image.load(f'./res/backgrounds/{scene["bg"]}').convert()
+             background = pygame.transform.scale(background, (800, 700))
              dialogues = get_dialogue_data(i)
-             
-    pass
+             scenes[i] = Scene(screen, background, sprites, dialogues)
+    return scenes
 
 
 def get_dialogue_data(scene_index):
@@ -17,9 +24,7 @@ def get_dialogue_data(scene_index):
             data = json.load(f)
             scene = data["scenes"][scene_index]
             ds = scene["dialogues"]
-            dialogues = [Dialogue(d["text"], d.get("choices",[]), d.get("sprite_states", {}))  for d in ds]
+            dialogues = [Dialogue(d["text"],d.get("name"), d.get("choices",[]), d.get("sprite_states", {}))  for d in ds]
             return dialogues
     
-
-get_dialogue_data(0)
 

@@ -2,13 +2,13 @@
 
    "sprites":{
       "john":{
-         "name":"John",
+         "name":"John"
          
       }
    },
     "scenes": [
       {
-         "bg":"asd.png",
+         "bg":"asd.jpg",
          "dialogues": [
             {
                "sprite_states":{
@@ -16,12 +16,15 @@
                      "position": [100,200]
                   }
                },
-               "text": "Hello, I am John"
+               "text": "Hello, I am John",
+               "name":"John"
             },
             {
               
                "text": "Will you marry me",
-               "choices":["Yes", "No"]
+               "choices":["Yes","NO","NO EW WHATT","YES YES A THOUSAND TIMES YES","idk dude maybe"],
+               "name":"John"
+
             }
          ]
       }
