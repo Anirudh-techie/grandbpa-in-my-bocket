@@ -8,10 +8,9 @@ class Sprite:
         self.height = height
         self.rotation = rotation
         self.images = []  # List to store the loaded images
+        self.images_rects = []
 
         count = 0
-\
-
 
         # Iterate over files in the specified directory
         for root_dir, cur_dir, files in os.walk(fr"characters/{id}"):
@@ -19,23 +18,48 @@ class Sprite:
                 # Ensure only image files are processed, this example assumes files are PNG
                 if file.endswith('.png') or file.endswith('.jpg'):
                     image_path = os.path.join(root_dir, file)
-                    image = pg.image.load(image_path).convert_alpha()
-                    self.images.append(image)  # Add the loaded image to the list
+                    self.image = pg.image.load(image_path).convert_alpha() # .convert_alpha() makes it transperant
+                    self.rect = self.image.get_rect() # rect is in a 4 element array
+                    self.images.append(self.image)  # Add the loaded image to the list
+                    self.images_rects.append(self.rect) # add the rect to the rect list
+                    count += 1
 
 
 
 
-        self.rect = self.image.get_rect()
+    def render(self, image_index, x, y ):
+        image = self.images[image_index]
+        rect = self.images_rects[image_index]
 
-    def render(self, state=1):
-        self.screen.blit()
-
-
-    def rotate(self):
-
+        rect.topleft = (x + (rect.width/2), y + (rect.height/2)) # set x and y to the middle of the rect
+        self.screen.blit(image)
 
 
+    def rotate(self, image_index, degrees):
+        new_image = pg.transform.rotate(self.images[image_index], degrees)
+        return new_image
 
-    def move(self, newX, newY, smooth=True, speed=1):
+
+
+    def move_smooth(self,image_index, newX, newY, speed=1):
+        moved = True
+        image = self.images[image_index]
+        rect = self.images_rects[image_index]
+
+        if newX != rect.x + rect.width and moved:
+            if newX > rect.x + rect.width/2:
+                rect.x += speed
+            elif newX < rect.x + rect.width/2:
+                rect.x -= speed
+
+
+
+    def move(self,image_index, newX, newY):
+        image = self.images[image_index]
+        rect = self.images_rects[image_index]
+        rect.x = newX
+        rect.y = newY
+        return
+    def transform(self, image_index,):
 
 
