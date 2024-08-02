@@ -13,7 +13,8 @@ class Scene:
         current_dialogue.render(self.screen)
 
     def next_dialogue(self):
-       self.currentDialogue += 1
+       current_dialogue = self.dialogues[self.currentDialogue]
+       self.currentDialogue += current_dialogue.go_next()
     
     def next_choice(self):
         self.dialogues[self.currentDialogue].next_choice()
@@ -24,8 +25,20 @@ class Scene:
     def check_mouse_choice(self, x, y):
         current_dialogue = self.dialogues[self.currentDialogue]
         if current_dialogue.choices:
-            for i,choice in enumerate(current_dialogue.choices):
-                if 150 < x < 650 and 430 - (max(0,len(current_dialogue.choices) - 2) * 30) + i*30 < y < 430 - (max(0,len(current_dialogue.choices) - 2) * 30) + i*30 + 30:
-                    print(i)
+            base_y = 450 - max(0, len(current_dialogue.choices) - 2) * 30
+
+            for i in range(len(current_dialogue.choices)):
+               if 160 <= x <= 650 and base_y + i * 30 <= y <= base_y + i * 30 + 30:
+                     self.currentDialogue+=current_dialogue.go_next(i)
         return -1
     
+    def hover_mouse_choice(self, x, y):
+         current_dialogue = self.dialogues[self.currentDialogue]
+         if current_dialogue.choices:
+            base_y = 450 - max(0, len(current_dialogue.choices) - 2) * 30
+
+            for i in range(len(current_dialogue.choices)):
+               if 160 <= x <= 650 and base_y + i * 30 <= y <= base_y + i * 30 + 30:
+                     current_dialogue.choose(i)
+
+         return -1

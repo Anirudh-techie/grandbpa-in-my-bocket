@@ -22,9 +22,27 @@
             {
               
                "text": "Will you marry me",
-               "choices":["Yes","NO","NO EW WHATT","YES YES A THOUSAND TIMES YES","idk dude maybe"],
+               "choices":[["Yes", 1],["NO", 3],["idk dude maybe",2]],
                "name":"John"
 
+            },
+            {
+               "text":"les go we're married babyes",
+               "name":"Hubby",
+               "next_dialogue":3
+            },
+            {
+               "text":"awesome ill take that as a yes",
+               "name":"fiance",
+               "next_dialogue":2
+            },
+            {
+               "text":"I'm sorry, I can't marry you anyways.. haha got you first hahaha idiot",
+               "name":"savage"
+            },
+            {
+               "text":"The End",
+               "name":"na rater"
             }
          ]
       }
