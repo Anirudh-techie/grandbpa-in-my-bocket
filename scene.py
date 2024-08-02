@@ -1,3 +1,5 @@
+from dialogue import Dialogue
+
 class Scene:
     def __init__(self,screen, background, sprites, dialogues):
         self.background = background
@@ -8,9 +10,18 @@ class Scene:
         self.currentDialogue = 0
 
     def render(self):
-        current_dialogue = self.dialogues[self.currentDialogue]
+        current_dialogue: Dialogue = self.dialogues[self.currentDialogue]
         self.screen.blit(self.background, (0, 0))
         current_dialogue.render(self.screen)
+
+        for state in current_dialogue.sprite_states:
+            sprite = self.sprites[state]
+            sprite.move_smooth(newx, newy)
+            sprite.show_animation(1)
+            if show sprite.render()
+            
+            # if
+        
 
     def next_dialogue(self):
        current_dialogue = self.dialogues[self.currentDialogue]
