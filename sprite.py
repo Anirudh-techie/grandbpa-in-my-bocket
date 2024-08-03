@@ -36,21 +36,45 @@ class Sprite:
 
 
     def rotate(self, image_index, degrees):
-        new_image = pg.transform.rotate(self.images[image_index], degrees)
-        return new_image
+        image = self.images[image_index]
+    
+        # rotate the image
+        rotated_image = pg.transform.rotate(image, degrees)
+        
+        # update it in the list
+        self.images[image_index] = rotated_image
 
 
 
     def move_smooth(self,image_index, newX, newY, speed=1):
-        moved = True
-        image = self.images[image_index]
+        movedX = False
+        movedY = False
         rect = self.images_rects[image_index]
 
-        if newX != rect.x + rect.width and moved:
-            if newX > rect.x + rect.width/2:
+        if not movedY and not movedX:
+            # Horizontal movement
+            if abs(newX - rect.x) <= speed:
+                rect.x = newX
+                movedX = True
+            elif newX > rect.x:
                 rect.x += speed
-            elif newX < rect.x + rect.width/2:
+    
+            elif newX < rect.x:
                 rect.x -= speed
+
+
+            # Vertical movement
+            if abs(newY - rect.y) <= speed:
+                rect.y = newY
+                movedY = True
+            elif newY > rect.y:
+                rect.y += speed
+
+            elif newY < rect.y:
+                rect.y -= speed
+
+            
+
 
 
 
@@ -60,6 +84,11 @@ class Sprite:
         rect.x = newX
         rect.y = newY
         return
-    def transform(self, image_index,):
+    
+    
+    def transform(self, image_index, newWidth, newHeight,):
+        pass
 
 
+    def transform_smooth()
+        pass
