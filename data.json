@@ -1,32 +1,68 @@
 {
-
-   "sprites":{
-      "john":{
-         "name":"John"
-         
+   "sprites": {
+      "john": {
+         "name": "John"
       }
    },
-    "scenes": [
+   "scenes": [
       {
-         "bg":"asd.jpg",
+         "bg": "asd.jpg",
          "dialogues": [
             {
-               "sprite_states":{
+               "sprite_states": {
                   "john": {
-                     "position": [100,200]
+                     "show": true,
+                     "position": [
+                        100,
+                        200
+                     ]
                   }
                },
                "text": "Hello, I am John",
-               "name":"John"
+               "name": "John"
             },
             {
-              
                "text": "Will you marry me",
-               "choices":["Yes","NO","NO EW WHATT","YES YES A THOUSAND TIMES YES","idk dude maybe"],
-               "name":"John"
-
+               "choices": [
+                  [
+                     "Yes",
+                     1
+                  ],
+                  [
+                     "NO",
+                     3
+                  ],
+                  [
+                     "idk dude maybe",
+                     2
+                  ]
+               ],
+               "name": "John"
+            },
+            {
+               "text": "les go we're married babyes",
+               "name": "Hubby",
+               "next_dialogue": 3
+            },
+            {
+               "text": "awesome ill take that as a yes",
+               "name": "fiance",
+               "next_dialogue": 2
+            },
+            {
+               "text": "I'm sorry, I can't marry you anyways.. haha got you first hahaha idiot",
+               "name": "savage"
+            },
+            {
+               "sprite_states": {
+                  "john": {
+                     "show": false
+                  }
+               },
+               "text": "The End",
+               "name": "na rater"
             }
          ]
       }
-    ]
+   ]
 }

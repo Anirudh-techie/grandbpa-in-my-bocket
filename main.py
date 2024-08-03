@@ -8,7 +8,7 @@ class Game:
         print("INITN")
 
         pg.init()
-        self.width, self.height = (800, 700)
+        self.screen_width, self.screen_height = (800, 700)
         self.running = True
 
       #   self.bg_image = pg.image.load('res/backgrounds/background_test.jpg')
@@ -16,12 +16,12 @@ class Game:
       #   self.bg_image = pg.transform.scale(self.bg_image, (self.width, self.height))
         pg.display.set_icon(new_icon)
 
-        self.screen = pg.display.set_mode((self.width, self.height))
+        self.screen = pg.display.set_mode((self.screen_width, self.screen_height))
 
         self.scenes = get_scene_data(self.screen)
         self.current_scene = 0
 
-
+        self.clock = pg.time.Clock() 
         pg.display.set_caption("Grandbpa in My Bocket")
 
     def handle_events(self):
@@ -38,7 +38,9 @@ class Game:
 
             if event.type == pg.MOUSEBUTTONDOWN:
                 self.scenes[self.current_scene].check_mouse_choice(*event.pos)
-                  
+            if event.type == pg.MOUSEMOTION:
+                self.scenes[self.current_scene].hover_mouse_choice(*event.pos)
+                     
 
     def render_stuff_loop(self):
          self.screen.fill((255,255,255))
@@ -53,6 +55,7 @@ class Game:
             self.handle_events()
             self.render_stuff_loop()
             pg.display.update()
+            self.clock.tick(60)
 
 
 if __name__ == "__main__":
