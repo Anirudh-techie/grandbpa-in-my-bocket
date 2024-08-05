@@ -1,16 +1,14 @@
 import pygame as pg
 import os
 class Sprite:
-    def __init__(self,screen, name, id, position:list, width, height,  rotation=0, animation_state=1):
+    def __init__(self,screen, name, id, width=160, height=90):
         self.screen = screen
-        self.pos = position
-        self.width = width
-        self.height = height
-        self.rotation = rotation
-        self.images = []  # List to store the loaded images
-        self.images_rects = []
+        self.current_state = 1
 
-        count = 0
+        self.images = []  # List to store the loaded images
+        self.width, self.height = width, height
+        self.rect = pg.rect(self.width, self.height, 0, 0)
+        
 
         # Iterate over files in the specified directory
         for root_dir, cur_dir, files in os.walk(fr"characters/{id}"):
@@ -19,30 +17,24 @@ class Sprite:
                 if file.endswith('.png') or file.endswith('.jpg'):
                     image_path = os.path.join(root_dir, file)
                     self.image = pg.image.load(image_path).convert_alpha() # .convert_alpha() makes it transperant
-                    self.rect = self.image.get_rect() # rect is in a 4 element array
+
                     self.images.append(self.image)  # Add the loaded image to the list
-                    self.images_rects.append(self.rect) # add the rect to the rect list
-                    count += 1
+
+        self.image = self.images[0] 
 
 
 
 
-    def render(self, image_index, x, y ):
-        image = self.images[image_index]
-        rect = self.images_rects[image_index]
 
-        rect.topleft = (x + (rect.width/2), y + (rect.height/2)) # set x and y to the middle of the rect
-        self.screen.blit(image)
+    def render(self,x, y):
 
 
-    def rotate(self, image_index, degrees):
-        image = self.images[image_index]
-    
-        # rotate the image
-        rotated_image = pg.transform.rotate(image, degrees)
-        
-        # update it in the list
-        self.images[image_index] = rotated_image
+        self.rect.topleft = (x + (self.rect.width/2), y + (self.rect.height/2)) # set x and y to the middle of the rect
+        self.screen.blit(self.image, self.rect)
+
+
+    def set_state(self, state):
+        self.image = self.images[state + 1]
 
 
 
@@ -53,42 +45,41 @@ class Sprite:
 
         if not movedY and not movedX:
             # Horizontal movement
-            if abs(newX - rect.x) <= speed:
-                rect.x = newX
+            if abs(newX - self.rect.x) <= speed:
+                self.rect.x = newX
                 movedX = True
-            elif newX > rect.x:
-                rect.x += speed
+            elif newX > self.rect.x:
+                self.rect.x += speed
     
-            elif newX < rect.x:
-                rect.x -= speed
+            elif newX < self.rect.x:
+                self.rect.x -= speed
 
 
             # Vertical movement
-            if abs(newY - rect.y) <= speed:
-                rect.y = newY
+            if abs(newY - self.rect.y) <= speed:
+                self.rect.y = newY
                 movedY = True
-            elif newY > rect.y:
-                rect.y += speed
+            elif newY > self.rect.y:
+                self.rect.y += speed
 
-            elif newY < rect.y:
-                rect.y -= speed
+            elif newY < self.rect.y:
+                self.rect.y -= speed
 
             
 
 
 
 
-    def move(self,image_index, newX, newY):
-        image = self.images[image_index]
-        rect = self.images_rects[image_index]
-        rect.x = newX
-        rect.y = newY
-        return
+    def move(self, newX, newY):
+
+        self.rect.x = newX
+        self.rect.y = newY
+
     
     
-    def transform(self, image_index, newWidth, newHeight,):
+    def transform(selfnewWidth, newHeight,):
         pass
 
 
-    def transform_smooth()
+    def transform_smooth():
         pass
