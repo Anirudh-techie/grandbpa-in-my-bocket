@@ -37,21 +37,45 @@
                      2
                   ]
                ],
-               "name": "John"
+               "name": "John",
+               "sprite_states": {
+                  "john": {
+                     "position": [
+                        10,
+                        300
+                     ],
+                     "state": 2
+                  }
+               }
             },
             {
                "text": "les go we're married babyes",
                "name": "Hubby",
-               "next_dialogue": 3
+               "next_dialogue": 3,
+               "sprite_states": {
+                  "john": {
+                     "position":[300, 300]
+                  }
+               }
             },
             {
                "text": "awesome ill take that as a yes",
                "name": "fiance",
-               "next_dialogue": 2
+               "next_dialogue": 2,
+               "sprite_states": {
+                  "john": {
+                     "position":[300, 300]
+                  }
+               }
             },
             {
                "text": "I'm sorry, I can't marry you anyways.. haha got you first hahaha idiot",
-               "name": "savage"
+               "name": "savage",
+               "sprite_states": {
+                  "john": {
+                     "position":[300, 300]
+                  }
+               }
             },
             {
                "sprite_states": {

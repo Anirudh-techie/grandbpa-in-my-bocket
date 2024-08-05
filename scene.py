@@ -16,10 +16,16 @@ class Scene:
 
         for state in current_dialogue.sprite_states:
             sprite:Sprite = self.sprites[state]
+            states = current_dialogue.sprite_states[state]
+            if "position" in states:
+                sprite.move(states["position"][0], states["position"][1])
             # sprite.move_smooth(newx, newy)
-            sprite.set_state(1)
-            # if show sprite.render()
-            sprite.render(60,100 )
+            if "state" in states:
+                sprite.set_state(states["state"])
+
+            if "show" in states:
+                sprite.set_visibility(states["show"])
+            sprite.render()
             # if
         
 
