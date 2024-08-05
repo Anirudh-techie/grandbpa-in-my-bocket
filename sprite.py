@@ -4,10 +4,13 @@ class Sprite:
     def __init__(self,screen, name, id, width=160, height=90):
         self.screen = screen
         self.current_state = 1
+        self.visibility = False
+        self.x = 0
+        self.y = 0
 
         self.images = []  # List to store the loaded images
         self.width, self.height = width, height
-        self.rect = pg.rect.Rect(self.width, self.height, 0, 0)
+        self.rect = pg.rect.Rect(self.width, self.height, self.x, self.y)
         
 
         # Iterate over files in the specified directory
@@ -25,15 +28,21 @@ class Sprite:
 
 
 
-    def render(self,x, y):
+    def render(self):
 
-
-        self.rect.topleft = (x + (self.rect.width/2), y + (self.rect.height/2)) # set x and y to the middle of the rect
-        self.screen.blit(self.image, self.rect)
+        if self.visibility == True:
+            if self.x != 0 and self.y != 0:
+                self.rect.topleft = (self.x + (self.rect.width/2), self.y + (self.rect.height/2)) # set x and y to the middle of the rect
+            self.screen.blit(self.image, self.rect)
+        else:
+            return
 
 
     def set_state(self, state):
         self.image = self.images[state - 1]
+    
+    def set_visibility(self, visibility:bool):
+        self.visibility = visibility
 
 
 
@@ -71,8 +80,8 @@ class Sprite:
 
     def move(self, newX, newY):
 
-        self.rect.x = newX
-        self.rect.y = newY
+        self.x = newX
+        self.y = newY
 
     
     
