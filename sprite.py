@@ -1,5 +1,6 @@
 import pygame as pg
 import os
+from utils import lerp
 class Sprite:
     def __init__(self,screen, name, id, width=160, height=90):
         self.screen = screen
@@ -47,33 +48,8 @@ class Sprite:
 
 
     def move_smooth(self, newX, newY, speed=1):
-        movedX = False
-        movedY = False
-
-
-        if not movedY and not movedX:
-            # Horizontal movement
-            if abs(newX - self.x) <= speed:
-                self.x = newX
-                movedX = True
-            elif newX > self.rect.x:
-                self.x += speed
-    
-            elif newX < self.x:
-                self.x -= speed
-
-
-            # Vertical movement
-            if abs(newY - self.y) <= speed:
-                self.y = newY
-                movedY = True
-            elif newY > self.y:
-                self.y += speed
-
-            elif newY < self.y:
-                self.y -= speed
-        if movedY and movedX:
-            return
+         self.x = lerp(self.x, newX, speed/10)
+         self.y = lerp(self.y, newY, speed/10)
 
             
 

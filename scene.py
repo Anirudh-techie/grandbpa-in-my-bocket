@@ -8,6 +8,7 @@ class Scene:
         self.screen = screen
 
         self.currentDialogue = 0
+        self.is_finished_bool = False
 
     def render(self):
         current_dialogue: Dialogue = self.dialogues[self.currentDialogue]
@@ -18,7 +19,7 @@ class Scene:
             sprite:Sprite = self.sprites[state]
             states = current_dialogue.sprite_states[state]
             if "position" in states:
-                sprite.move(states["position"][0], states["position"][1])
+                sprite.move_smooth(states["position"][0], states["position"][1])
             # sprite.move_smooth(newx, newy)
             if "state" in states:
                 sprite.set_state(states["state"])
@@ -31,6 +32,9 @@ class Scene:
 
     def next_dialogue(self):
        current_dialogue = self.dialogues[self.currentDialogue]
+       if self.currentDialogue == len(self.dialogues) - 1:
+           self.is_finished_bool = True
+           return
        self.currentDialogue += current_dialogue.go_next()
     
     def next_choice(self):
@@ -61,4 +65,4 @@ class Scene:
          return -1
     
     def is_finished(self):
-        return self.currentDialogue == len(self.dialogues) - 1
+        return self.is_finished_bool
