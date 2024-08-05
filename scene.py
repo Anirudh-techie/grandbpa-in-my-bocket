@@ -1,5 +1,5 @@
 from dialogue import Dialogue
-
+from sprite import Sprite
 class Scene:
     def __init__(self,screen, background, sprites, dialogues):
         self.background = background
@@ -15,11 +15,11 @@ class Scene:
         current_dialogue.render(self.screen)
 
         for state in current_dialogue.sprite_states:
-            sprite = self.sprites[state]
-            sprite.move_smooth(newx, newy)
-            sprite.show_animation(1)
-            if show sprite.render()
-            
+            sprite:Sprite = self.sprites[state]
+            # sprite.move_smooth(newx, newy)
+            sprite.set_state(1)
+            # if show sprite.render()
+            sprite.render(60,100 )
             # if
         
 
@@ -53,3 +53,6 @@ class Scene:
                      current_dialogue.choose(i)
 
          return -1
+    
+    def is_finished(self):
+        return self.currentDialogue == len(self.dialogues) - 1

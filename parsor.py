@@ -2,16 +2,22 @@ import json
 from dialogue import Dialogue
 import pygame
 from scene import Scene
-# from sprite import Sprite
+from game.gamescene import GameScene
+from sprite import Sprite
+
 def get_scene_data(screen)-> list[Scene]:
     with open("./data.json") as f:
          data = json.load(f)
          scenes = data["scenes"]
          sprites = data["sprites"]
          for s_id in sprites:
-            #  sprites[s_id] = Sprite(screen, sprites[s_id]["name"], s_id, [0,0], )
-             sprites[s_id] = None
+             sprites[s_id] = Sprite(screen, sprites[s_id]["name"], s_id )
+            #  sprites[s_id] = None
          for i,scene in enumerate(scenes):
+             if "game" in scene:
+                  difficulty = scene["game"]["difficulty"]
+                  scenes[i] = GameScene(screen,difficulty)
+                  continue
              background = pygame.image.load(f'./res/backgrounds/{scene["bg"]}').convert()
              background = pygame.transform.scale(background, (800, 700))
              dialogues = get_dialogue_data(i)

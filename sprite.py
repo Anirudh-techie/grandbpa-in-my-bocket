@@ -7,17 +7,16 @@ class Sprite:
 
         self.images = []  # List to store the loaded images
         self.width, self.height = width, height
-        self.rect = pg.rect(self.width, self.height, 0, 0)
+        self.rect = pg.rect.Rect(self.width, self.height, 0, 0)
         
 
         # Iterate over files in the specified directory
-        for root_dir, cur_dir, files in os.walk(fr"characters/{id}"):
+        for root_dir, cur_dir, files in os.walk(fr"res/characters/{id}"):
             for file in files:
                 # Ensure only image files are processed, this example assumes files are PNG
                 if file.endswith('.png') or file.endswith('.jpg'):
                     image_path = os.path.join(root_dir, file)
                     self.image = pg.image.load(image_path).convert_alpha() # .convert_alpha() makes it transperant
-
                     self.images.append(self.image)  # Add the loaded image to the list
 
         self.image = self.images[0] 
@@ -34,7 +33,7 @@ class Sprite:
 
 
     def set_state(self, state):
-        self.image = self.images[state + 1]
+        self.image = self.images[state - 1]
 
 
 

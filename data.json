@@ -63,6 +63,11 @@
                "name": "na rater"
             }
          ]
+      },
+      {
+         "game": {
+            "difficulty": 1
+         }
       }
    ]
 }
