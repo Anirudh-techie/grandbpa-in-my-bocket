@@ -1,6 +1,6 @@
 # importing necessary modules
 import pygame as pg
-from parser import get_scene_data
+from parsor import get_scene_data
 
 class Game:
     
