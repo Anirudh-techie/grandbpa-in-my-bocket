@@ -46,32 +46,34 @@ class Sprite:
 
 
 
-    def move_smooth(self,image_index, newX, newY, speed=1):
+    def move_smooth(self, newX, newY, speed=1):
         movedX = False
         movedY = False
-        rect = self.images_rects[image_index]
+
 
         if not movedY and not movedX:
             # Horizontal movement
-            if abs(newX - self.rect.x) <= speed:
-                self.rect.x = newX
+            if abs(newX - self.x) <= speed:
+                self.x = newX
                 movedX = True
             elif newX > self.rect.x:
-                self.rect.x += speed
+                self.x += speed
     
-            elif newX < self.rect.x:
-                self.rect.x -= speed
+            elif newX < self.x:
+                self.x -= speed
 
 
             # Vertical movement
-            if abs(newY - self.rect.y) <= speed:
-                self.rect.y = newY
+            if abs(newY - self.y) <= speed:
+                self.y = newY
                 movedY = True
-            elif newY > self.rect.y:
-                self.rect.y += speed
+            elif newY > self.y:
+                self.y += speed
 
-            elif newY < self.rect.y:
-                self.rect.y -= speed
+            elif newY < self.y:
+                self.y -= speed
+        if movedY and movedX:
+            return
 
             
 
