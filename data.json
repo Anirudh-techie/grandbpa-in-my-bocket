@@ -92,6 +92,15 @@
          "game": {
             "difficulty": 1
          }
+      },
+      {
+         "bg": "asd.jpg",
+         "dialogues":[
+            {
+               "text":"welcome back",
+               "name":"Nah Rater"
+            }
+         ]
       }
    ]
 }
