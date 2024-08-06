@@ -43,23 +43,26 @@ class Game:
                   self.scenes[self.current_scene].hover_mouse_choice(*event.pos)
             
 
-    def render_stuff_loop(self):
+    def render_stuff_loop(self,dt):
          self.screen.fill((255,255,255))
          if self.scenes[self.current_scene].is_finished():
             self.current_scene += 1
             if self.current_scene == len(self.scenes):
                 self.running = False
-         self.scenes[self.current_scene].render()
+         if isinstance(self.scenes[self.current_scene], Scene):
+            self.scenes[self.current_scene].render()
+         else: 
+            self.scenes[self.current_scene].render(dt)
 
 
     def mainLoop(self):
 
         while self.running:
 
+            dt = self.clock.tick(60)
             self.handle_events()
-            self.render_stuff_loop()
+            self.render_stuff_loop(dt)
             pg.display.update()
-            self.clock.tick(60)
 
 
 if __name__ == "__main__":

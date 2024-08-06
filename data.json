@@ -4,7 +4,11 @@
          "name": "John"
       }
    },
-   "scenes": [
+   "scenes": [{
+      "game": {
+         "difficulty": 1
+      }
+   },
       {
          "bg": "asd.jpg",
          "dialogues": [
@@ -88,11 +92,7 @@
             }
          ]
       },
-      {
-         "game": {
-            "difficulty": 1
-         }
-      },
+      
       {
          "bg": "asd.jpg",
          "dialogues":[
