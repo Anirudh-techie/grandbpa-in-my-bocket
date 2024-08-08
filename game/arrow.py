@@ -1,23 +1,26 @@
 import pygame as pg
 class Arrow:
-   def __init__(self,speed) -> None:
+   def __init__(self,speed, x, id) -> None: # up = 1, left = 2, right = 3, down = 4
       self.speed = speed
-      self.up_x 
-      self.down_x
-      self.right_x
-      self.left_x
+      self.y = 650
+      self.x = x
+      self.rect == {50, 50, x, 650}
 
-      self.up_arrow = pg.image.load("res/game/arrows/up_arrow.png")
-      self.down_arrow = pg.image.load("res/game/arrows/down_arrow.png")
-      self.left_arrow = pg.image.load("res/game/arrows/left_arrow.png")
-      self.right_arrow = pg.image.load("res/game/arrows/right_arrow.png")
-      left_rect = pg.rect.Rect()
+      if id == 1:
+         self.arrow_image = pg.image.load("res/game/arrows/up_arrow.png")
+      elif id == 2:
+         self.arrow_image = pg.image.load("res/game/arrows/down_arrow.png")
+      elif id == 3:
+         self.arrow_image = pg.image.load("res/game/arrows/left_arrow.png")
+      elif id == 4:
+
+         self.arrow_image = pg.image.load("res/game/arrows/right_arrow.png")
+
 
    def render(self, screen):
-      text = self.font.render(self.icon, True, (0,0,0))
-      screen.blit(text, (self.x, self.y))
+      screen.blit(self.arrow_image, self.rect)
 
-   def validate(self,y:int):
-      return abs(y - self.y)
-   
+   def update(self, deltaTime):
+      self.y += self.speed * deltaTime
+      
    
