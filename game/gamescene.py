@@ -26,16 +26,28 @@ class GameScene:
       self.perfect_score = 10
       self.perfect_threshold = 10
       self.penalty_threshold = 50
-
-      self.up_arrow_img = pygame.transform.scale(pygame.image.load("res/game/arrows/up_arrow.png").convert(), (50,50))
-      self.down_arrow_img = pygame.transform.scale(pygame.image.load("res/game/arrows/down_arrow.png").convert(), (50,50))
-      self.left_arrow_img = pygame.transform.scale(pygame.image.load("res/game/arrows/left_arrow.png").convert(), (50,50))
-      self.right_arrow_img = pygame.transform.scale(pygame.image.load("res/game/arrows/right_arrow.png").convert(), (50,50))
+      
+      
+      self.right_arrow_img = pygame.transform.scale(pygame.image.load("res/game/arrows/arrow.png").convert(), (50,50))
+      self.left_arrow_img = pygame.transform.rotate(self.right_arrow_img, 180)
+      self.up_arrow_img = pygame.transform.rotate(self.right_arrow_img, 90)
+      self.down_arrow_img = pygame.transform.rotate(self.right_arrow_img, 270)
+      
+      # self.up_arrow_img = pygame.transform.scale(pygame.image.load("res/game/arrows/up_arrow.png").convert(), (50,50))
+      # self.down_arrow_img = pygame.transform.scale(pygame.image.load("res/game/arrows/down_arrow.png").convert(), (50,50))
+      # self.left_arrow_img = pygame.transform.scale(pygame.image.load("res/game/arrows/left_arrow.png").convert(), (50,50))
+      
 
    
 
 
    def render(self,dt):
+      
+      self.screen.blit(self.left_arrow_img, (200, 50))
+      self.screen.blit(self.down_arrow_img, (300, 50))
+      self.screen.blit(self.up_arrow_img, (400, 50))
+      self.screen.blit(self.right_arrow_img, (500, 50))
+      
       self.tickbeat(dt)
       for arrow in self.up_arrows:
          arrow.update(dt)
@@ -50,11 +62,6 @@ class GameScene:
          arrow.update(dt)
          arrow.render(self.screen)
 
-      self.screen.blit(self.left_arrow_img, (200, 50))
-      self.screen.blit(self.down_arrow_img, (300, 50))
-      self.screen.blit(self.up_arrow_img, (400, 50))
-      self.screen.blit(self.right_arrow_img, (500, 50))
-      
 
       self.show_score()
 
@@ -104,36 +111,39 @@ class GameScene:
 
    def keydown(self,key):
       print(key)
-      if key == 32:
+
+      
+      if key == pygame.K_SPACE:
          self.is_finished_bool = True
 
-      if key == 119:
+      elif key == pygame.K_UP or key == pygame.K_w:
          if len(self.up_arrows) == 0:
             self.score += self.miss_penalty
          else:
             arrow = self.up_arrows.pop(0)
             self.score += self.validate(arrow)
 
-      if key == 97:
+      elif key == pygame.K_LEFT or key == pygame.K_a:
          if len(self.left_arrows) == 0:
             self.score += self.miss_penalty
          else:
             arrow = self.left_arrows.pop(0)
             self.score += self.validate(arrow)
-      
-      if key == 100:
+
+      elif key == pygame.K_RIGHT or key == pygame.K_d:
          if len(self.right_arrows) == 0:
             self.score += self.miss_penalty
          else:
             arrow = self.right_arrows.pop(0)
             self.score += self.validate(arrow)
-      
-      if key == 115: 
+
+      elif key == pygame.K_DOWN or key == pygame.K_s:
          if len(self.down_arrows) == 0:
             self.score += self.miss_penalty
          else:
             arrow = self.down_arrows.pop(0)
             self.score += self.validate(arrow)
+                  
    def validate(self, arrow):
       y_perfect = 50
       y = arrow.y

@@ -26,6 +26,8 @@ class Game:
             if event.type == pg.QUIT:
                 self.running = False
             elif event.type == pg.KEYDOWN:
+               if event.key == pg.K_ESCAPE:
+                     self.running = False
                if isinstance(self.scenes[self.current_scene], Scene):
                   if event.key == pg.K_SPACE:  
                      self.scenes[self.current_scene].next_dialogue()
@@ -41,6 +43,7 @@ class Game:
                   self.scenes[self.current_scene].check_mouse_choice(*event.pos)
                if event.type == pg.MOUSEMOTION:
                   self.scenes[self.current_scene].hover_mouse_choice(*event.pos)
+        
             
 
     def render_stuff_loop(self,dt):
