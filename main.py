@@ -59,7 +59,7 @@ class Game:
 
         while self.running:
 
-            dt = self.clock.tick(60)
+            dt = self.clock.tick(60)/1000
             self.handle_events()
             self.render_stuff_loop(dt)
             pg.display.update()

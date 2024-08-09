@@ -45,8 +45,8 @@
                "sprite_states": {
                   "john": {
                      "position": [
-                        10,
-                        300
+                        0,
+                        200
                      ],
                      "state": 2
                   }
@@ -58,7 +58,7 @@
                "next_dialogue": 3,
                "sprite_states": {
                   "john": {
-                     "position":[300, 300]
+                     "position":[275, 300]
                   }
                }
             },
@@ -97,7 +97,7 @@
          "bg": "asd.jpg",
          "dialogues":[
             {
-               "text":"welcome back",
+               "text":"idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk ",
                "name":"Nah Rater"
             }
          ]
