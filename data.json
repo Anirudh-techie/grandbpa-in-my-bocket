@@ -2,11 +2,16 @@
    "sprites": {
       "john": {
          "name": "John"
+      },
+
+      "pirate_man":{
+         "name": "Bill"
       }
+   
    },
    "scenes": [{
       "game": {
-         "difficulty": 1
+         "difficulty": 2
       }
    },
       {
@@ -42,12 +47,9 @@
                   ]
                ],
                "name": "John",
-               "sprite_states": {
+               "sprite_states": { 
                   "john": {
-                     "position": [
-                        0,
-                        200
-                     ],
+                     "position": [0,210],
                      "state": 2
                   }
                }
@@ -82,11 +84,7 @@
                }
             },
             {
-               "sprite_states": {
-                  "john": {
-                     "show": false
-                  }
-               },
+               
                "text": "The End",
                "name": "na rater"
             }
@@ -94,9 +92,16 @@
       },
       
       {
-         "bg": "asd.jpg",
+         "bg": "jack_sparrow.jpg",
          "dialogues":[
             {
+               "sprite_states": {
+                  "pirate_man": {
+                     "show": true,
+                     "position":[400, 400]
+                  }
+               },
+               
                "text":"idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk ",
                "name":"Nah Rater"
             }

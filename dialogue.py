@@ -2,6 +2,8 @@ import pygame
 from utils import lerp, wrap_multi_line
 class Dialogue:
     def __init__(self, text:str, character_name:str, choices=[], sprite_states={}, next_dialogue=1):
+        pygame.mixer.init()
+        self.text_sound  = pygame.mixer.Sound('res/soundfx/8-bit-loop-189494.mp3')
         self.text = text
         self.choices = choices
         self.sprite_states = sprite_states
@@ -31,7 +33,9 @@ class Dialogue:
         self._animchar = min(self.textlen, self._animchar)
 
         if int(self._animchar) > int(self._animchar - 0.7):
-            pass #add sound here
+            self.text_sound.play()
+        else:
+            self.text_sound.stop()
         
         text = wrap_multi_line(self.text, self.diaFont, 500)
         linesum = 0
