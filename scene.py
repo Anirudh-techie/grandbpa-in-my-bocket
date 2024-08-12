@@ -13,21 +13,22 @@ class Scene:
     def render(self):
         current_dialogue: Dialogue = self.dialogues[self.currentDialogue]
         self.screen.blit(self.background, (0, 0))
-        current_dialogue.render(self.screen)
+        
 
         for state in current_dialogue.sprite_states:
             sprite:Sprite = self.sprites[state]
             states = current_dialogue.sprite_states[state]
             if "position" in states:
+                print(states["position"])
                 sprite.move(states["position"][0], states["position"][1])
-            # sprite.move_smooth(newx, newy)
             if "state" in states:
                 sprite.set_state(states["state"])
 
             if "show" in states:
                 sprite.set_visibility(states["show"])
             sprite.render()
-            # if
+            
+            current_dialogue.render(self.screen)
         
 
     def next_dialogue(self):

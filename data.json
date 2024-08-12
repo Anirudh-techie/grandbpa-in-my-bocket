@@ -49,8 +49,7 @@
                "name": "John",
                "sprite_states": { 
                   "john": {
-                     "position": [0,210],
-                     "state": 2
+                     "position": [0,210]
                   }
                }
             },
@@ -98,12 +97,12 @@
                "sprite_states": {
                   "pirate_man": {
                      "show": true,
-                     "position":[400, 400]
+                     "position":[0, 0]
                   }
                },
                
-               "text":"idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk idk ",
-               "name":"Nah Rater"
+               "text":"I want to stick my hot sticky meaty hot warm wet condensated sticky with meat hot rod inside of you.",
+               "name":"Arlo Grimwade"
             }
          ]
       }

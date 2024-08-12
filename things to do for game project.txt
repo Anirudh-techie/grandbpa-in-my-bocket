@@ -1,1 +1,2 @@
 
+when the arrow is y is less than the stationary arro y, all of them get deleted.
