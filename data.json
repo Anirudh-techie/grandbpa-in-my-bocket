@@ -9,7 +9,8 @@
       }
    
    },
-   "scenes": [{
+   "scenes": [
+   {
       "game": {
          "difficulty": 2
       }

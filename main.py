@@ -2,6 +2,7 @@
 import pygame as pg
 from scene import Scene
 from parsor import get_scene_data
+from startscreen import StartScreen
 
 class Game:
     
@@ -20,6 +21,11 @@ class Game:
 
         self.clock = pg.time.Clock() 
         pg.display.set_caption("Grandbpa in My Bocket")
+        
+        self.startscreen = StartScreen(self.screen, self.screen_width, self.screen_height)
+        
+        
+        
 
     def handle_events(self):
         for event in pg.event.get():
@@ -47,6 +53,7 @@ class Game:
             
 
     def render_stuff_loop(self,dt):
+
          self.screen.fill((255,255,255))
          if self.scenes[self.current_scene].is_finished():
             self.current_scene += 1
@@ -61,7 +68,7 @@ class Game:
     def mainLoop(self):
 
         while self.running:
-
+            self.startscreen.mainLoop()
             dt = self.clock.tick(60)/1000
             self.handle_events()
             self.render_stuff_loop(dt)
@@ -69,6 +76,7 @@ class Game:
 
 
 if __name__ == "__main__":
+    
     game = Game()
     game.mainLoop()
     pg.quit()
