@@ -1,2 +1,15 @@
+ok so for boss hp
+time = 60s, maybe a set streak will add some time
 
-when the arrow is y is less than the stationary arro y, all of them get deleted.
+1. we need to track boss health
+2. we need to track player health
+3. we need to track player damage
+4. we need to track streak
+
+boss hp - 200 - 2000
+player hp 100-250
+
+player damage system 
+base attack 1-5
+streak 3-10, adds 5 as dmg buff.
+streak 10+ adds 10 as damage buff.
