@@ -6,30 +6,70 @@ class StartScreen: # screen width: 800, screen_height : 700
         self.screen_width, self.screen_height = screen_width, screen_height
         self.screen = screen
         self.background = pg.transform.scale(pg.image.load("res/backgrounds/start_screen.jpg").convert_alpha(), (screen_width, screen_height))
-        self.start_game_button = pg.image.load("res/buttons/start_game.png").convert_alpha()
-        self.running = True
+        self.start_game_button = pg.image.load("res/startScreen/start_game.jpg")
         
         
-    def handle_events(self):
-        for event in pg.event.get():
-            if event.type == pg.QUIT:
+        self.button_rect = self.start_game_button.get_rect()
+        self.button_rect.x = (self.screen_width/2) - (self.button_rect.width/2)
+        self.button_rect.y = (self.screen_height/2) - (self.button_rect.height/2)
+        self.isStartScreen = True
+        self.quitted = False
 
-                self.running = False
+        self.title_font = pg.font.SysFont('Comic Sans MS', 30)
+        self.title_surface = self.title_font.render('Grandbpa In My Bocket', False, (0, 0, 0))
+        
+       
+    def handle_events(self):
+        # self.isStartScreen = False
+        self.is_button_pressed = self.button_pressed()
+
+
+        for event in pg.event.get():
+            
+            if event.type == pg.QUIT:
+                self.isStartScreen = False
+                self.quitted = True
+
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE:
-                    self.running = False
+                    self.isStartScreen = False
+                    self.quitted = True
+                    
+            if event.type == pg.KEYDOWN:
+                print("key pressed")
+            if event.type == pg.MOUSEBUTTONDOWN:
+                print("mouse clicked")
+                if pg.mouse.get_pressed()[0] and self.is_button_pressed:
+                        print("mouse1 clicked")
+                        self.isStartScreen = False
+
+
+        
+
+        
 
     
     def render(self):
         self.screen.blit(self.background,(0,0))
-        self.screen.blit(self.start_game_button, (self.screen_width, self.screen_height))
+        # self.screen.blit(self.start_game_button, (self.screen_width/2 + self.start_game_button.get_width()/2, self.screen_height/2 + self.start_game_button.get_height()/2))
+        self.screen.blit(self.start_game_button,self.button_rect)
+        self.screen.blit(self.title_surface, ((self.screen_width/2)- 150, 40))
+    def check_running(self):
+        return self.isStartScreen
         
+    def button_pressed(self):
+        self.mousex, self.mousey = pg.mouse.get_pos()
+        self.mouse_rect = pg.Rect(self.mousex, self.mousey, 5, 5)
+        if pg.Rect.colliderect(self.mouse_rect, self.button_rect): # check if mouse is over
+            self.start_game_button = pg.image.load("res/startScreen/start_game_held_down.jpg")
+            return True
+        else:
+            self.start_game_button = pg.image.load("res/startScreen/start_game.jpg")
+            return False
         
-    def mainLoop(self):
-        while self.running:
-            self.handle_events()
-            self.render
-            pg.display.update()
+    def get_quitted(self):
+        return self.quitted
+
             
-        
+    
         
