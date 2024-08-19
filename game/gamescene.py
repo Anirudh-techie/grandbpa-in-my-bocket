@@ -66,6 +66,11 @@ class GameScene:
       for arrow in self.down_arrows:
          arrow.update(dt)
          arrow.render(self.screen)
+      if self.player_health <= 0:
+         self.game_over(False)
+         return
+      if self.boss_health <= 0:
+         self.game_over(True)
 
 
       self.show_health()
@@ -73,9 +78,15 @@ class GameScene:
 
 
    def show_health(self):
-      
-      health = self.font.render(f"Boss Health: {int(self.boss_health)}\nPlayer Health: {int(self.player_health)}\nCurrent Streak: {int(self.curr_streak)}", True, (0,0,0))
-      self.screen.blit(health, (10,10))
+      game_data = [self.font.render(f"Boss Health: {int(self.boss_health)}", True, (0,0,0)),
+      self.font.render(f"Player Health: {int(self.player_health)}", True, (0,0,0)),
+      self.font.render(f"Current Streak: {int(self.curr_streak)}", True, (0,0,0))
+      ]
+
+
+
+      for n in range(3):
+         self.screen.blit(game_data[n], (10,n*25))
 
    def tickbeat(self,dt):
       self.beattimer += dt
@@ -160,11 +171,7 @@ class GameScene:
             arrow = self.down_arrows.pop(0)
             self.boss_health -= self.validate(arrow)
 
-      if self.player_health < 0:
-         self.game_over(False)
-         return
-      if self.boss_health < 0:
-         self.game_over(True)
+      
    
    def game_over(self,didWin):
       if didWin:
