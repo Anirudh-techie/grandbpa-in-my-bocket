@@ -15,6 +15,25 @@ streak 3-10, adds 5 as dmg buff.
 streak 10+ adds 10 as damage buff.
 
 
+
+
+FOR THE GAME:
+firstly change the aspect ratio and adjust all assets according to it, I think it is
+DISPLAYSURF = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+
+
+add a health bar for the boss and the player for dance dance, its easy
+
+Add a death screen when the player dies in the dance dance game,
+
+the mouse selection for the different choices is broken for the story part, its not exactly on the borders of the rectangle
+the sound effects are broken for when the text is animating out, it just plays the whole time for the story part idk why
+also we could add an extra start screen, so before the game starts theres a thing explainong the story in big scrolling text over the screen, it will be like
+ "you are a well esteemed pirate who has seen the goldmine of chatstone, you must adventure through chatstone and steal the booty"
+ something like that.
+
+
+
 ART:
 title text for the title screen
 play game button for the title screen
