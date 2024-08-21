@@ -6,7 +6,7 @@ class StartScreen: # screen width: 800, screen_height : 700
         self.screen_width, self.screen_height = screen_width, screen_height
         self.screen = screen
         self.background = pg.transform.scale(pg.image.load("res/backgrounds/start_screen.jpg").convert_alpha(), (screen_width, screen_height))
-        self.start_game_button = pg.image.load("res/startScreen/start_game.jpg")
+        self.start_game_button = pg.image.load("res/startScreen/start_game.jpg").convert_alpha()
         
         
         self.button_rect = self.start_game_button.get_rect()
@@ -61,10 +61,10 @@ class StartScreen: # screen width: 800, screen_height : 700
         self.mousex, self.mousey = pg.mouse.get_pos()
         self.mouse_rect = pg.Rect(self.mousex, self.mousey, 5, 5)
         if pg.Rect.colliderect(self.mouse_rect, self.button_rect): # check if mouse is over
-            self.start_game_button = pg.image.load("res/startScreen/start_game_held_down.jpg")
+            self.start_game_button = pg.image.load("res/startScreen/start_game_held_down.jpg").convert_alpha()
             return True
         else:
-            self.start_game_button = pg.image.load("res/startScreen/start_game.jpg")
+            self.start_game_button = pg.image.load("res/startScreen/start_game.jpg").convert_alpha()
             return False
         
     def get_quitted(self):

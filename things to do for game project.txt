@@ -13,3 +13,32 @@ player damage system
 base attack 1-5
 streak 3-10, adds 5 as dmg buff.
 streak 10+ adds 10 as damage buff.
+
+
+ART:
+title text for the title screen
+play game button for the title screen
+play  game button held down
+background for the title screen
+
+
+
+Sprites for each character:
+Neutral Sprite
+Angry Sprite
+happy Sprite
+shocked sprite
+sad sprite
+
+Background for each scene but we can make that with AI
+Text background
+Text background for each of the options when it pops up
+any props that we wanna use or something idk
+
+
+
+
+
+
+
+
