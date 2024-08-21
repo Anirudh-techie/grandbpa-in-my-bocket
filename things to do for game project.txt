@@ -1,3 +1,5 @@
+WE SHOULD GET THE FIRST SCENE FINALISED AND SEE IF THERE IS ANYTHING WRONG WITH IT SO WE KNOW WHAT WE NEED TO ADD
+
 ok so for boss hp
 time = 60s, maybe a set streak will add some time
 
