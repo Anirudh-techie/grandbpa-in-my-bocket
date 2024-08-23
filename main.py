@@ -8,16 +8,18 @@ class Game:
     
     def __init__(self):
         pg.init()
-        self.screen_width, self.screen_height = (800, 700)
+        pg.mixer.init()
+        self.text_sound  = pg.mixer.Sound('res/soundfx/8-bit-loop-189494.mp3')
+        
         self.running = True
 
 
         new_icon = pg.image.load("res/icon.jpg")
         pg.display.set_icon(new_icon)
 
-        self.screen = pg.display.set_mode((self.screen_width, self.screen_height))
-
-        self.scenes = get_scene_data(self.screen)
+        self.screen = pg.display.set_mode((0,0), pg.FULLSCREEN)
+        self.screen_width, self.screen_height = self.screen.get_size()
+        self.scenes = get_scene_data(self.screen, self.screen_width, self.screen_height)
         self.current_scene = 0
 
         self.clock = pg.time.Clock() 
@@ -47,6 +49,7 @@ class Game:
                      if isinstance(self.scenes[self.current_scene], Scene):
                         if event.key == pg.K_SPACE:  
                            self.scenes[self.current_scene].next_dialogue()
+                           self.text_sound.play(1)
                         elif event.key == pg.K_DOWN:
                            self.scenes[self.current_scene].next_choice()
                         elif event.key == pg.K_UP:

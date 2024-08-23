@@ -5,7 +5,7 @@ from scene import Scene
 from game.gamescene import GameScene
 from sprite import Sprite
 
-def get_scene_data(screen)-> list[Scene]:
+def get_scene_data(screen, screen_width, screen_height)-> list[Scene]:
     with open("./data.json") as f:
          data = json.load(f)
          scenes = data["scenes"]
@@ -19,18 +19,18 @@ def get_scene_data(screen)-> list[Scene]:
                   scenes[i] = GameScene(screen,difficulty)
                   continue
              background = pygame.image.load(f'./res/backgrounds/{scene["bg"]}').convert()
-             background = pygame.transform.scale(background, (800, 700))
-             dialogues = get_dialogue_data(i)
+             background = pygame.transform.scale(background, (screen_width, screen_height))
+             dialogues = get_dialogue_data(screen_width, screen_height, i)
              scenes[i] = Scene(screen, background, sprites, dialogues)
     return scenes
 
 
-def get_dialogue_data(scene_index):
+def get_dialogue_data(screen_width, screen_height, scene_index):
     with open("./data.json") as f:
             data = json.load(f)
             scene = data["scenes"][scene_index]
             ds = scene["dialogues"]
-            dialogues = [Dialogue(d.get("text"),d.get("name"), d.get("choices",[]), d.get("sprite_states", {}), d.get("next_dialogue", 1))  for d in ds]
+            dialogues = [Dialogue(screen_width, screen_height, d.get("text"),d.get("name"), d.get("choices",[]), d.get("sprite_states", {}), d.get("next_dialogue", 1))  for d in ds]
             return dialogues
     
 
