@@ -30,7 +30,7 @@ def get_dialogue_data(scene_index):
             data = json.load(f)
             scene = data["scenes"][scene_index]
             ds = scene["dialogues"]
-            dialogues = [Dialogue(d["text"],d.get("name"), d.get("choices",[]), d.get("sprite_states", {}), d.get("next_dialogue", 1))  for d in ds]
+            dialogues = [Dialogue(d.get("text"),d.get("name"), d.get("choices",[]), d.get("sprite_states", {}), d.get("next_dialogue", 1))  for d in ds]
             return dialogues
     
 

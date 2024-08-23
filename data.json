@@ -7,90 +7,369 @@
       "pirate_man":{
          "name": "Bill"
       }
+      ,
+      "Paniel":{
+         "name":"Paniel"
+      },
+      "Cashier":{
+         "name":"Cashier"
+      },
+      "Sign":{
+         "name":"Sign"
+      },
+      "Dan Johngel":{
+         "name":"Dan Johngel"
+      }
    
    },
    "scenes": [
-   {
-      "game": {
-         "difficulty": 5
-      }
-   },
+   
       {
          "bg": "asd.jpg",
          "dialogues": [
             {
-               "sprite_states": {
-                  "john": {
-                     "show": true,
-                     "position": [
-                        100,
-                        200
-                     ]
-                  }
-               },
-               "text": "Hello, I am John",
-               "name": "John"
+                "sprite_states": {
+                    "Paniel": {
+                        "state": 3,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "I am so hyped and ready to buy a new getup at chatstone, the style nexus",
+                "name": "Paniel",
+                "next_dialogue": 1
             },
             {
-               "text": "Will you marry me",
-               "choices": [
-                  [
-                     "Yes",
-                     1
-                  ],
-                  [
-                     "NO",
-                     3
-                  ],
-                  [
-                     "idk dude maybe",
-                     2
-                  ]
-               ],
-               "name": "John",
-               "sprite_states": { 
-                  "john": {
-                     "position": [0,210]
-                  }
-               }
+                "sprite_states": {
+                    "Paniel": {
+                        "state": 3,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "What about you captain?",
+                "name": "Paniel",
+                "choices": [
+                    ["I am so hyped", 1],
+                    ["Whatever", 2]
+                ]
             },
             {
-               "text": "les go we're married babyes",
-               "name": "Hubby",
-               "next_dialogue": 3,
-               "sprite_states": {
-                  "john": {
-                     "position":[275, 300]
-                  }
-               }
+                "sprite_states": {
+                    "Paniel": {
+                        "state": 3,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "Yeah well I am sure this getup will be quite fashionable",
+                "name": "Paniel",
+                "next_dialogue": 1
             },
             {
-               "text": "awesome ill take that as a yes",
-               "name": "fiance",
-               "next_dialogue": 2,
-               "sprite_states": {
-                  "john": {
-                     "position":[300, 300]
-                  }
-               }
+                "sprite_states": {
+                    "Paniel": {
+                        "state": 4,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "WOWZERS that getup looks CRAZY you should wear it RIGHT NOW kapitan",
+                "name": "Paniel",
+                "choices": [
+                    ["NO", 1],
+                    ["okay", 2]
+                ]
             },
             {
-               "text": "I'm sorry, I can't marry you anyways.. haha got you first hahaha idiot",
-               "name": "savage",
-               "sprite_states": {
-                  "john": {
-                     "position":[300, 300]
-                  }
-               }
+                "sprite_states": {
+                    "Paniel": {
+                        "state": 5,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "Okay then captain its up to you",
+                "name": "Paniel",
+                "next_dialogue": 1
             },
             {
-               
-               "text": "The End",
-               "name": "na rater"
+                "sprite_states": {
+                    "Paniel": {
+                        "state": 3,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "I am sure it will look stunning on you sir",
+                "name": "Paniel",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Cashier": {
+                        "state": 3,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "Welcome to Davey Jones! Are you looking for anything specific?",
+                "name": "Cashier",
+                "choices": [
+                    ["A brand new getup!!!", 1],
+                    ["Nope", 2]
+                ]
+            },
+            {
+                "sprite_states": {
+                    "Cashier": {
+                        "state": 3,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "A brand new getup? I am assuming you guys are pirates, well the pirate section is in the very far left corner of the 2nd floor",
+                "name": "Cashier",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Cashier": {
+                        "state": 1,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "Alright then",
+                "name": "Cashier",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Paniel": {
+                        "state": 4,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "WOWZERS that getup looks CRAZY you should wear it RIGHT NOW kapitan",
+                "name": "Paniel",
+                "choices": [
+                    ["NO", 1],
+                    ["okay", 2]
+                ]
+            },
+            {
+                "sprite_states": {
+                    "Paniel": {
+                        "state": 5,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "Okay then captain its up to you",
+                "name": "Paniel",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Paniel": {
+                        "state": 3,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "I am sure it will look stunning on you sir",
+                "name": "Paniel",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Cashier": {
+                        "state": 1,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "Did you find what you were looking for",
+                "name": "Cashier",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Paniel": {
+                        "state": 3,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "Oh yessiree bob I did so find it, I would like to purchase this beautiful garb",
+                "name": "Paniel",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Paniel": {
+                        "state": 1,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "hm…",
+                "name": "Paniel",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Sign": {
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "Dance battle the cashier for a 2% discount.",
+                "name": "Sign",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Paniel": {
+                        "state": 1,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "Perhaps we can use this discount?",
+                "name": "Paniel",
+                "choices": [
+                    ["Alright", 1],
+                    ["Let’s dance", 2]
+                ]
+            },
+            {
+                "sprite_states": {
+                    "Cashier": {
+                        "state": 2,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "Fine… Let’s boogie!",
+                "name": "Cashier",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Cashier": {
+                        "state": 4,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "Wow you are kinda crazy at the boogie",
+                "name": "Cashier",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Paniel": {
+                        "state": 3,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "You’re so talented, captain!",
+                "name": "Paniel",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Cashier": {
+                        "state": 1,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "Wait I am getting a call",
+                "name": "Cashier",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Dan Johngel": {
+                        "state": 2,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "You must not honour the 2% discount!",
+                "name": "Dan Johngel",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Dan Johngel": {
+                        "state": 2,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "Do you have any idea what impacts that will make on our net profit figures? I’ll be ruined!",
+                "name": "Dan Johngel",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Cashier": {
+                        "state": 4,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "Oh! Uh- of course sir.",
+                "name": "Cashier",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Cashier": {
+                        "state": 5,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "Sorry guys. You won the dance battle fair and square but I can’t honour the discount.",
+                "name": "Cashier",
+                "next_dialogue": 1
+            },
+            {
+                "sprite_states": {
+                    "Paniel": {
+                        "state": 2,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "What!? That’s not fair!",
+                "name": "Paniel",
+                "choices": [
+                    ["What are we going to do?", 1],
+                    ["We’ll show them", 2]
+                ]
+            },
+            {
+                "sprite_states": {
+                    "Paniel": {
+                        "state": 1,
+                        "show": true,
+                        "position": [100, 200]
+                    }
+                },
+                "text": "",
+                "name": ""
             }
-         ]
+        ]
+        
       },
-      
       {
          "bg": "jack_sparrow.jpg",
          "dialogues":[
@@ -108,4 +387,5 @@
          ]
       }
    ]
+   
 }

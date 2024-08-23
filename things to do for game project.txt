@@ -45,11 +45,11 @@ background for the title screen
 
 
 Sprites for each character:
-Neutral Sprite
-Angry Sprite
-happy Sprite
-shocked sprite
-sad sprite
+Neutral Sprite - 1
+Angry Sprite -2 
+happy Sprite -3
+shocked sprite -4
+sad sprite -5
 
 Background for each scene but we can make that with AI
 Text background

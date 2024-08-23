@@ -19,7 +19,6 @@ class Scene:
             sprite:Sprite = self.sprites[state]
             states = current_dialogue.sprite_states[state]
             if "position" in states:
-                print(states["position"])
                 sprite.move(states["position"][0], states["position"][1])
             if "state" in states:
                 sprite.set_state(states["state"])

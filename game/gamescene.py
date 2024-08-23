@@ -2,6 +2,9 @@ import pygame
 from game.arrow import Arrow
 import random
 import pygame
+from game.particles import Particle, Particles
+
+
 
 boss_hps = [200, 300, 500, 1000,1500,2000]
 player_hps = [100,125, 125, 200, 250, 250] 
@@ -38,22 +41,34 @@ class GameScene:
       self.curr_streak = 0
       
       
-      self.right_arrow_img = pygame.transform.scale(pygame.image.load("res/game/arrows/arrow.png").convert(), (50,50))
+      self.right_arrow_img = pygame.transform.scale(pygame.image.load("res/game/arrows/arrow.png"), (50,50))
       self.left_arrow_img = pygame.transform.rotate(self.right_arrow_img, 180)
       self.up_arrow_img = pygame.transform.rotate(self.right_arrow_img, 90)
       self.down_arrow_img = pygame.transform.rotate(self.right_arrow_img, 270)
 
       self.second_arrow_chance = 5
+      
+      self.arrow_particle_L = Particles(225,75, 0)
+      self.arrow_particle_R = Particles(525,75, 0)
+      self.arrow_particle_U = Particles(425,75, 0)
+      self.arrow_particle_D = Particles(325,75, 0)
 
 
    def render(self,dt):
       
+      #paticles
+      self.arrow_particle_L.draw(self.screen)
+      self.arrow_particle_R.draw(self.screen)
+      self.arrow_particle_U.draw(self.screen)
+      self.arrow_particle_D.draw(self.screen)
+
       self.screen.blit(self.left_arrow_img, (200, 50))
       self.screen.blit(self.down_arrow_img, (300, 50))
       self.screen.blit(self.up_arrow_img, (400, 50))
       self.screen.blit(self.right_arrow_img, (500, 50))
       
       self.tickbeat(dt)
+      
       for arrow in self.up_arrows:
          arrow.update(dt)
          arrow.render(self.screen)
@@ -74,6 +89,8 @@ class GameScene:
 
 
       self.show_health()
+
+
 
 
 
@@ -165,6 +182,7 @@ class GameScene:
             self.boss_health -= self.validate(arrow)
 
       elif key == pygame.K_DOWN or key == pygame.K_s:
+
          if len(self.down_arrows) == 0:
             self.player_health -= self.boss_dmg
          else:
@@ -188,6 +206,15 @@ class GameScene:
       diff = abs(y - y_perfect)
 
       if diff < self.perfect_threshold:
+         if arrow.x == 200:
+            self.arrow_particle_L.reset(self.arrow_particle_L.x,self.arrow_particle_L.y, 50)
+         elif arrow.x == 500:
+            self.arrow_particle_R.reset(self.arrow_particle_R.x,self.arrow_particle_L.y, 50)
+         elif arrow.x == 400:
+            self.arrow_particle_U.reset(self.arrow_particle_U.x,self.arrow_particle_L.y, 50)
+         elif arrow.x == 300:
+            self.arrow_particle_D.reset(self.arrow_particle_D.x,self.arrow_particle_L.y, 50)
+
          self.curr_streak+=1
          dmg = self.attack_dmg
          if self.curr_streak > 3 and self.curr_streak < 10:
