@@ -27,10 +27,13 @@ class Particle:
    def __init__(self, x, y):
       self.x = x
       self.y = y
-      self.speed = random.randint(3, 5)
+      # self.speed = random.randint(3, 5)
+      self.speed = random.randint(2, 4)
+
       self.direction = random.randint(0, 360)
       r = random.random()
-      self.color = ((r<0.33)*255, (r>0.33 and r<0.66)*255, (r>0.66)*255)
+      # self.color = ((r<0.33)*255, (r>0.33 and r<0.66)*255, (r>0.66)*255)
+      self.color = (0,0,200)
       self.radius = random.randint(1, 5)
    
    def move(self):

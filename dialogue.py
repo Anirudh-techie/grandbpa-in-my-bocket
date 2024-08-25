@@ -3,6 +3,8 @@ from utils import lerp, wrap_multi_line
 class Dialogue:
     def __init__(self, screen_width, screen_height, text:str, character_name:str, choices=[], sprite_states={}, next_dialogue=1):
         pygame.mixer.init()
+        self.text_anim_sound  = pygame.mixer.Sound('res/soundfx/8-bit-loop-189494.mp3')
+        self.text_anim_sound_playing = False
         self.screen_width, self.screen_height = screen_width, screen_height
         self.text_bg_width, self.text_bg_height = screen_width * 7/10, screen_height * 2.5/10
         self.text = text
@@ -33,8 +35,16 @@ class Dialogue:
         self._animchar += 1.4
         self._animchar = min(self.textlen, self._animchar)
 
+        if not self.text_anim_sound_playing:
+            self.text_anim_sound.stop()
+
         if int(self._animchar) > int(self._animchar - 0.7):
-            pass
+            if self.text_anim_sound_playing:
+                self.text_anim_sound.play(1)
+                self.text_anim_sound_playing = False
+        else:
+            self.text_anim_sound.stop()
+            self.text_anim_sound_playing = True
             
         
         text = wrap_multi_line(self.text, self.diaFont, self.text_bg_width - 40)
@@ -45,7 +55,7 @@ class Dialogue:
             linesum += len(line)
         
 
-        name = self.nameFont.render(self.character_name, True, (0,0,0))
+        name = self.nameFont.render(self.character_name, True, (0,0,200))
         screen.blit(name, (self.screen_width/2 - self.text_bg_width/2 + 20, self.screen_height - self.text_bg_height - 15))
 
         
@@ -66,7 +76,7 @@ class Dialogue:
                   chosen_bg.fill((0,0,0,0))
                   if i == self.current_choice:
                       chosen_bg.fill((255,0,0,self._chosen_bg_opacity))
-                  chosen_bg.blit(choice_text, (10,8))
+                  chosen_bg.blit(choice_text, (10,4))
 
                   if self._choiceheight >= ideal_height:
                      self._choice_opacity += 15 * (self._choice_opacity <= 255*len(self.choices))

@@ -16,6 +16,7 @@ class GameScene:
       self.difficulty = difficulty
       self.font =  pygame.font.Font(None, 25)
       self.screen = screen
+      
       self.is_finished_bool = False
    
 
@@ -35,13 +36,27 @@ class GameScene:
       self.penalty_threshold = 50
       
       self.boss_health = boss_hps[difficulty-1]
+      self.boss_max_health = boss_hps[difficulty-1]
       self.player_health = player_hps[difficulty-1]
+      self.player_max_health = player_hps[difficulty-1]
+
+      self.boss_health_bar_width = self.screen.get_width() * 1/3
+      self.boss_health_bar_height = 20
+      self.boss_health_bar_x = self.screen.get_width()/2 - 50
+      self.boss_health_bar_y = 75
+
+      self.player_health_bar_width = self.screen.get_width() * 1/6
+      self.player_health_bar_height = 20
+      self.player_health_bar_x = self.screen.get_width()/2 - 50
+      self.player_health_bar_y = 300
+
+      
 
       self.attack_dmg = attack_dmgs[difficulty-1]
       self.curr_streak = 0
       
       
-      self.right_arrow_img = pygame.transform.scale(pygame.image.load("res/game/arrows/arrow.png"), (50,50))
+      self.right_arrow_img = pygame.transform.scale(pygame.image.load("res/game/arrows/arrow.png"), (75,75))
       self.left_arrow_img = pygame.transform.rotate(self.right_arrow_img, 180)
       self.up_arrow_img = pygame.transform.rotate(self.right_arrow_img, 90)
       self.down_arrow_img = pygame.transform.rotate(self.right_arrow_img, 270)
@@ -55,6 +70,7 @@ class GameScene:
 
 
    def render(self,dt):
+      self.screen.fill((169,169,169))
       
       #paticles
       self.arrow_particle_L.draw(self.screen)
@@ -84,17 +100,33 @@ class GameScene:
       if self.player_health <= 0:
          self.game_over(False)
          return
-      if self.boss_health <= 0:
+      if self.boss_health <= 0:   
          self.game_over(True)
 
+      # boss health bar
+      # red bar underlay
+      pygame.draw.rect(self.screen, (255,0,0), (self.boss_health_bar_x, self.boss_health_bar_y, self.boss_health_bar_width, self.boss_health_bar_height))
+      # find percentage
+      boss_health_bar_fill_width = (self.boss_health / self.boss_max_health) * self.boss_health_bar_width
+      # green bar overlay
+      pygame.draw.rect(self.screen, (0, 255, 0), (self.boss_health_bar_x, self.boss_health_bar_y, boss_health_bar_fill_width, self.boss_health_bar_height))
 
-      self.show_health()
+      # for the player___________________________________________________)_@*)&*@^*(#^)
+      # red bar underlay
+      pygame.draw.rect(self.screen, (255,0,0), (self.player_health_bar_x, self.player_health_bar_y, self.player_health_bar_width, self.player_health_bar_height))
+      # find percentage
+      player_health_bar_fill_width = (self.player_health / self.player_max_health) * self.player_health_bar_width
+      # green bar overlay
+      pygame.draw.rect(self.screen, (0, 255, 0), (self.player_health_bar_x, self.player_health_bar_y, player_health_bar_fill_width, self.player_health_bar_height))
+
+
+      self.show_stats()    
 
 
 
 
 
-   def show_health(self):
+   def show_stats(self):
       game_data = [self.font.render(f"Boss Health: {int(self.boss_health)}", True, (0,0,0)),
       self.font.render(f"Player Health: {int(self.player_health)}", True, (0,0,0)),
       self.font.render(f"Current Streak: {int(self.curr_streak)}", True, (0,0,0))
@@ -103,27 +135,27 @@ class GameScene:
 
 
       for n in range(3):
-         self.screen.blit(game_data[n], (10,n*25))
+         self.screen.blit(game_data[n], (self.screen.get_width() * 2/3 ,  n * 25 + self.screen.get_height()/3))
 
    def tickbeat(self,dt):
       self.beattimer += dt
 
       for arrow in self.up_arrows:
-         if arrow.y <= 0:
+         if arrow.y <= -10:
             self.up_arrows.remove(arrow)
             self.player_health -= self.boss_dmg
       for arrow in self.down_arrows:
-         if arrow.y <= 0:
+         if arrow.y <= -10:
             self.down_arrows.remove(arrow)
             self.player_health -= self.boss_dmg
 
       for arrow in self.left_arrows:
-         if arrow.y <= 0:
+         if arrow.y <= -10:
             self.left_arrows.remove(arrow)
             self.player_health -= self.boss_dmg
 
       for arrow in self.right_arrows:
-         if arrow.y <= 0:
+         if arrow.y <= -10:
             self.right_arrows.remove(arrow)
             self.player_health -= self.boss_dmg
 
@@ -135,23 +167,23 @@ class GameScene:
          rng2 = round(random.random() * 5)
          
          if rng1 == 1:
-            self.up_arrows.append(Arrow(self.speed, 400, 1))
+            self.up_arrows.append(Arrow(self.screen,self.speed, 400, 1))
          if rng1 == 2: 
-            self.left_arrows.append(Arrow(self.speed, 200, 2))
+            self.left_arrows.append(Arrow(self.screen, self.speed, 200, 2))
          if rng1 == 3:
-            self.right_arrows.append(Arrow(self.speed, 500, 3))
+            self.right_arrows.append(Arrow(self.screen, self.speed, 500, 3))
          if rng1 == 4:
-            self.down_arrows.append(Arrow(self.speed, 300, 4))
+            self.down_arrows.append(Arrow(self.screen, self.speed, 300, 4))
 
          if round(random.random() * 100 < self.second_arrow_chance):
             if rng2 == 1:
-               self.up_arrows.append(Arrow(self.speed, 400, 1))
+               self.up_arrows.append(Arrow(self.screen, self.speed, 400, 1))
             if rng2 == 2: 
-               self.left_arrows.append(Arrow(self.speed, 200, 2))
+               self.left_arrows.append(Arrow(self.screen, self.speed, 200, 2))
             if rng2 == 3:
-               self.right_arrows.append(Arrow(self.speed, 500, 3))
+               self.right_arrows.append(Arrow(self.screen, self.speed, 500, 3))
             if rng2 == 4:
-               self.down_arrows.append(Arrow(self.speed, 300, 4))
+               self.down_arrows.append(Arrow(self.screen, self.speed, 300, 4))
 
    
 

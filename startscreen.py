@@ -5,7 +5,7 @@ class StartScreen: # screen width: 800, screen_height : 700
     def __init__(self, screen, screen_width, screen_height):
         self.screen_width, self.screen_height = screen_width, screen_height
         self.screen = screen
-        self.background = pg.transform.scale(pg.image.load("res/backgrounds/start_screen.jpg").convert_alpha(), (screen_width, screen_height))
+        #self.background = pg.transform.scale(pg.image.load("res/backgrounds/start_screen.jpg").convert_alpha(), (screen_width, screen_height))
         self.start_game_button = pg.image.load("res/startScreen/start_game.jpg").convert_alpha()
         
         
@@ -15,8 +15,9 @@ class StartScreen: # screen width: 800, screen_height : 700
         self.isStartScreen = True
         self.quitted = False
 
-        self.title_font = pg.font.SysFont('Comic Sans MS', 30)
-        self.title_surface = self.title_font.render('Grandbpa In My Bocket', False, (0, 0, 0))
+        self.title_font = pg.font.Font('res/fonts/blackpearl-font/Blackpearl-vPxA.ttf', 100)
+        self.title_surface = self.title_font.render('Grandbpa In My Bocket', False, (255, 255, 255))
+        self.title_width = self.title_surface.get_width()
         
        
     def handle_events(self):
@@ -50,10 +51,10 @@ class StartScreen: # screen width: 800, screen_height : 700
 
     
     def render(self):
-        self.screen.blit(self.background,(0,0))
+        #self.screen.blit(self.background,(0,0))
         # self.screen.blit(self.start_game_button, (self.screen_width/2 + self.start_game_button.get_width()/2, self.screen_height/2 + self.start_game_button.get_height()/2))
         self.screen.blit(self.start_game_button,self.button_rect)
-        self.screen.blit(self.title_surface, ((self.screen_width/2)- 150, 40))
+        self.screen.blit(self.title_surface, ((self.screen_width/2)- self.title_width/2, 40))
     def check_running(self):
         return self.isStartScreen
         

@@ -9,7 +9,7 @@ class Game:
     def __init__(self):
         pg.init()
         pg.mixer.init()
-        self.text_sound  = pg.mixer.Sound('res/soundfx/8-bit-loop-189494.mp3')
+
         
         self.running = True
 
@@ -47,9 +47,9 @@ class Game:
                      if event.key == pg.K_ESCAPE:
                            self.running = False
                      if isinstance(self.scenes[self.current_scene], Scene):
-                        if event.key == pg.K_SPACE:  
+                        if event.key == pg.K_SPACE or event.key == pg.K_RETURN:  
                            self.scenes[self.current_scene].next_dialogue()
-                           self.text_sound.play(1)
+                           
                         elif event.key == pg.K_DOWN:
                            self.scenes[self.current_scene].next_choice()
                         elif event.key == pg.K_UP:
