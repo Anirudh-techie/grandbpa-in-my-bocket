@@ -17,7 +17,6 @@ class Sprite:
         # Iterate over files in the specified directory
         for root_dir, cur_dir, files in os.walk(fr"res/characters/{id}"):
             for file in files:
-                print(f"{file} in res/characters/{id}")
                 # Ensure only image files are processed, this example assumes files are PNG
                 if file.endswith('.png') or file.endswith('.jpg') or file.endswith('.PNG'):
                     image_path = os.path.join(root_dir, file)
@@ -33,7 +32,6 @@ class Sprite:
     def render(self):
 
         if self.visibility == True:
-            print(self.x,self.y)
             if self.x >= 0 and self.y >= 0:
                 self.rect.topleft = (self.x + (self.rect.width/2), self.y + (self.rect.height/2)) # set x and y to the middle of the rect
             self.screen.blit(self.image, self.rect)

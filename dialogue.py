@@ -24,6 +24,9 @@ class Dialogue:
         self._choicepos = self.screen_height - self.text_bg_height - 30 - 76 - (max(0,len(self.choices) - 2) * 30)
         self._choice_opacity = 0
         self._chosen_bg_opacity = 0
+
+        self.choice_mult = 0.95
+
         pass
     def render(self, screen):
         
@@ -61,19 +64,18 @@ class Dialogue:
 
         
         if self.choices:
-            choice_mult = 0.95
             ideal_height = 96 + (max(0,len(self.choices) - 2) * 40)
             ideal_pos = self.screen_height - self.text_bg_height - 30 - ideal_height - 5
 
             self._choicepos = lerp(self._choicepos, ideal_pos, 0.2)
             self._choiceheight = lerp(self._choiceheight, ideal_height, 0.2)
 
-            choice_bg = pygame.Surface((self.text_bg_width*choice_mult, int(self._choiceheight)),pygame.SRCALPHA)
-            pygame.draw.rect(choice_bg, (255,255,255,210), (0,0,self.text_bg_width*choice_mult, self._choiceheight), border_radius=10)
+            choice_bg = pygame.Surface((self.text_bg_width*self.choice_mult, int(self._choiceheight)),pygame.SRCALPHA)
+            pygame.draw.rect(choice_bg, (255,255,255,210), (0,0,self.text_bg_width*self.choice_mult, self._choiceheight), border_radius=10)
             for i,choice in enumerate(self.choices):
                   self._chosen_bg_opacity = lerp(self._chosen_bg_opacity, 255, 0.05)
                   choice_text = self.diaFont.render(choice[0], True, (0,0,0))
-                  chosen_bg = pygame.Surface((self.text_bg_width*choice_mult - 20, 35),pygame.SRCALPHA)
+                  chosen_bg = pygame.Surface((self.text_bg_width*self.choice_mult - 20, 35),pygame.SRCALPHA)
                   chosen_bg.fill((0,0,0,0))
                   if i == self.current_choice:
                       pygame.draw.rect(chosen_bg, (255, 0, 0, self._chosen_bg_opacity), chosen_bg.get_rect(), border_radius=5)
@@ -83,8 +85,16 @@ class Dialogue:
                      self._choice_opacity += 15 * (self._choice_opacity <= 255*len(self.choices))
                      chosen_bg.set_alpha(max(0, self._choice_opacity - (255*i)))
                      choice_bg.blit(chosen_bg, (8, i*35 + 8))
-            screen.blit(choice_bg, (self.screen_width/2 - self.text_bg_width*choice_mult/2, self._choicepos)) 
+            screen.blit(choice_bg, (self.screen_width/2 - self.text_bg_width*self.choice_mult/2, self._choicepos)) 
                   
+    def get_hovered_choice(self, x, y):
+         if self.choices:
+               base_y = self._choicepos
+               choice_x = self.screen_width/2 - self.text_bg_width*self.choice_mult/2
+               for i in range(len(self.choices)):
+                  if choice_x <= x <= choice_x+(self.text_bg_width*self.choice_mult) and base_y + (i * 35) <= y <= base_y + (i * 35) + 35:
+                     return i
+         return -1
 
     def next_choice(self):
         self.current_choice += 1
