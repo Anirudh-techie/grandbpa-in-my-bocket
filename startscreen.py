@@ -5,7 +5,7 @@ class StartScreen: # screen width: 800, screen_height : 700
     def __init__(self, screen, screen_width, screen_height):
         self.screen_width, self.screen_height = screen_width, screen_height
         self.screen = screen
-        self.background = pg.transform.scale(pg.image.load("res/startScreen/titlescrenbackground.JPG").convert_alpha(), (screen_width, screen_height))
+        self.background = pg.transform.scale(pg.image.load("res/backgrounds/titlescrenbackground.JPG").convert_alpha(), (screen_width, screen_height))
         self.start_game_button = pg.transform.scale(pg.image.load("res/startScreen/startbuttonHeld.PNG").convert_alpha(), (500, 240))
         self.title = pg.transform.scale(pg.image.load("res/startScreen/logo.PNG"), (screen_width * 2/3 , screen_height/2 ))
         

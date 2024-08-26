@@ -11,7 +11,7 @@ def get_scene_data(screen, screen_width, screen_height)-> list[Scene]:
          scenes = data["scenes"]
          sprites = data["sprites"]
          for s_id in sprites:
-             sprites[s_id] = Sprite(screen, sprites[s_id]["name"], s_id )
+             sprites[s_id] = Sprite(screen, sprites[s_id]["name"], s_id)
             #  sprites[s_id] = None
          for i,scene in enumerate(scenes):
              if "game" in scene:

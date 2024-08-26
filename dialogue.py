@@ -4,6 +4,7 @@ class Dialogue:
     def __init__(self, screen_width, screen_height, text:str, character_name:str, choices=[], sprite_states={}, next_dialogue=1):
         pygame.mixer.init()
         self.text_anim_sound  = pygame.mixer.Sound('res/soundfx/8-bit-loop-189494.mp3')
+        self.text_anim_sound.set_volume(0.05)
         self.text_anim_sound_playing = False
         self.screen_width, self.screen_height = screen_width, screen_height
         self.text_bg_width, self.text_bg_height = screen_width * 7/10, screen_height * 2.5/10

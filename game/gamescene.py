@@ -4,23 +4,33 @@ import random
 import pygame
 from game.particles import Particle, Particles
 
+pygame.mixer.init()
+# master of puppets bpm is 116
+boss_hps = [200, 300, 500, 10,1500,2000, 3000, 4000, 5000, 6000]
+player_hps = [100,125, 125, 200, 250, 250, 250, 250, 250, 250] 
+attack_dmgs = [1, 2, 2, 4, 5, 5, 5, 5, 5, 5]
+boss_dmgs = [2, 4, 5, 10, 25, 50, 100, 150, 200, 250]
+bpms = [50, 80, 116, 150, 190, 220, 260, 300, 350, 400]
 
-
-boss_hps = [200, 300, 500, 1000,1500,2000]
-player_hps = [100,125, 125, 200, 250, 250] 
-attack_dmgs = [1,2,2,4,5,5]
-boss_dmgs = [2,4,5,10,25]
 
 class GameScene:
    def __init__(self, screen,difficulty) -> None:
+
       self.difficulty = difficulty
       self.font =  pygame.font.Font(None, 25)
       self.screen = screen
-      
+      self.song_playing = True
+      self.death_screen_sprite = pygame.transform.scale(pygame.image.load("res/game/ui/gameoverBackground.jpg"), (self.screen.get_width(), self.screen.get_height()))
+      self.pauseScreenFont = pygame.font.Font('res/fonts/blackpearl-font/Blackpearl-vPxA.ttf', 100)
+      self.death_text = self.pauseScreenFont.render("Press Enter to Retry", True, (255,255,255))
+      self.win_text = self.pauseScreenFont.render("You WIn good job", True, (255,255,255))
       self.is_finished_bool = False
-   
-
-      self.bpm = 30*difficulty
+      self.difficulty3song = pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3")
+      self.difficulty3song.set_volume(0.1)
+      
+      self.songs = ["","","", "", "", "", "", "", "", ""]
+      self.bpm = bpms[difficulty-1]
+      #self.bpm = 40*difficulty
       self.gap = 100
       self.beattimer = 0
 
@@ -30,15 +40,18 @@ class GameScene:
       self.left_arrows:list[Arrow] = []
       self.right_arrows:list[Arrow] = []
       self.down_arrows:list[Arrow] = []
-
-      self.boss_dmg = boss_dmgs[difficulty-1]
-      self.perfect_threshold = 10
+      
+      
+      self.perfect_threshold = 20
       self.penalty_threshold = 50
       
-      self.boss_health = boss_hps[difficulty-1]
-      self.boss_max_health = boss_hps[difficulty-1]
-      self.player_health = player_hps[difficulty-1]
-      self.player_max_health = player_hps[difficulty-1]
+      self.boss_health = 1000
+      self.boss_max_health = 1000
+      self.player_health = 250
+      self.player_max_health = 250
+
+      self.attack_dmg = 25
+      self.boss_dmg = 25
 
       self.boss_health_bar_width = self.screen.get_width() * 1/3
       self.boss_health_bar_height = 20
@@ -52,7 +65,7 @@ class GameScene:
 
       
 
-      self.attack_dmg = attack_dmgs[difficulty-1]
+      
       self.curr_streak = 0
       
       
@@ -70,6 +83,7 @@ class GameScene:
 
 
    def render(self,dt):
+      self.update()
       self.screen.fill((169,169,169))
       
       #paticles
@@ -98,10 +112,11 @@ class GameScene:
          arrow.update(dt)
          arrow.render(self.screen)
       if self.player_health <= 0:
-         self.game_over(False)
+         self.deathScreen()
          return
       if self.boss_health <= 0:   
-         self.game_over(True)
+         self.winScreen()
+         
 
       # boss health bar
       # red bar underlay
@@ -190,6 +205,7 @@ class GameScene:
    def keydown(self,key):
    
       if key == pygame.K_SPACE:
+         self.difficulty3song.stop()
          self.is_finished_bool = True
 
       elif key == pygame.K_UP or key == pygame.K_w:
@@ -221,17 +237,61 @@ class GameScene:
             arrow = self.down_arrows.pop(0)
             self.boss_health -= self.validate(arrow)
 
-      
+   def reset_arrows(self):
+      self.down_arrows = []
+      self.up_arrows = []
+      self.left_arrows = []
+      self.right_arrows = []
+
    
-   def game_over(self,didWin):
-      if didWin:
-         print("You won!")
-         self.is_finished_bool = True
-      else:
-         print("You lost!")
-         self.__init__(self.screen, self.difficulty)
-                  
+   def deathScreen(self):
+      paused = True
+      self.difficulty3song.stop()
+      while paused:
+        self.screen.blit(self.death_screen_sprite, (0,0))
+        self.screen.blit(self.death_text, (self.screen.get_width()/2  - self.death_text.get_width()/2, self.screen.get_height() * 3/5))
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    paused = False
+      self.song_playing = True
+      self.reset_arrows()
+      self.__init__(self.screen, self.difficulty)
+
+   def winScreen(self):
+      
+      paused = True
+      self.difficulty3song.stop()
+      while paused:
+
+        self.screen.blit(self.win_text, (self.screen.get_width()/2  - self.death_text.get_width()/2, self.screen.get_height() * 3/5))
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN or event.key == pygame.K_SPACE:
+                    paused = False
+
+                if event.key == pygame.K_ESCAPE:
+                   pygame.quit()
+                   exit()
+      self.is_finished_bool = True
+      
+
+
+   def update(self):
+      if self.song_playing == True:
+         self.difficulty3song.play(-1)
+         self.song_playing = False
+
    def validate(self, arrow):
+
       y_perfect = 50
       y = arrow.y
 

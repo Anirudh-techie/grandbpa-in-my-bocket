@@ -21,7 +21,7 @@ class Sprite:
                 # Ensure only image files are processed, this example assumes files are PNG
                 if file.endswith('.png') or file.endswith('.jpg') or file.endswith('.PNG'):
                     image_path = os.path.join(root_dir, file)
-                    self.image = pg.image.load(image_path).convert_alpha() # .convert_alpha() makes it transperant
+                    self.image = pg.transform.scale(pg.image.load(image_path).convert_alpha(),(556, 800)) # .convert_alpha() makes it transperant
                     self.images.append(self.image)  # Add the loaded image to the list
 
         self.image = self.images[0] 
