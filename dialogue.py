@@ -10,8 +10,8 @@ class Dialogue:
         self.text = text
         self.choices = choices
         self.sprite_states = sprite_states
-        self.diaFont = pygame.font.Font(None, 32)
-        self.nameFont = pygame.font.Font(None, 40)
+        self.diaFont = pygame.font.Font("res/fonts/dia/CrimsonPro-VariableFont_wght.ttf", 26)
+        self.nameFont = pygame.font.Font("res/fonts/blackpearl-font/Blackpearl-vPxA.ttf", 40)
         self.character_name = character_name
         self.current_choice = 0
         self.next_dialogue = next_dialogue
@@ -28,7 +28,7 @@ class Dialogue:
         
 
         text_bg = pygame.Surface((self.text_bg_width, self.text_bg_height),pygame.SRCALPHA)
-        text_bg.fill((255,255,255,200))
+        pygame.draw.rect(text_bg, (255,255,255,210), text_bg.get_rect(), border_radius=20)
         screen.blit(text_bg, (self.screen_width/2 - self.text_bg_width/2 , self.screen_height - self.text_bg_height - 30))
 
    
@@ -51,38 +51,38 @@ class Dialogue:
         linesum = 0
         for i,line in enumerate(text):
             line_surface = self.diaFont.render(line[:max(0, int(self._animchar) - linesum)], True, (0,0,0))
-            screen.blit(line_surface, (self.screen_width/2 - self.text_bg_width/2 + 20, self.screen_height - self.text_bg_height + i*20 + 15))
+            screen.blit(line_surface, (self.screen_width/2 - self.text_bg_width/2 + 20, self.screen_height - self.text_bg_height + i*20 + 30))
             linesum += len(line)
         
 
         name = self.nameFont.render(self.character_name, True, (0,0,200))
-        screen.blit(name, (self.screen_width/2 - self.text_bg_width/2 + 20, self.screen_height - self.text_bg_height - 15))
+        screen.blit(name, (self.screen_width/2 - self.text_bg_width/2 + 15, self.screen_height - self.text_bg_height - 15))
 
         
         if self.choices:
+            choice_mult = 0.95
             ideal_height = 96 + (max(0,len(self.choices) - 2) * 40)
             ideal_pos = self.screen_height - self.text_bg_height - 30 - ideal_height - 5
 
             self._choicepos = lerp(self._choicepos, ideal_pos, 0.2)
             self._choiceheight = lerp(self._choiceheight, ideal_height, 0.2)
 
-            choice_bg = pygame.Surface((self.text_bg_width, int(self._choiceheight)),pygame.SRCALPHA)
-            choice_bg.fill((255,255,255,210))
-
+            choice_bg = pygame.Surface((self.text_bg_width*choice_mult, int(self._choiceheight)),pygame.SRCALPHA)
+            pygame.draw.rect(choice_bg, (255,255,255,210), (0,0,self.text_bg_width*choice_mult, self._choiceheight), border_radius=10)
             for i,choice in enumerate(self.choices):
                   self._chosen_bg_opacity = lerp(self._chosen_bg_opacity, 255, 0.05)
                   choice_text = self.diaFont.render(choice[0], True, (0,0,0))
-                  chosen_bg = pygame.Surface((self.text_bg_width - 20, 30),pygame.SRCALPHA)
+                  chosen_bg = pygame.Surface((self.text_bg_width*choice_mult - 20, 35),pygame.SRCALPHA)
                   chosen_bg.fill((0,0,0,0))
                   if i == self.current_choice:
-                      chosen_bg.fill((255,0,0,self._chosen_bg_opacity))
-                  chosen_bg.blit(choice_text, (10,4))
+                      pygame.draw.rect(chosen_bg, (255, 0, 0, self._chosen_bg_opacity), chosen_bg.get_rect(), border_radius=5)
+                  chosen_bg.blit(choice_text, (10,2))
 
                   if self._choiceheight >= ideal_height:
                      self._choice_opacity += 15 * (self._choice_opacity <= 255*len(self.choices))
                      chosen_bg.set_alpha(max(0, self._choice_opacity - (255*i)))
-                     choice_bg.blit(chosen_bg, (8, i*30 + 8))
-            screen.blit(choice_bg, (self.screen_width/2 - self.text_bg_width/2, self._choicepos)) 
+                     choice_bg.blit(chosen_bg, (8, i*35 + 8))
+            screen.blit(choice_bg, (self.screen_width/2 - self.text_bg_width*choice_mult/2, self._choicepos)) 
                   
 
     def next_choice(self):
