@@ -38,7 +38,7 @@
                     "Paniel": {
                         "state": 3,
                         "show": true,
-                        "position": [-100, -200]
+                        "position": [100, 200]
                     }
                 },
                 "text": "I am so hyped and ready to buy a new getup at chatstone, the style nexus",
@@ -50,7 +50,7 @@
                     "Paniel": {
                         "state": 4,
                         "show": true,
-                        "position": [-100, -200]
+                        "position": [100, 200]
                     }
                 },
                 "text": "What about you captain?",
@@ -65,7 +65,7 @@
                     "Paniel": {
                         "state": 1,
                         "show": true,
-                        "position": [-100, -200]
+                        "position": [100, 200]
                     }
                 },
                 "text": "Yeah well I am sure this getup will be quite fashionable",
@@ -77,7 +77,7 @@
                     "Paniel": {
                         "state": 5,
                         "show": true,
-                        "position": [-100, -200]
+                        "position": [100, 200]
                     }
                 },
                 "text": "WOWZERS that getup looks CRAZY you should wear it RIGHT NOW kapitan",
