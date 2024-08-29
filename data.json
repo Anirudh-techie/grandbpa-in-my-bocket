@@ -36,9 +36,9 @@
             {
                 "sprite_states": {
                     "Paniel": {
-                        "state": 3,
+                        "state": 4,
                         "show": true,
-                        "position": [700, 275]
+                        "position": [450, 70]
                     }
                 },
                 "text": "I am so hyped and ready to buy a new getup at chatstone, the style nexus",
@@ -50,7 +50,7 @@
                     "Paniel": {
                         "state": 4,
                         "show": true,
-                        "position": [700, 275]
+                        "position": [450, 70]
                     }
                 },
                 "text": "What about you captain?",
@@ -63,9 +63,9 @@
             {
                 "sprite_states": {
                     "Paniel": {
-                        "state": 1,
+                        "state": 5,
                         "show": true,
-                        "position": [700, 325]
+                        "position": [450, 70]
                     }
                 },
                 "text": "Yeah well I am sure this getup will be quite fashionable",
@@ -75,9 +75,9 @@
             {
                 "sprite_states": {
                     "Paniel": {
-                        "state": 5,
+                        "state": 1,
                         "show": true,
-                        "position": [700, 325]
+                        "position": [450, 70]
                     }
                 },
                 "text": "WOWZERS that getup looks CRAZY you should wear it RIGHT NOW kapitan",
@@ -90,9 +90,9 @@
             {
                 "sprite_states": {
                     "Paniel": {
-                        "state": 5,
+                        "state": 2,
                         "show": true,
-                        "position": [700, 325]
+                        "position": [450, 70]
                     }
                 },
                 "text": "Okay then captain its up to you",
@@ -102,9 +102,9 @@
             {
                 "sprite_states": {
                     "Paniel": {
-                        "state": 3,
+                        "state": 4,
                         "show": true,
-                        "position": [700, 325]
+                        "position": [450, 70]
                     }
                 },
                 "text": "I am sure it will look stunning on you sir",
@@ -119,11 +119,11 @@
                         "position": [100, 200]
                     }
                 },
-                "text": "Welcome to Davey Jones! Are you looking for anything specific?",
+                "text": "Welcome to Davy Jones! Are you looking for anything specific?",
                 "name": "Cashier",
                 "choices": [
-                    ["A brand new getup!!!", 1],
-                    ["Nope", 2]
+                    ["A brand new getup!", 1],
+                    ["Nothing in particular.", 2]
                 ]
             },
             {
@@ -134,7 +134,7 @@
                         "position": [100, 200]
                     }
                 },
-                "text": "A brand new getup? I am assuming you guys are pirates, well the pirate section is in the very far left corner of the 2nd floor",
+                "text": "A brand new getup? I'm assuming you guys are pirates, well the pirate section is in the very far left corner of the second floor.",
                 "name": "Cashier",
                 "next_dialogue": 1
             },
@@ -146,7 +146,7 @@
                         "position": [100, 200]
                     }
                 },
-                "text": "Alright then",
+                "text": "Alright then. I hope you find something you like.",
                 "name": "Cashier",
                 "next_dialogue": 1
             },
@@ -158,11 +158,11 @@
                         "position": [100, 200]
                     }
                 },
-                "text": "WOWZERS that getup looks CRAZY you should wear it RIGHT NOW kapitan",
+                "text": "Wow, Captain! This would look amazing on you. You need to buy it!",
                 "name": "Paniel",
                 "choices": [
-                    ["NO", 1],
-                    ["okay", 2]
+                    ["NO!", 1],
+                    ["Okay.", 2]
                 ]
             },
             {
