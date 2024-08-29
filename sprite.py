@@ -2,7 +2,7 @@ import pygame as pg
 import os
 from utils import lerp
 class Sprite:
-    def __init__(self,screen, name, id, width=160, height=90):
+    def __init__(self,screen, name, id, width=660, height=950):
         self.screen = screen
         self.current_state = 1
         self.visibility = False
@@ -20,7 +20,7 @@ class Sprite:
                 # Ensure only image files are processed, this example assumes files are PNG
                 if file.endswith('.png') or file.endswith('.jpg') or file.endswith('.PNG'):
                     image_path = os.path.join(root_dir, file)
-                    self.image = pg.transform.scale(pg.image.load(image_path).convert_alpha(),(660, 950)) # .convert_alpha() makes it transperant
+                    self.image = pg.transform.scale(pg.image.load(image_path).convert_alpha(),(width, height)) # .convert_alpha() makes it transperant
                     self.images.append(self.image)  # Add the loaded image to the list
 
         self.image = self.images[0] 

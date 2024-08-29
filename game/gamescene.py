@@ -15,20 +15,28 @@ bpms = [50, 80, 116, 150, 190, 220, 260, 300, 350, 400]
 
 class GameScene:
    def __init__(self, screen,difficulty) -> None:
-
+      
       self.difficulty = difficulty
       self.font =  pygame.font.Font(None, 25)
       self.screen = screen
       self.song_playing = True
       self.death_screen_sprite = pygame.transform.scale(pygame.image.load("res/game/ui/gameoverBackground.jpg"), (self.screen.get_width(), self.screen.get_height()))
+      self.background_sprite = pygame.transform.scale(pygame.image.load("res/backgrounds/rhythmbackground.png"), (self.screen.get_width(), self.screen.get_height()))
+      self.jamuel_width, self.jamuel_height = 200, 500
+      self.dancing_jamuel_sprites = [pygame.transform.scale(pygame.image.load("res/game/jamuel/normal_dancing_jamuel.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/bobbing_dancing_jamuel.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/dancing_dancing_jamuel.png"), (self.jamuel_width, self.jamuel_height))]
+      self.jamuel = self.dancing_jamuel_sprites[0]
+      self.bad_guy = pygame.image.load("res/game/bad_guy/bad_guy.png")
       self.pauseScreenFont = pygame.font.Font('res/fonts/blackpearl-font/Blackpearl-vPxA.ttf', 100)
       self.death_text = self.pauseScreenFont.render("Press Enter to Retry", True, (255,255,255))
       self.win_text = self.pauseScreenFont.render("You WIn good job", True, (255,255,255))
       self.is_finished_bool = False
-      self.difficulty3song = pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3")
-      self.difficulty3song.set_volume(0.1)
+      # self.difficulty3song = pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3")
+      # self.difficulty3song.set_volume(0.1)
+
+      self.anim_state_number = 0
       
-      self.songs = ["","","", "", "", "", "", "", "", ""]
+      self.songs = ["","",pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3")]
+      self.current_song = self.songs[self.difficulty-1]
       self.bpm = bpms[difficulty-1]
       #self.bpm = 40*difficulty
       self.gap = 100
@@ -84,8 +92,11 @@ class GameScene:
 
    def render(self,dt):
       self.update()
-      self.screen.fill((169,169,169))
+      self.screen.blit(self.background_sprite, (0,0))
+   
       
+      self.screen.blit(self.jamuel, (750, 240))
+      self.screen.blit(self.bad_guy,(950, 200))
       #paticles
       self.arrow_particle_L.draw(self.screen)
       self.arrow_particle_R.draw(self.screen)
@@ -176,6 +187,8 @@ class GameScene:
 
 
       if self.beattimer >= 60/self.bpm:
+         
+         self.anim_state_number = not self.anim_state_number
          self.beattimer = 0
 
          rng1 = round(random.random() * 5)
@@ -205,7 +218,7 @@ class GameScene:
    def keydown(self,key):
    
       if key == pygame.K_SPACE:
-         self.difficulty3song.stop()
+         self.current_song.stop()
          self.is_finished_bool = True
 
       elif key == pygame.K_UP or key == pygame.K_w:
@@ -246,7 +259,7 @@ class GameScene:
    
    def deathScreen(self):
       paused = True
-      self.difficulty3song.stop()
+      self.current_song.stop()
       while paused:
         self.screen.blit(self.death_screen_sprite, (0,0))
         self.screen.blit(self.death_text, (self.screen.get_width()/2  - self.death_text.get_width()/2, self.screen.get_height() * 3/5))
@@ -265,7 +278,7 @@ class GameScene:
    def winScreen(self):
       
       paused = True
-      self.difficulty3song.stop()
+      self.current_song.stop()
       while paused:
 
         self.screen.blit(self.win_text, (self.screen.get_width()/2  - self.death_text.get_width()/2, self.screen.get_height() * 3/5))
@@ -286,9 +299,18 @@ class GameScene:
 
 
    def update(self):
+
+      if self.anim_state_number == 0:
+         self.jamuel = self.dancing_jamuel_sprites[self.anim_state_number]
+         self.anim_state_number = 0
+
+      elif self.anim_state_number == 1:
+         self.jamuel = self.dancing_jamuel_sprites[self.anim_state_number]
+
       if self.song_playing == True:
-         self.difficulty3song.play(-1)
+         self.current_song.play(-1)
          self.song_playing = False
+      
 
    def validate(self, arrow):
 
