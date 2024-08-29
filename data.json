@@ -375,22 +375,6 @@
             }
         ]
         
-      },
-      {
-         "bg": "jack_sparrow.jpg",
-         "dialogues":[
-            {
-               "sprite_states": {
-                  "pirate_man": {
-                     "show": true,
-                     "position":[0, 0]
-                  }
-               },
-               
-               "text":"I want to stick my hot sticky meaty hot warm wet condensated sticky with meat hot rod inside of you.",
-               "name":"Arlo Grimwade"
-            }
-         ]
       }
    ]
    
