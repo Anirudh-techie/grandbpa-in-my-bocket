@@ -4,6 +4,8 @@ import random
 import pygame
 from game.particles import Particle, Particles
 
+from game.fireball import Fireball
+
 pygame.mixer.init()
 # master of puppets bpm is 116
 boss_hps = [200, 300, 500, 10,1500,2000, 3000, 4000, 5000, 6000]
@@ -89,11 +91,11 @@ class GameScene:
       self.arrow_particle_U = Particles(425,75, 0)
       self.arrow_particle_D = Particles(325,75, 0)
 
+      self.fb = Fireball((800,400), (500, 450), 8, 0.5)
 
    def render(self,dt):
       self.update()
-      self.screen.blit(self.background_sprite, (0,0))
-   
+      self.screen.fill((169,169,169))
       
       self.screen.blit(self.jamuel, (750, 240))
       self.screen.blit(self.bad_guy,(950, 200))
