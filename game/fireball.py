@@ -8,8 +8,8 @@ class Fireball:
          self.size = size
          self.intensity = intensity
          self.particles = []
-         self.speed = 0.02
-
+         self.speed = 0.5
+         self.is_finished = False
 
          for i in range(size*10):
                self.particles.append(FireParticle(2, intensity, size))
@@ -25,6 +25,9 @@ class Fireball:
       for particle in self.particles:
           particle.intensity = self.intensity
           particle.render(screen, self.position)
+
+      if self.position == self.targetPosition:
+         self.is_finished = True
       
        
 class FireParticle:

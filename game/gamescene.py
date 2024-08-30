@@ -3,7 +3,7 @@ from game.arrow import Arrow
 import random
 import pygame
 from game.particles import Particle, Particles
-
+from game.fireball import Fireball
 pygame.mixer.init()
 # master of puppets bpm is 116
 boss_hps = [200, 300, 500, 10,1500,2000, 3000, 4000, 5000, 6000]
@@ -69,7 +69,7 @@ class GameScene:
       self.player_health_bar_width = self.screen.get_width() * 1/6
       self.player_health_bar_height = 20
       self.player_health_bar_x = self.screen.get_width()/2 - 50
-      self.player_health_bar_y = 300
+      self.player_health_bar_y = 135
 
       
 
@@ -84,29 +84,31 @@ class GameScene:
 
       self.second_arrow_chance = 5
       
-      self.arrow_particle_L = Particles(225,75, 0)
-      self.arrow_particle_R = Particles(525,75, 0)
-      self.arrow_particle_U = Particles(425,75, 0)
-      self.arrow_particle_D = Particles(325,75, 0)
+      self.arrow_particle_L = Particles(212,87, 0)
+      self.arrow_particle_R = Particles(587,87, 0)
+      self.arrow_particle_U = Particles(462,87, 0)
+      self.arrow_particle_D = Particles(337,87, 0)
 
+
+      self.fireballs = []
 
    def render(self,dt):
       self.update()
       self.screen.blit(self.background_sprite, (0,0))
    
       
-      self.screen.blit(self.jamuel, (750, 240))
-      self.screen.blit(self.bad_guy,(950, 200))
+      self.screen.blit(self.bad_guy,(950, 320))
+      self.screen.blit(self.jamuel, (875, 240))
       #paticles
       self.arrow_particle_L.draw(self.screen)
       self.arrow_particle_R.draw(self.screen)
       self.arrow_particle_U.draw(self.screen)
       self.arrow_particle_D.draw(self.screen)
 
-      self.screen.blit(self.left_arrow_img, (200, 50))
+      self.screen.blit(self.left_arrow_img, (175, 50))
       self.screen.blit(self.down_arrow_img, (300, 50))
-      self.screen.blit(self.up_arrow_img, (400, 50))
-      self.screen.blit(self.right_arrow_img, (500, 50))
+      self.screen.blit(self.up_arrow_img, (425, 50))
+      self.screen.blit(self.right_arrow_img, (550, 50))
       
       self.tickbeat(dt)
       
@@ -129,6 +131,14 @@ class GameScene:
          self.winScreen()
          
 
+      self.show_stats()    
+
+
+
+
+
+   def show_stats(self):
+      
       # boss health bar
       # red bar underlay
       pygame.draw.rect(self.screen, (255,0,0), (self.boss_health_bar_x, self.boss_health_bar_y, self.boss_health_bar_width, self.boss_health_bar_height))
@@ -146,23 +156,20 @@ class GameScene:
       pygame.draw.rect(self.screen, (0, 255, 0), (self.player_health_bar_x, self.player_health_bar_y, player_health_bar_fill_width, self.player_health_bar_height))
 
 
-      self.show_stats()    
+      bh = self.font.render(f"Boss Health: {int(self.boss_health)}", True, (0,0,0))
+      self.screen.blit(bh, (self.boss_health_bar_x, self.boss_health_bar_y - 25))
 
+      
+      ph = self.font.render(f"Player Health: {int(self.player_health)}", True, (0,0,0))
+      self.screen.blit(ph, (self.player_health_bar_x, self.player_health_bar_y - 25))
+      cs =self.font.render(f"Current Streak: {int(self.curr_streak)}", True, (0,0,0))
+      self.screen.blit(cs, (725, 200))
 
+      for ball in self.fireballs:
+         if ball.is_finished:
+            self.fireballs.remove(ball)
 
-
-
-   def show_stats(self):
-      game_data = [self.font.render(f"Boss Health: {int(self.boss_health)}", True, (0,0,0)),
-      self.font.render(f"Player Health: {int(self.player_health)}", True, (0,0,0)),
-      self.font.render(f"Current Streak: {int(self.curr_streak)}", True, (0,0,0))
-      ]
-
-
-
-      for n in range(3):
-         self.screen.blit(game_data[n], (self.screen.get_width() * 2/3 ,  n * 25 + self.screen.get_height()/3))
-
+         # ball.render(self.screen)
    def tickbeat(self,dt):
       self.beattimer += dt
 
@@ -195,26 +202,25 @@ class GameScene:
          rng2 = round(random.random() * 5)
          
          if rng1 == 1:
-            self.up_arrows.append(Arrow(self.screen,self.speed, 400, 1))
+            self.up_arrows.append(Arrow(self.screen,self.speed, 425, 1))
          if rng1 == 2: 
-            self.left_arrows.append(Arrow(self.screen, self.speed, 200, 2))
+            self.left_arrows.append(Arrow(self.screen, self.speed, 175, 2))
          if rng1 == 3:
-            self.right_arrows.append(Arrow(self.screen, self.speed, 500, 3))
+            self.right_arrows.append(Arrow(self.screen, self.speed, 550, 3))
          if rng1 == 4:
             self.down_arrows.append(Arrow(self.screen, self.speed, 300, 4))
 
          if round(random.random() * 100 < self.second_arrow_chance):
             if rng2 == 1:
-               self.up_arrows.append(Arrow(self.screen, self.speed, 400, 1))
+               self.up_arrows.append(Arrow(self.screen, self.speed, 425, 1))
             if rng2 == 2: 
-               self.left_arrows.append(Arrow(self.screen, self.speed, 200, 2))
+               self.left_arrows.append(Arrow(self.screen, self.speed, 175, 2))
             if rng2 == 3:
-               self.right_arrows.append(Arrow(self.screen, self.speed, 500, 3))
+               self.right_arrows.append(Arrow(self.screen, self.speed, 550, 3))
             if rng2 == 4:
                self.down_arrows.append(Arrow(self.screen, self.speed, 300, 4))
 
    
-
    def keydown(self,key):
    
       if key == pygame.K_SPACE:
@@ -320,11 +326,11 @@ class GameScene:
       diff = abs(y - y_perfect)
 
       if diff < self.perfect_threshold:
-         if arrow.x == 200:
+         if arrow.x == 175:
             self.arrow_particle_L.reset(self.arrow_particle_L.x,self.arrow_particle_L.y, 50)
-         elif arrow.x == 500:
+         elif arrow.x == 550:
             self.arrow_particle_R.reset(self.arrow_particle_R.x,self.arrow_particle_L.y, 50)
-         elif arrow.x == 400:
+         elif arrow.x == 425:
             self.arrow_particle_U.reset(self.arrow_particle_U.x,self.arrow_particle_L.y, 50)
          elif arrow.x == 300:
             self.arrow_particle_D.reset(self.arrow_particle_D.x,self.arrow_particle_L.y, 50)
@@ -335,6 +341,8 @@ class GameScene:
             dmg += 5
          elif self.curr_streak >= 10:
             dmg += 10
+
+         # self.fireballs.append(Fireball((800,200),(1000,240), int((dmg/15)*5), 0.6))
          return dmg
       if diff < self.penalty_threshold:
          self.curr_streak = 0

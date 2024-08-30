@@ -221,7 +221,7 @@
                         "position": [100, 200]
                     }
                 },
-                "text": "hm…",
+                "text": "hm...",
                 "name": "Paniel",
                 "next_dialogue": 1
             },
@@ -259,7 +259,7 @@
                         "position": [100, 200]
                     }
                 },
-                "text": "Fine… Let’s boogie!",
+                "text": "Fine... Let's boogie!",
                 "name": "Cashier",
                 "next_dialogue": 1
             },
@@ -355,7 +355,7 @@
                         "position": [100, 200]
                     }
                 },
-                "text": "What!? That’s not fair!",
+                "text": "What!? That's not fair!",
                 "name": "Paniel",
                 "choices": [
                     ["What are we going to do?", 1],
