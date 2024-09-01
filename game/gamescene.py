@@ -192,6 +192,9 @@ class GameScene:
             self.right_arrows.remove(arrow)
             self.player_health -= self.boss_dmg
 
+      # if self.beattimer >= 30/self.bpm and self.beattimer < 31/self.bpm and self.anim_state_number == 2:
+      #    self.anim_state_number = 0
+
 
       if self.beattimer >= 60/self.bpm:
          
@@ -313,6 +316,9 @@ class GameScene:
       elif self.anim_state_number == 1:
          self.jamuel = self.dancing_jamuel_sprites[self.anim_state_number]
 
+      elif self.anim_state_number == 2:
+         self.jamuel = self.dancing_jamuel_sprites[self.anim_state_number]
+         
       if self.song_playing == True:
          self.current_song.play(-1)
          self.song_playing = False
@@ -343,6 +349,7 @@ class GameScene:
             dmg += 10
 
          # self.fireballs.append(Fireball((800,200),(1000,240), int((dmg/15)*5), 0.6))
+         self.anim_state_number = 2
          return dmg
       if diff < self.penalty_threshold:
          self.curr_streak = 0
