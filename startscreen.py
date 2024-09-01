@@ -3,6 +3,9 @@ import pygame as pg
 
 class StartScreen: # screen width: 800, screen_height : 700
     def __init__(self, screen, screen_width, screen_height):
+        pg.mixer.init()
+        self.loading_screen_music = pg.mixer.Sound('res/soundfx/loading_screen_music.ogg')
+        self.loading_screen_music.set_volume(0.3)
         self.screen_width, self.screen_height = screen_width, screen_height
         self.screen = screen
         self.background = pg.transform.scale(pg.image.load("res/backgrounds/titlescrenbackground.JPG").convert_alpha(), (screen_width, screen_height))
@@ -20,11 +23,13 @@ class StartScreen: # screen width: 800, screen_height : 700
         # self.title_font = pg.font.Font('res/fonts/blackpearl-font/Blackpearl-vPxA.ttf', 100)
         # self.title_surface = self.title_font.render('Grandbpa In My Bocket', False, (255, 255, 255))
         # self.title_width = self.title_surface.get_width()
+        self.loading_screen_music.play(-1)
         
        
     def handle_events(self):
         # self.isStartScreen = False
         self.is_button_pressed = self.button_pressed()
+        
 
 
         for event in pg.event.get():
@@ -43,14 +48,9 @@ class StartScreen: # screen width: 800, screen_height : 700
             if event.type == pg.MOUSEBUTTONDOWN:
                 print("mouse clicked")
                 if pg.mouse.get_pressed()[0] and self.is_button_pressed:
+                        self.loading_screen_music.stop()
                         print("mouse1 clicked")
                         self.isStartScreen = False
-
-
-        
-
-        
-
     
     def render(self):
         self.screen.blit(self.background,(0,0))

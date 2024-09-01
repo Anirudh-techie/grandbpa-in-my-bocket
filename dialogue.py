@@ -3,7 +3,7 @@ from utils import lerp, wrap_multi_line
 class Dialogue:
     def __init__(self, screen_width, screen_height, text:str, character_name:str, choices=[], sprite_states={}, next_dialogue=1):
         pygame.mixer.init()
-        self.text_anim_sound  = pygame.mixer.Sound('res/soundfx/8-bit-loop-189494.mp3')
+        self.text_anim_sound  = pygame.mixer.Sound('res/soundfx/scroll_animation_sound.wav')
         self.text_anim_sound.set_volume(0.05)
         self.text_anim_sound_playing = False
         self.screen_width, self.screen_height = screen_width, screen_height
@@ -39,17 +39,14 @@ class Dialogue:
         self._animchar += 1.4
         self._animchar = min(self.textlen, self._animchar)
 
-        if not self.text_anim_sound_playing:
-            self.text_anim_sound.stop()
-
-        if int(self._animchar) > int(self._animchar - 0.7):
-            if self.text_anim_sound_playing:
-                self.text_anim_sound.play(1)
-                self.text_anim_sound_playing = False
+        if not self._animchar == self.textlen:
+            if not self.text_anim_sound_playing:
+                self.text_anim_sound.play(-1)
+                self.text_anim_sound_playing = True
         else:
             self.text_anim_sound.stop()
-            self.text_anim_sound_playing = True
-            
+            self.text_anim_sound_playing = False
+         
         
         text = wrap_multi_line(self.text, self.diaFont, self.text_bg_width - 40)
         linesum = 0
@@ -108,6 +105,7 @@ class Dialogue:
 
 
     def go_next(self, choice=None):
+         self.text_anim_sound.stop()
          if choice == None:
                choice = self.current_choice
          if self.choices:
