@@ -13,6 +13,7 @@ boss_dmgs = [2, 4, 5, 10, 25, 50, 100, 150, 200, 250]
 bpms = [50, 80, 116, 150, 190, 220, 260, 300, 350, 400]
 
 
+
 class GameScene:
    def __init__(self, screen,difficulty) -> None:
       
@@ -32,6 +33,7 @@ class GameScene:
       self.is_finished_bool = False
       # self.difficulty3song = pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3")
       # self.difficulty3song.set_volume(0.1)
+      self.dancing_jamuel_animation_timer = 0
 
       self.anim_state_number = 0
       
@@ -91,14 +93,15 @@ class GameScene:
 
 
       self.fireballs = []
+      
 
    def render(self,dt):
       self.update()
       self.screen.blit(self.background_sprite, (0,0))
    
       
-      self.screen.blit(self.bad_guy,(950, 320))
-      self.screen.blit(self.jamuel, (875, 240))
+      self.screen.blit(self.bad_guy,(1050, 300))
+      self.screen.blit(self.jamuel, (825, 280))
       #paticles
       self.arrow_particle_L.draw(self.screen)
       self.arrow_particle_R.draw(self.screen)
@@ -308,6 +311,12 @@ class GameScene:
 
 
    def update(self):
+      
+      if self.dancing_jamuel_animation_timer == 5:
+         self.dancing_jamuel_animation_timer = 0
+         
+      self.dancing_jamuel_animation_timer += 1
+
 
       if self.anim_state_number == 0:
          self.jamuel = self.dancing_jamuel_sprites[self.anim_state_number]
@@ -332,6 +341,8 @@ class GameScene:
       diff = abs(y - y_perfect)
 
       if diff < self.perfect_threshold:
+         self.jamuel = self.dancing_jamuel_sprites[2]
+         # perfect score appeared
          if arrow.x == 175:
             self.arrow_particle_L.reset(self.arrow_particle_L.x,self.arrow_particle_L.y, 50)
          elif arrow.x == 550:
