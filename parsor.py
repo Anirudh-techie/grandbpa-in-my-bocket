@@ -11,7 +11,10 @@ def get_scene_data(screen, screen_width, screen_height)-> list[Scene]:
          scenes = data["scenes"]
          sprites = data["sprites"]
          for s_id in sprites:
-             sprites[s_id] = Sprite(screen, sprites[s_id]["name"], s_id)
+             
+             w = sprites[s_id].get("width", 660)
+             h= sprites[s_id].get("height",950)
+             sprites[s_id] = Sprite(screen, sprites[s_id]["name"], s_id, w,h)
             #  sprites[s_id] = None
          for i,scene in enumerate(scenes):
              if "game" in scene:
@@ -29,7 +32,7 @@ def get_dialogue_data(screen_width, screen_height, scene_index):
     with open("./data.json") as f:
             data = json.load(f)
             scene = data["scenes"][scene_index]
-            ds = scene["dialogues"]
+            ds = scene.get("dialogues", [])
             dialogues = [Dialogue(screen_width, screen_height, d.get("text"),d.get("name"), d.get("choices",[]), d.get("sprite_states", {}), d.get("next_dialogue", 1))  for d in ds]
             return dialogues
     

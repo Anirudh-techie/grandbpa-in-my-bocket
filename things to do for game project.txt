@@ -61,5 +61,6 @@ any props that we wanna use or something idk
 
 
 
-
+def render
+    if sene = 'losescreen'
 

@@ -18,9 +18,10 @@
          "name":"Sign"
       },
       "Dan Johngel":{
-         "name":"Dan Johngel"
+         "name":"Dan Johngel",
+         "width":100
       }
-   
+
    },
    "scenes": [
     {
@@ -374,8 +375,11 @@
                 "name": ""
             }
         ]
+      },
+    {
+        "bg":"blacksquare.jpg"
         
-      }
+    }
    ]
    
 }
