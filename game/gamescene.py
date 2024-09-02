@@ -29,7 +29,6 @@ class GameScene:
       self.bad_guy = pygame.image.load("res/game/bad_guy/bad_guy.png")
       self.pauseScreenFont = pygame.font.Font('res/fonts/blackpearl-font/Blackpearl-vPxA.ttf', 100)
       self.death_text = self.pauseScreenFont.render("Press Enter to Retry", True, (255,255,255))
-      self.win_text = self.pauseScreenFont.render("You WIn good job", True, (255,255,255))
       self.is_finished_bool = False
       # self.difficulty3song = pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3")
       # self.difficulty3song.set_volume(0.1)
@@ -37,7 +36,7 @@ class GameScene:
 
       self.anim_state_number = 0
       
-      self.songs = ["","",pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3")]
+      self.songs = ["","",pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/soundfx/granbpa vibe.mp3")]
       self.current_song = self.songs[self.difficulty-1]
       self.bpm = bpms[difficulty-1]
       #self.bpm = 40*difficulty
@@ -94,8 +93,23 @@ class GameScene:
 
       self.fireballs = []
       
+      self.is_gaming = True
+   
+   def reset(self):
+      self.reset_arrows()
+      self.curr_streak = 0
+      self.player_health = self.player_max_health
+      self.boss_health = self.boss_max_health
+      self.anim_state_number = 0
+      self.song_playing = True
+      self.beattimer = 0
+      self.is_gaming = True
 
    def render(self,dt):
+      if not self.is_gaming:
+         self.screen.blit(self.death_screen_sprite, (0,0))
+         self.screen.blit(self.death_text, (self.screen.get_width()/2  - self.death_text.get_width()/2, self.screen.get_height() * 3/5))
+         return
       self.update()
       self.screen.blit(self.background_sprite, (0,0))
    
@@ -228,7 +242,11 @@ class GameScene:
 
    
    def keydown(self,key):
-   
+      if not self.is_gaming:
+         if key == pygame.K_RETURN:
+            self.is_gaming = True
+            self.reset()
+         return
       if key == pygame.K_SPACE:
          self.current_song.stop()
          self.is_finished_bool = True
@@ -270,42 +288,11 @@ class GameScene:
 
    
    def deathScreen(self):
-      paused = True
       self.current_song.stop()
-      while paused:
-        self.screen.blit(self.death_screen_sprite, (0,0))
-        self.screen.blit(self.death_text, (self.screen.get_width()/2  - self.death_text.get_width()/2, self.screen.get_height() * 3/5))
-        pygame.display.flip()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN:
-                    paused = False
-      self.song_playing = True
-      self.reset_arrows()
-      self.__init__(self.screen, self.difficulty)
+      self.is_gaming = False
 
    def winScreen(self):
-      
-      paused = True
       self.current_song.stop()
-      while paused:
-
-        self.screen.blit(self.win_text, (self.screen.get_width()/2  - self.death_text.get_width()/2, self.screen.get_height() * 3/5))
-        pygame.display.flip()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN or event.key == pygame.K_SPACE:
-                    paused = False
-
-                if event.key == pygame.K_ESCAPE:
-                   pygame.quit()
-                   exit()
       self.is_finished_bool = True
       
 
