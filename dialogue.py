@@ -30,7 +30,8 @@ class Dialogue:
         pass
     def render(self, screen):
         
-
+        if self.text == "":
+            return
         text_bg = pygame.Surface((self.text_bg_width, self.text_bg_height),pygame.SRCALPHA)
         pygame.draw.rect(text_bg, (255,255,255,210), text_bg.get_rect(), border_radius=20)
         screen.blit(text_bg, (self.screen_width/2 - self.text_bg_width/2 , self.screen_height - self.text_bg_height - 30))

@@ -46,6 +46,8 @@ class Game:
                   elif event.type == pg.KEYDOWN:
                      if event.key == pg.K_ESCAPE:
                            self.running = False
+
+                     
                      if isinstance(self.scenes[self.current_scene], Scene):
                         if event.key == pg.K_SPACE or event.key == pg.K_RETURN:  
                            self.scenes[self.current_scene].next_dialogue()
@@ -56,7 +58,7 @@ class Game:
                            self.scenes[self.current_scene].prev_choice()
                      else:
                         self.scenes[self.current_scene].keydown(event.key)
-                  
+         
                   if isinstance(self.scenes[self.current_scene], Scene):
                      if event.type == pg.MOUSEBUTTONDOWN:
                         self.scenes[self.current_scene].check_mouse_choice(*event.pos)
@@ -72,9 +74,8 @@ class Game:
          else:
             self.screen.fill((255,255,255))
             if self.scenes[self.current_scene].is_finished():
-               self.current_scene += 1
-               if self.current_scene == len(self.scenes):
-                  self.running = False
+               self.current_scene = min(self.current_scene + 1, len(self.scenes) - 1)
+   
             if isinstance(self.scenes[self.current_scene], Scene):
                self.scenes[self.current_scene].render()
             else: 
@@ -89,6 +90,7 @@ class Game:
             self.isStartScreen = self.startScreen.check_running()
 
             self.handle_events()
+            
             self.render_stuff_loop(dt)
             pg.display.update()
 

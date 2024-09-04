@@ -23,10 +23,12 @@ class GameScene:
       self.song_playing = True
       self.death_screen_sprite = pygame.transform.scale(pygame.image.load("res/game/ui/gameoverBackground.jpg"), (self.screen.get_width(), self.screen.get_height()))
       self.background_sprite = pygame.transform.scale(pygame.image.load("res/backgrounds/rhythmbackground.png"), (self.screen.get_width(), self.screen.get_height()))
-      self.jamuel_width, self.jamuel_height = 200, 500
+      self.jamuel_width, self.jamuel_height = 250, 380
       self.dancing_jamuel_sprites = [pygame.transform.scale(pygame.image.load("res/game/jamuel/normal_dancing_jamuel.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/bobbing_dancing_jamuel.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/dancing_dancing_jamuel.png"), (self.jamuel_width, self.jamuel_height))]
       self.jamuel = self.dancing_jamuel_sprites[0]
-      self.bad_guy = pygame.image.load("res/game/bad_guy/bad_guy.png")
+      self.bad_guy_width, self.bad_guy_height = 300, 500
+      self.bad_guy_sprites = [pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad_guy.png"), (self.bad_guy_width, self.bad_guy_height)), pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad guy 2.png"), (self.bad_guy_width, self.bad_guy_height)),pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad guy 3.png"), (self.bad_guy_width, self.bad_guy_height))]
+      self.bad_guy = self.bad_guy_sprites[0]
       self.pauseScreenFont = pygame.font.Font('res/fonts/blackpearl-font/Blackpearl-vPxA.ttf', 100)
       self.death_text = self.pauseScreenFont.render("Press Enter to Retry", True, (255,255,255))
       self.is_finished_bool = False
@@ -56,8 +58,8 @@ class GameScene:
       
       self.boss_health = 1000
       self.boss_max_health = 1000
-      self.player_health = 250
-      self.player_max_health = 250
+      self.player_health = 1000
+      self.player_max_health = 1000
 
       self.attack_dmg = 25
       self.boss_dmg = 25
@@ -94,6 +96,9 @@ class GameScene:
       self.fireballs = []
       
       self.is_gaming = True
+
+
+      self.test_beat_sfx = pygame.mixer.Sound("res/soundfx/bubble-sound-43207.mp3")
    
    def reset(self):
       self.reset_arrows()
@@ -110,7 +115,6 @@ class GameScene:
          self.screen.blit(self.death_screen_sprite, (0,0))
          self.screen.blit(self.death_text, (self.screen.get_width()/2  - self.death_text.get_width()/2, self.screen.get_height() * 3/5))
          return
-      self.update()
       self.screen.blit(self.background_sprite, (0,0))
    
       
@@ -128,6 +132,8 @@ class GameScene:
       self.screen.blit(self.right_arrow_img, (550, 50))
       
       self.tickbeat(dt)
+      self.update()
+
       
       for arrow in self.up_arrows:
          arrow.update(dt)
@@ -209,8 +215,6 @@ class GameScene:
             self.right_arrows.remove(arrow)
             self.player_health -= self.boss_dmg
 
-      # if self.beattimer >= 30/self.bpm and self.beattimer < 31/self.bpm and self.anim_state_number == 2:
-      #    self.anim_state_number = 0
 
 
       if self.beattimer >= 60/self.bpm:
@@ -247,9 +251,6 @@ class GameScene:
             self.is_gaming = True
             self.reset()
          return
-      if key == pygame.K_SPACE:
-         self.current_song.stop()
-         self.is_finished_bool = True
 
       elif key == pygame.K_UP or key == pygame.K_w:
          if len(self.up_arrows) == 0:
@@ -305,16 +306,8 @@ class GameScene:
       self.dancing_jamuel_animation_timer += 1
 
 
-      if self.anim_state_number == 0:
-         self.jamuel = self.dancing_jamuel_sprites[self.anim_state_number]
-         self.anim_state_number = 0
-
-      elif self.anim_state_number == 1:
-         self.jamuel = self.dancing_jamuel_sprites[self.anim_state_number]
-
-      elif self.anim_state_number == 2:
-         self.jamuel = self.dancing_jamuel_sprites[self.anim_state_number]
-         
+      self.jamuel = self.dancing_jamuel_sprites[self.anim_state_number]
+      self.bad_guy = self.bad_guy_sprites[self.anim_state_number]
       if self.song_playing == True:
          self.current_song.play(-1)
          self.song_playing = False
