@@ -39,6 +39,7 @@ class GameScene:
       self.varToOnlyLoopOnceForWinScreen = True
 
       self.bad_guy_width, self.bad_guy_height = 300, 500
+      #dj is difficulty 1, eb is difficlty 2, apple is difficulty 3, penicillin is difficulty 4
       self.bad_guy_sprites = [pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad_guy.png"), (self.bad_guy_width, self.bad_guy_height)), pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad guy 2.png"), (self.bad_guy_width, self.bad_guy_height)),pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad guy 3.png"), (self.bad_guy_width, self.bad_guy_height))]
       self.bad_guy = self.bad_guy_sprites[0]
 
