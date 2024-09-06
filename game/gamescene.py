@@ -19,6 +19,7 @@ class GameScene:
       
       self.difficulty = difficulty
       self.font =  pygame.font.Font(None, 25)
+      self.streakFont = pygame.font.Font("res/fonts/blackpearl-font/Blackpearl-vPxA.ttf", 35)
       self.screen = screen
       self.song_playing = True
       self.death_screen_sprite = pygame.transform.scale(pygame.image.load("res/game/ui/gameoverBackground.jpg"), (self.screen.get_width(), self.screen.get_height()))
@@ -42,7 +43,14 @@ class GameScene:
       self.current_song = self.songs[self.difficulty-1]
       self.bpm = bpms[difficulty-1]
       #self.bpm = 40*difficulty
-      self.gap = 100
+      self.y_perfect = 50
+
+      y_travel = screen.get_height() + 100 - self.y_perfect
+
+      self.num_arrows_in_screen = 8
+
+
+      self.gap = y_travel/self.num_arrows_in_screen #high iq tactic to fix beat sync issue
       self.beattimer = 0
 
       self.speed = self.gap / (60/self.bpm)
@@ -56,8 +64,8 @@ class GameScene:
       self.perfect_threshold = 20
       self.penalty_threshold = 50
       
-      self.boss_health = 1000
-      self.boss_max_health = 1000
+      self.boss_health = 10000
+      self.boss_max_health = 10000
       self.player_health = 1000
       self.player_max_health = 1000
 
@@ -96,9 +104,6 @@ class GameScene:
       self.fireballs = []
       
       self.is_gaming = True
-
-
-      self.test_beat_sfx = pygame.mixer.Sound("res/soundfx/bubble-sound-43207.mp3")
    
    def reset(self):
       self.reset_arrows()
@@ -111,6 +116,8 @@ class GameScene:
       self.is_gaming = True
 
    def render(self,dt):
+      self.update()
+
       if not self.is_gaming:
          self.screen.blit(self.death_screen_sprite, (0,0))
          self.screen.blit(self.death_text, (self.screen.get_width()/2  - self.death_text.get_width()/2, self.screen.get_height() * 3/5))
@@ -126,13 +133,12 @@ class GameScene:
       self.arrow_particle_U.draw(self.screen)
       self.arrow_particle_D.draw(self.screen)
 
-      self.screen.blit(self.left_arrow_img, (175, 50))
-      self.screen.blit(self.down_arrow_img, (300, 50))
-      self.screen.blit(self.up_arrow_img, (425, 50))
-      self.screen.blit(self.right_arrow_img, (550, 50))
+      self.screen.blit(self.left_arrow_img, (175, self.y_perfect))
+      self.screen.blit(self.down_arrow_img, (300, self.y_perfect))
+      self.screen.blit(self.up_arrow_img, (425, self.y_perfect))
+      self.screen.blit(self.right_arrow_img, (550, self.y_perfect))
       
       self.tickbeat(dt)
-      self.update()
 
       
       for arrow in self.up_arrows:
@@ -185,7 +191,7 @@ class GameScene:
       
       ph = self.font.render(f"Player Health: {int(self.player_health)}", True, (0,0,0))
       self.screen.blit(ph, (self.player_health_bar_x, self.player_health_bar_y - 25))
-      cs =self.font.render(f"Current Streak: {int(self.curr_streak)}", True, (0,0,0))
+      cs =self.streakFont.render(f"{int(self.curr_streak)}x", True, (0,0,0))
       self.screen.blit(cs, (725, 200))
 
       for ball in self.fireballs:
@@ -215,15 +221,16 @@ class GameScene:
             self.right_arrows.remove(arrow)
             self.player_health -= self.boss_dmg
 
-
-
+      if self.beattimer >= 30/self.bpm and self.anim_state_number:
+         self.anim_state_number = False
+         
       if self.beattimer >= 60/self.bpm:
          
-         self.anim_state_number = not self.anim_state_number
-         self.beattimer = 0
+         self.anim_state_number = True
+         self.beattimer = self.beattimer - 60/self.bpm #higher iq tactic to fix beat sync issue
 
-         rng1 = round(random.random() * 5)
-         rng2 = round(random.random() * 5)
+         rng1 = round(random.random() * 4)
+         rng2 = round(random.random() * 4)
          
          if rng1 == 1:
             self.up_arrows.append(Arrow(self.screen,self.speed, 425, 1))
@@ -315,10 +322,9 @@ class GameScene:
 
    def validate(self, arrow):
 
-      y_perfect = 50
       y = arrow.y
 
-      diff = abs(y - y_perfect)
+      diff = abs(y - self.y_perfect)
 
       if diff < self.perfect_threshold:
          self.jamuel = self.dancing_jamuel_sprites[2]

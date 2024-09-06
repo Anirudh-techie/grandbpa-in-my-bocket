@@ -27,15 +27,15 @@ class Scene:
                 sprite.set_visibility(states["show"])
             sprite.render()
             
-            current_dialogue.render(self.screen)
+        current_dialogue.render(self.screen)
         
 
     def next_dialogue(self):
        current_dialogue = self.dialogues[self.currentDialogue]
-       if self.currentDialogue == len(self.dialogues) - 1:
+       self.currentDialogue += current_dialogue.go_next()
+       if self.currentDialogue > len(self.dialogues) - 1:
            self.is_finished_bool = True
            return
-       self.currentDialogue += current_dialogue.go_next()
     
     def next_choice(self):
         self.dialogues[self.currentDialogue].next_choice()
