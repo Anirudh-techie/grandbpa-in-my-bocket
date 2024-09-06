@@ -14,6 +14,8 @@ bpms = [90, 110, 116, 150, 190, 220, 260, 300, 350, 400]
 
 songs=[pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/soundfx/granbpa vibe.mp3")]
 
+deathBgs = [pygame.image.load("res/game/ui/gameoverBackground.jpg"), pygame.image.load("res/game/ui/gameoverBackground.jpg"), pygame.image.load("res/game/ui/gameoverBackground.jpg"), pygame.image.load("res/game/ui/gameoverBackground.jpg")]
+
 class GameScene:
    def __init__(self, screen,difficulty) -> None:
       
@@ -22,7 +24,7 @@ class GameScene:
       self.streakFont = pygame.font.Font("res/fonts/blackpearl-font/Blackpearl-vPxA.ttf", 35)
       self.screen = screen
       self.song_playing = True
-      self.death_screen_sprite = pygame.transform.scale(pygame.image.load("res/game/ui/gameoverBackground.jpg"), (self.screen.get_width(), self.screen.get_height()))
+      self.death_screen_sprite = pygame.transform.scale(deathBgs[difficulty-1], (self.screen.get_width(), self.screen.get_height()))
       self.background_sprite = pygame.transform.scale(pygame.image.load("res/backgrounds/rhythmbackground.png"), (self.screen.get_width(), self.screen.get_height()))
       self.jamuel_width, self.jamuel_height = 250, 380
       self.dancing_jamuel_sprites = [pygame.transform.scale(pygame.image.load("res/game/jamuel/normal_dancing_jamuel.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/bobbing_dancing_jamuel.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/dancing_dancing_jamuel.png"), (self.jamuel_width, self.jamuel_height))]
