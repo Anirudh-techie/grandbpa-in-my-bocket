@@ -38,13 +38,13 @@ class GameScene:
       self.death_screen_sprite = pygame.transform.scale(deathBgs[difficulty-1], (self.screen.get_width(), self.screen.get_height()))
       self.win_screen_sprite = pygame.transform.scale(winBgs[difficulty-1], (self.screen.get_width(), self.screen.get_height()))
       self.background_sprite = pygame.transform.scale(pygame.image.load("res/backgrounds/rhythmbackground.png"), (self.screen.get_width(), self.screen.get_height()))
-      self.jamuel_width, self.jamuel_height = 250, 380
+      self.jamuel_width, self.jamuel_height = 260, 380
       self.dancing_jamuel_sprites = [pygame.transform.scale(pygame.image.load("res/game/jamuel/jamuelNeutral.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/jamuelBobbing.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/jamuelDance.png"), (self.jamuel_width, self.jamuel_height))]
       self.jamuel = self.dancing_jamuel_sprites[0]
 
       self.varToOnlyLoopOnceForWinScreen = True
 
-      self.bad_guy_width, self.bad_guy_height = 500, 500
+      self.bad_guy_width, self.bad_guy_height = 600, 500
       self.bad_guy_sprites = [pygame.transform.scale(bad_guys[difficulty-1][0], (self.bad_guy_width, self.bad_guy_height)), pygame.transform.scale(bad_guys[difficulty-1][0], (self.bad_guy_width, self.bad_guy_height)),pygame.transform.scale(bad_guys[difficulty-1][0], (self.bad_guy_width, self.bad_guy_height))]
       self.bad_guy = self.bad_guy_sprites[0]
 
@@ -152,8 +152,8 @@ class GameScene:
          self.screen.blit(self.background_sprite, (0,0))
       
          
-         self.screen.blit(self.bad_guy,(1050, 300))
-         self.screen.blit(self.jamuel, (825, 280))
+         self.screen.blit(self.bad_guy,(self.screen.get_width()*0.65, self.screen.get_height()*0.28))
+         self.screen.blit(self.jamuel, (self.screen.get_width()*0.55, self.screen.get_height()*0.35+20))
          #paticles
          self.arrow_particle_L.draw(self.screen)
          self.arrow_particle_R.draw(self.screen)
@@ -259,14 +259,13 @@ class GameScene:
             cs = self.streakFont.render(f"HIT! {int(self.curr_streak)}x", True, (0,200,0))
             self.screen.blit(cs, (((175+550)/2) + 50 - (cs.get_width()/2), 600))
 
-      print("hi")
       if self.beattimer >= 30/self.bpm and self.anim_state_number:
-         # self.anim_state_number = False
+         self.anim_state_number = False
          pass
          
       if self.beattimer >= 60/self.bpm:
          
-         # self.anim_state_number = True
+         self.anim_state_number = True
          self.beattimer = self.beattimer - 60/self.bpm #higher iq tactic to fix beat sync issue
 
          rng1 = round(random.random() * 4)
