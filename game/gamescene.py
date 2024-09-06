@@ -5,14 +5,14 @@ import pygame
 from game.particles import Particle, Particles
 from game.fireball import Fireball
 pygame.mixer.init()
-# master of puppets bpm is 116
-boss_hps = [200, 300, 500, 10,1500,2000, 3000, 4000, 5000, 6000]
+
+boss_hps = [200, 300, 500, 1000,1500,2000, 3000, 4000, 5000, 6000]
 player_hps = [100,125, 125, 200, 250, 250, 250, 250, 250, 250] 
 attack_dmgs = [1, 2, 2, 4, 5, 5, 5, 5, 5, 5]
 boss_dmgs = [2, 4, 5, 10, 25, 50, 100, 150, 200, 250]
-bpms = [50, 80, 116, 150, 190, 220, 260, 300, 350, 400]
+bpms = [90, 110, 116, 150, 190, 220, 260, 300, 350, 400]
 
-
+songs=[pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/soundfx/granbpa vibe.mp3")]
 
 class GameScene:
    def __init__(self, screen,difficulty) -> None:
@@ -33,16 +33,16 @@ class GameScene:
       self.pauseScreenFont = pygame.font.Font('res/fonts/blackpearl-font/Blackpearl-vPxA.ttf', 100)
       self.death_text = self.pauseScreenFont.render("Press Enter to Retry", True, (255,255,255))
       self.is_finished_bool = False
-      # self.difficulty3song = pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3")
-      # self.difficulty3song.set_volume(0.1)
+
       self.dancing_jamuel_animation_timer = 0
 
       self.anim_state_number = 0
       
-      self.songs = ["","",pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/soundfx/granbpa vibe.mp3")]
+      self.songs = songs
+      
       self.current_song = self.songs[self.difficulty-1]
       self.bpm = bpms[difficulty-1]
-      #self.bpm = 40*difficulty
+
       self.y_perfect = 50
 
       y_travel = screen.get_height() + 100 - self.y_perfect
@@ -64,13 +64,13 @@ class GameScene:
       self.perfect_threshold = 20
       self.penalty_threshold = 50
       
-      self.boss_health = 10000
-      self.boss_max_health = 10000
-      self.player_health = 1000
-      self.player_max_health = 1000
+      self.boss_health = boss_hps[difficulty-1]
+      self.boss_max_health = self.boss_health
+      self.player_health = player_hps[difficulty-1]
+      self.player_max_health = self.player_health
 
-      self.attack_dmg = 25
-      self.boss_dmg = 25
+      self.attack_dmg = attack_dmgs[difficulty-1]
+      self.boss_dmg = boss_dmgs[difficulty-1]
 
       self.boss_health_bar_width = self.screen.get_width() * 1/3
       self.boss_health_bar_height = 20
@@ -104,6 +104,8 @@ class GameScene:
       self.fireballs = []
       
       self.is_gaming = True
+
+      self.show_perfect = False
    
    def reset(self):
       self.reset_arrows()
@@ -191,8 +193,7 @@ class GameScene:
       
       ph = self.font.render(f"Player Health: {int(self.player_health)}", True, (0,0,0))
       self.screen.blit(ph, (self.player_health_bar_x, self.player_health_bar_y - 25))
-      cs =self.streakFont.render(f"{int(self.curr_streak)}x", True, (0,0,0))
-      self.screen.blit(cs, (725, 200))
+      
 
       for ball in self.fireballs:
          if ball.is_finished:
@@ -205,21 +206,32 @@ class GameScene:
       for arrow in self.up_arrows:
          if arrow.y <= -10:
             self.up_arrows.remove(arrow)
+            self.curr_streak = 0
             self.player_health -= self.boss_dmg
       for arrow in self.down_arrows:
          if arrow.y <= -10:
+            self.curr_streak = 0
             self.down_arrows.remove(arrow)
             self.player_health -= self.boss_dmg
 
       for arrow in self.left_arrows:
          if arrow.y <= -10:
+            self.curr_streak = 0
             self.left_arrows.remove(arrow)
             self.player_health -= self.boss_dmg
 
       for arrow in self.right_arrows:
          if arrow.y <= -10:
+            self.curr_streak = 0
             self.right_arrows.remove(arrow)
             self.player_health -= self.boss_dmg
+
+      if self.curr_streak <= 0:
+          self.show_perfect = False
+
+      if self.show_perfect:
+            cs = self.streakFont.render(f"HIT! {int(self.curr_streak)}x", True, (255,255,255))
+            self.screen.blit(cs, (((175+550)/2) + 50 - (cs.get_width()/2), 600))
 
       if self.beattimer >= 30/self.bpm and self.anim_state_number:
          self.anim_state_number = False
@@ -337,6 +349,8 @@ class GameScene:
             self.arrow_particle_U.reset(self.arrow_particle_U.x,self.arrow_particle_L.y, 50)
          elif arrow.x == 300:
             self.arrow_particle_D.reset(self.arrow_particle_D.x,self.arrow_particle_L.y, 50)
+            
+         self.show_perfect = True
 
          self.curr_streak+=1
          dmg = self.attack_dmg

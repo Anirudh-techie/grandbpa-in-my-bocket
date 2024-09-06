@@ -23,16 +23,12 @@
       }
    },
    "scenes": [
-      {
-         "game": {
-            "difficulty": 4
-         }
-      },
+
       {
          "bg": "outsidedj.png",
          "dialogues": [
             {
-               "name": ".",
+               "name": "Narrator",
                "text": "Captain Jamuel and his first mate, Paniel, are going to buy a new getup from Chatstone, the style nexus."
             },
             {
@@ -309,6 +305,11 @@
                "next_dialogue": 1
             }
          ]
+      },
+      {
+         "game": {
+            "difficulty": 1
+         }
       },
       {
          "bg": "outsidedj.png",
@@ -805,6 +806,11 @@
                "name": "Cashier"
             }
          ]
+      },
+      {
+         "game": {
+            "difficulty": 2
+         }
       },
       {
          "bg": "outsidedj.png",
@@ -1310,6 +1316,11 @@
          ]
       },
       {
+         "game": {
+            "difficulty": 3
+         }
+      },
+      {
          "bg": "outsidedj.png",
          "dialogues": [
             {
@@ -1701,6 +1712,11 @@
                "name": "Paniel"
             }
          ]
+      },
+      {
+         "game": {
+            "difficulty": 4
+         }
       },
       {
          "bg": "outsidedj.png",
