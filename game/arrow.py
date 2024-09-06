@@ -1,12 +1,14 @@
 import pygame as pg
+arrow_img = pg.transform.scale(pg.image.load("res/game/arrows/arrow.PNG"), (75,75))
+
 class Arrow:
    def __init__(self,screen, speed, x, id) -> None: # up = 1, left = 2, right = 3, down = 4
       
-      self.speed = speed
+      self.speed = speed  
       self.y = screen.get_height() + 100
       self.x = x
       self.rect = {50, 50, x, 650}
-      self.right_arrow_img = pg.transform.scale(pg.image.load("res/game/arrows/arrow.PNG"), (75,75))
+      self.right_arrow_img = arrow_img
 
       if id == 1:
          self.arrow_img = pg.transform.rotate(self.right_arrow_img, 90)

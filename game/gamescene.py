@@ -12,12 +12,18 @@ attack_dmgs = [1, 2, 2, 4, 5, 5, 5, 5, 5, 5]
 boss_dmgs = [2, 4, 5, 10, 25, 50, 100, 150, 200, 250]
 bpms = [90, 110, 116, 150, 190, 220, 260, 300, 350, 400]
 
-songs=[pygame.mixer.Sound("res/game/songs/battle_theme_regular.mp3"),pygame.mixer.Sound("res/game/songs/battle_theme_regular.mp3"),pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/game/songs/granbpa vibe.mp3")]
+songs=[pygame.mixer.Sound("res/game/songs/small granbpa vibe.mp3"),pygame.mixer.Sound("res/game/songs/battle_theme_regular.mp3"),pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/game/songs/granbpa vibe.mp3")]
 
 deathBgs = [pygame.image.load("res/game/backgrounds/davyloss.jpg"), pygame.image.load("res/game/backgrounds/gamestoreloss.jpg"),pygame.image.load("res/game/backgrounds/applewin.jpg"), pygame.image.load("res/game/backgrounds/penicillinloss.JPG")]
 
 winBgs = [pygame.image.load("res/game/backgrounds/davywin.jpg"), pygame.image.load("res/game/backgrounds/gamestorewin.jpg"),pygame.image.load("res/game/backgrounds/applewin.jpg"), pygame.image.load("res/game/backgrounds/penicillinwin.JPG")]
 
+bad_guys = [
+   [pygame.image.load("res/game/bad_guy/djNeutral.png"), pygame.image.load("res/game/bad_guy/djBobbing.png"), pygame.image.load("res/game/bad_guy/djHit.png")],
+   [pygame.image.load("res/game/bad_guy/ebNeutral.png"), pygame.image.load("res/game/bad_guy/ebBobbing.png"), pygame.image.load("res/game/bad_guy/ebHit.png")],
+   [pygame.image.load("res/game/bad_guy/appleNeutral.png"), pygame.image.load("res/game/bad_guy/appleBobbing.png"), pygame.image.load("res/game/bad_guy/appleHit.png")],
+   [pygame.image.load("res/game/bad_guy/penicillinNeutral.png"), pygame.image.load("res/game/bad_guy/penicillinBobbing.png"), pygame.image.load("res/game/bad_guy/penicillinHit.png")],
+]
 
 
 class GameScene:
@@ -38,14 +44,12 @@ class GameScene:
 
       self.varToOnlyLoopOnceForWinScreen = True
 
-      self.bad_guy_width, self.bad_guy_height = 300, 500
-      #dj is difficulty 1, eb is difficlty 2, apple is difficulty 3, penicillin is difficulty 4
-      self.bad_guy_sprites = [pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad_guy.png"), (self.bad_guy_width, self.bad_guy_height)), pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad guy 2.png"), (self.bad_guy_width, self.bad_guy_height)),pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad guy 3.png"), (self.bad_guy_width, self.bad_guy_height))]
+      self.bad_guy_width, self.bad_guy_height = 500, 500
+      self.bad_guy_sprites = [pygame.transform.scale(bad_guys[difficulty-1][0], (self.bad_guy_width, self.bad_guy_height)), pygame.transform.scale(bad_guys[difficulty-1][0], (self.bad_guy_width, self.bad_guy_height)),pygame.transform.scale(bad_guys[difficulty-1][0], (self.bad_guy_width, self.bad_guy_height))]
       self.bad_guy = self.bad_guy_sprites[0]
 
       self.is_finished_bool = False
 
-      self.dancing_jamuel_animation_timer = 0
 
       self.anim_state_number = 0
       
@@ -143,6 +147,8 @@ class GameScene:
 
 
       else:
+         self.tickbeat(dt)
+ 
          self.screen.blit(self.background_sprite, (0,0))
       
          
@@ -159,7 +165,6 @@ class GameScene:
          self.screen.blit(self.up_arrow_img, (425, self.y_perfect))
          self.screen.blit(self.right_arrow_img, (550, self.y_perfect))
          
-         self.tickbeat(dt)
 
          
          for arrow in self.up_arrows:
@@ -174,6 +179,8 @@ class GameScene:
          for arrow in self.down_arrows:
             arrow.update(dt)
             arrow.render(self.screen)
+
+         
          if self.player_health <= 0:
             self.deathScreen()
             return
@@ -252,12 +259,14 @@ class GameScene:
             cs = self.streakFont.render(f"HIT! {int(self.curr_streak)}x", True, (0,200,0))
             self.screen.blit(cs, (((175+550)/2) + 50 - (cs.get_width()/2), 600))
 
+      print("hi")
       if self.beattimer >= 30/self.bpm and self.anim_state_number:
-         self.anim_state_number = False
+         # self.anim_state_number = False
+         pass
          
       if self.beattimer >= 60/self.bpm:
          
-         self.anim_state_number = True
+         # self.anim_state_number = True
          self.beattimer = self.beattimer - 60/self.bpm #higher iq tactic to fix beat sync issue
 
          rng1 = round(random.random() * 4)
@@ -350,12 +359,6 @@ class GameScene:
       
       if not self.is_won:
          
-         if self.dancing_jamuel_animation_timer == 5:
-            self.dancing_jamuel_animation_timer = 0
-            
-         self.dancing_jamuel_animation_timer += 1
-
-
          self.jamuel = self.dancing_jamuel_sprites[self.anim_state_number]
          self.bad_guy = self.bad_guy_sprites[self.anim_state_number]
          if self.song_playing == True:

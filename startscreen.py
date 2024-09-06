@@ -20,7 +20,6 @@ class StartScreen: # screen width: 800, screen_height : 700
         self.isStartScreen = True
         self.quitted = False
 
-        # self.title_font = pg.font.Font('res/fonts/blackpearl-font/Blackpearl-vPxA.ttf', 100)
         # self.title_surface = self.title_font.render('Grandbpa In My Bocket', False, (255, 255, 255))
         # self.title_width = self.title_surface.get_width()
         self.loading_screen_music.play(-1)
@@ -56,6 +55,7 @@ class StartScreen: # screen width: 800, screen_height : 700
         self.screen.blit(self.background,(0,0))
         self.screen.blit(self.start_game_button, self.button_rect)
         self.screen.blit(self.title, ((self.screen_width/2)- self.title.get_width()/2, 40))
+
     def check_running(self):
         return self.isStartScreen
         

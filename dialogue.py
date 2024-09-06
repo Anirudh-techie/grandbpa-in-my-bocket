@@ -95,11 +95,15 @@ class Dialogue:
          return -1
 
     def next_choice(self):
+        if not self.choices:
+            return
         self.current_choice += 1
         self.current_choice %= len(self.choices)
         self._chosen_bg_opacity = 0
     
     def prev_choice(self):
+        if not self.choices:
+            return
         self.current_choice -= 1
         self.current_choice %= len(self.choices)
         self._chosen_bg_opacity = 0

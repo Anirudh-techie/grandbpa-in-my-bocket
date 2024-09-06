@@ -6,7 +6,7 @@ from game.gamescene import GameScene
 from sprite import Sprite
 
 def get_scene_data(screen, screen_width, screen_height)-> list[Scene]:
-    with open("./data.json") as f:
+    with open("./data.json",encoding='utf8') as f:
          data = json.load(f)
          scenes = data["scenes"]
          sprites = data["sprites"]
@@ -29,7 +29,7 @@ def get_scene_data(screen, screen_width, screen_height)-> list[Scene]:
 
 
 def get_dialogue_data(screen_width, screen_height, scene_index):
-    with open("./data.json") as f:
+    with open("./data.json",encoding='utf8') as f:
             data = json.load(f)
             scene = data["scenes"][scene_index]
             ds = scene.get("dialogues", [])
