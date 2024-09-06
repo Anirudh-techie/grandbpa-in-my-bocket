@@ -12,28 +12,36 @@ attack_dmgs = [1, 2, 2, 4, 5, 5, 5, 5, 5, 5]
 boss_dmgs = [2, 4, 5, 10, 25, 50, 100, 150, 200, 250]
 bpms = [90, 110, 116, 150, 190, 220, 260, 300, 350, 400]
 
-songs=[pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/soundfx/granbpa vibe.mp3")]
+songs=[pygame.mixer.Sound("res/game/songs/battle_theme_regular.mp3"),pygame.mixer.Sound("res/game/songs/battle_theme_regular.mp3"),pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/game/songs/granbpa vibe.mp3")]
 
-deathBgs = [pygame.image.load("res/game/ui/gameoverBackground.jpg"), pygame.image.load("res/game/ui/gameoverBackground.jpg"), pygame.image.load("res/game/ui/gameoverBackground.jpg"), pygame.image.load("res/game/ui/gameoverBackground.jpg")]
+deathBgs = [pygame.image.load("res/game/backgrounds/davyloss.jpg"), pygame.image.load("res/game/backgrounds/gamestoreloss.jpg"),pygame.image.load("res/game/backgrounds/applewin.jpg"), pygame.image.load("res/game/backgrounds/penicillinloss.JPG")]
+
+winBgs = [pygame.image.load("res/game/backgrounds/davywin.jpg"), pygame.image.load("res/game/backgrounds/gamestorewin.jpg"),pygame.image.load("res/game/backgrounds/applewin.jpg"), pygame.image.load("res/game/backgrounds/penicillinwin.JPG")]
+
+
 
 class GameScene:
    def __init__(self, screen,difficulty) -> None:
       
       self.difficulty = difficulty
-      self.font =  pygame.font.Font(None, 25)
+      self.font =  pygame.font.Font("res/fonts/blackpearl-font/Blackpearl-vPxA.ttf", 25)
       self.streakFont = pygame.font.Font("res/fonts/blackpearl-font/Blackpearl-vPxA.ttf", 35)
+      self.winSound = pygame.mixer.Sound("res/soundfx/gameWinSound.mp3")
       self.screen = screen
       self.song_playing = True
       self.death_screen_sprite = pygame.transform.scale(deathBgs[difficulty-1], (self.screen.get_width(), self.screen.get_height()))
+      self.win_screen_sprite = pygame.transform.scale(winBgs[difficulty-1], (self.screen.get_width(), self.screen.get_height()))
       self.background_sprite = pygame.transform.scale(pygame.image.load("res/backgrounds/rhythmbackground.png"), (self.screen.get_width(), self.screen.get_height()))
       self.jamuel_width, self.jamuel_height = 250, 380
-      self.dancing_jamuel_sprites = [pygame.transform.scale(pygame.image.load("res/game/jamuel/normal_dancing_jamuel.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/bobbing_dancing_jamuel.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/dancing_dancing_jamuel.png"), (self.jamuel_width, self.jamuel_height))]
+      self.dancing_jamuel_sprites = [pygame.transform.scale(pygame.image.load("res/game/jamuel/jamuelNeutral.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/jamuelBobbing.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/jamuelDance.png"), (self.jamuel_width, self.jamuel_height))]
       self.jamuel = self.dancing_jamuel_sprites[0]
+
+      self.varToOnlyLoopOnceForWinScreen = True
+
       self.bad_guy_width, self.bad_guy_height = 300, 500
       self.bad_guy_sprites = [pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad_guy.png"), (self.bad_guy_width, self.bad_guy_height)), pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad guy 2.png"), (self.bad_guy_width, self.bad_guy_height)),pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad guy 3.png"), (self.bad_guy_width, self.bad_guy_height))]
       self.bad_guy = self.bad_guy_sprites[0]
-      self.pauseScreenFont = pygame.font.Font('res/fonts/blackpearl-font/Blackpearl-vPxA.ttf', 100)
-      self.death_text = self.pauseScreenFont.render("Press Enter to Retry", True, (255,255,255))
+
       self.is_finished_bool = False
 
       self.dancing_jamuel_animation_timer = 0
@@ -41,7 +49,7 @@ class GameScene:
       self.anim_state_number = 0
       
       self.songs = songs
-      
+   
       self.current_song = self.songs[self.difficulty-1]
       self.bpm = bpms[difficulty-1]
 
@@ -105,7 +113,8 @@ class GameScene:
 
       self.fireballs = []
       
-      self.is_gaming = True
+      self.is_lost = True
+      self.is_won = False
 
       self.show_perfect = False
    
@@ -117,54 +126,61 @@ class GameScene:
       self.anim_state_number = 0
       self.song_playing = True
       self.beattimer = 0
-      self.is_gaming = True
+      self.is_lost = True
 
    def render(self,dt):
       self.update()
 
-      if not self.is_gaming:
+      if not self.is_lost:
          self.screen.blit(self.death_screen_sprite, (0,0))
-         self.screen.blit(self.death_text, (self.screen.get_width()/2  - self.death_text.get_width()/2, self.screen.get_height() * 3/5))
-         return
-      self.screen.blit(self.background_sprite, (0,0))
-   
-      
-      self.screen.blit(self.bad_guy,(1050, 300))
-      self.screen.blit(self.jamuel, (825, 280))
-      #paticles
-      self.arrow_particle_L.draw(self.screen)
-      self.arrow_particle_R.draw(self.screen)
-      self.arrow_particle_U.draw(self.screen)
-      self.arrow_particle_D.draw(self.screen)
 
-      self.screen.blit(self.left_arrow_img, (175, self.y_perfect))
-      self.screen.blit(self.down_arrow_img, (300, self.y_perfect))
-      self.screen.blit(self.up_arrow_img, (425, self.y_perfect))
-      self.screen.blit(self.right_arrow_img, (550, self.y_perfect))
-      
-      self.tickbeat(dt)
-
-      
-      for arrow in self.up_arrows:
-         arrow.update(dt)
-         arrow.render(self.screen)
-      for arrow in self.left_arrows:
-         arrow.update(dt)
-         arrow.render(self.screen)
-      for arrow in self.right_arrows:
-         arrow.update(dt)
-         arrow.render(self.screen)
-      for arrow in self.down_arrows:
-         arrow.update(dt)
-         arrow.render(self.screen)
-      if self.player_health <= 0:
-         self.deathScreen()
          return
-      if self.boss_health <= 0:   
-         self.winScreen()
+      
+      if self.is_won:
+         self.current_song.stop()
+         self.screen.blit(self.win_screen_sprite, (0,0))
+
+
+      else:
+         self.screen.blit(self.background_sprite, (0,0))
+      
          
+         self.screen.blit(self.bad_guy,(1050, 300))
+         self.screen.blit(self.jamuel, (825, 280))
+         #paticles
+         self.arrow_particle_L.draw(self.screen)
+         self.arrow_particle_R.draw(self.screen)
+         self.arrow_particle_U.draw(self.screen)
+         self.arrow_particle_D.draw(self.screen)
 
-      self.show_stats()    
+         self.screen.blit(self.left_arrow_img, (175, self.y_perfect))
+         self.screen.blit(self.down_arrow_img, (300, self.y_perfect))
+         self.screen.blit(self.up_arrow_img, (425, self.y_perfect))
+         self.screen.blit(self.right_arrow_img, (550, self.y_perfect))
+         
+         self.tickbeat(dt)
+
+         
+         for arrow in self.up_arrows:
+            arrow.update(dt)
+            arrow.render(self.screen)
+         for arrow in self.left_arrows:
+            arrow.update(dt)
+            arrow.render(self.screen)
+         for arrow in self.right_arrows:
+            arrow.update(dt)
+            arrow.render(self.screen)
+         for arrow in self.down_arrows:
+            arrow.update(dt)
+            arrow.render(self.screen)
+         if self.player_health <= 0:
+            self.deathScreen()
+            return
+         if self.boss_health <= 0:   
+            self.is_won = True
+            
+
+         self.show_stats()    
 
 
 
@@ -189,11 +205,11 @@ class GameScene:
       pygame.draw.rect(self.screen, (0, 255, 0), (self.player_health_bar_x, self.player_health_bar_y, player_health_bar_fill_width, self.player_health_bar_height))
 
 
-      bh = self.font.render(f"Boss Health: {int(self.boss_health)}", True, (0,0,0))
+      bh = self.font.render(f"{int(self.boss_health)}", True, (0,0,0))
       self.screen.blit(bh, (self.boss_health_bar_x, self.boss_health_bar_y - 25))
 
       
-      ph = self.font.render(f"Player Health: {int(self.player_health)}", True, (0,0,0))
+      ph = self.font.render(f"{int(self.player_health)}", True, (0,0,0))
       self.screen.blit(ph, (self.player_health_bar_x, self.player_health_bar_y - 25))
       
 
@@ -232,7 +248,7 @@ class GameScene:
           self.show_perfect = False
 
       if self.show_perfect:
-            cs = self.streakFont.render(f"HIT! {int(self.curr_streak)}x", True, (255,255,255))
+            cs = self.streakFont.render(f"HIT! {int(self.curr_streak)}x", True, (0,200,0))
             self.screen.blit(cs, (((175+550)/2) + 50 - (cs.get_width()/2), 600))
 
       if self.beattimer >= 30/self.bpm and self.anim_state_number:
@@ -267,11 +283,21 @@ class GameScene:
 
    
    def keydown(self,key):
-      if not self.is_gaming:
+      if not self.is_lost:
          if key == pygame.K_RETURN:
-            self.is_gaming = True
+            self.is_lost = True
             self.reset()
          return
+      
+      elif self.is_won:
+         
+         if key == pygame.K_RETURN or pygame.K_SPACE:
+            self.game_won()
+
+         return
+            
+
+      
 
       elif key == pygame.K_UP or key == pygame.K_w:
          if len(self.up_arrows) == 0:
@@ -311,28 +337,37 @@ class GameScene:
    
    def deathScreen(self):
       self.current_song.stop()
-      self.is_gaming = False
+      self.is_lost = False
 
-   def winScreen(self):
-      self.current_song.stop()
+   def game_won(self):
+      self.winSound.stop()
       self.is_finished_bool = True
       
 
 
    def update(self):
       
-      if self.dancing_jamuel_animation_timer == 5:
-         self.dancing_jamuel_animation_timer = 0
+      if not self.is_won:
          
-      self.dancing_jamuel_animation_timer += 1
+         if self.dancing_jamuel_animation_timer == 5:
+            self.dancing_jamuel_animation_timer = 0
+            
+         self.dancing_jamuel_animation_timer += 1
 
 
-      self.jamuel = self.dancing_jamuel_sprites[self.anim_state_number]
-      self.bad_guy = self.bad_guy_sprites[self.anim_state_number]
-      if self.song_playing == True:
-         self.current_song.play(-1)
-         self.song_playing = False
-      
+         self.jamuel = self.dancing_jamuel_sprites[self.anim_state_number]
+         self.bad_guy = self.bad_guy_sprites[self.anim_state_number]
+         if self.song_playing == True:
+            self.current_song.play(-1)
+            self.song_playing = False
+
+      else:
+         
+         if self.varToOnlyLoopOnceForWinScreen:
+            self.current_song.stop()
+            self.winSound.play(1)
+            self.varToOnlyLoopOnceForWinScreen = False
+         
 
    def validate(self, arrow):
 
@@ -356,10 +391,12 @@ class GameScene:
 
          self.curr_streak+=1
          dmg = self.attack_dmg
-         if self.curr_streak > 3 and self.curr_streak < 10:
-            dmg += 5
-         elif self.curr_streak >= 10:
-            dmg += 10
+
+         if self.curr_streak  <= 16:
+            dmg += self.curr_streak
+         else:
+            dmg += 16
+
 
          # self.fireballs.append(Fireball((800,200),(1000,240), int((dmg/15)*5), 0.6))
          self.anim_state_number = 2

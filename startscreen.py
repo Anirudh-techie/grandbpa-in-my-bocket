@@ -10,7 +10,7 @@ class StartScreen: # screen width: 800, screen_height : 700
         self.screen = screen
         self.background = pg.transform.scale(pg.image.load("res/backgrounds/titlescrenbackground.JPG").convert_alpha(), (screen_width, screen_height))
         self.start_game_button = pg.transform.scale(pg.image.load("res/startScreen/startbuttonHeld.PNG").convert_alpha(), (500, 240))
-        self.title = pg.transform.scale(pg.image.load("res/startScreen/logo.PNG"), (screen_width * 2/3 , screen_height/2 ))
+        self.title = pg.transform.scale(pg.image.load("res/startScreen/logo.PNG"), (screen_width * 1/2 , screen_height/2 ))
         
         
         

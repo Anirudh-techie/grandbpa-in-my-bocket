@@ -1,17 +1,30 @@
 {
     "sprites": {
-       "Employee": {
-          "name": "Employee"
+       "evilEmployee": {
+          "name": "Employee?"
        },
        "Paniel": {
           "name": "Paniel"
        },
-       "Cashier": {
-          "name": "Cashier"
+       "djCashier": {
+          "name": "Davy Jones Cashier"
+       },
+       "ebCashier": {
+        "name": "Video Game Store Cashier"
+       },
+       "asCashier": {
+        "name": "Dreadful Phone Store Cashier"
        },
        "Sign": {
-          "name": "Sign"
+          "name": "Sign",
+          "width": 1100,
+          "height": 850
        },
+       "Gift": {
+        "name": "Gift",
+        "width": 800,
+        "height": 700
+     },
        "Dan Johngel": {
           "name": "Dan Johngel"
        },
@@ -89,7 +102,7 @@
           "dialogues": [
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "djCashier": {
                       "state": 3,
                       "show": true,
                       "position": [
@@ -113,7 +126,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "djCashier": {
                       "state": 3,
                       "show": true,
                       "position": [
@@ -128,7 +141,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "djCashier": {
                       "state": 3,
                       "show": true,
                       "position": [
@@ -219,7 +232,7 @@
           "dialogues": [
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "djCashier": {
                       "state": 3,
                       "show": true,
                       "position": [
@@ -260,6 +273,16 @@
                 "name": "Paniel"
              },
              {
+                "sprite_states": {
+                    "Sign": {
+                       "state": 1,
+                       "show": true,
+                       "position": [
+                          250,
+                          70
+                       ]
+                    }
+                 },
                 "name": "Sign on table",
                 "text": "Dance battle the cashier for a 2% discount."
              },
@@ -289,7 +312,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "djCashier": {
                       "state": 2,
                       "show": true,
                       "position": [
@@ -314,7 +337,7 @@
           "dialogues": [
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "djCashier": {
                       "state": 4,
                       "show": true,
                       "position": [
@@ -342,7 +365,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "djCashier": {
                       "state": 3,
                       "show": true,
                       "position": [
@@ -356,7 +379,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "djCashier": {
                       "state": 4,
                       "show": true,
                       "position": [
@@ -398,7 +421,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "djCashier": {
                       "state": 4,
                       "show": true,
                       "position": [
@@ -412,7 +435,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "djCashier": {
                       "state": 5,
                       "show": true,
                       "position": [
@@ -524,7 +547,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "djCashier": {
                       "state": 4,
                       "show": true,
                       "position": [
@@ -538,7 +561,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "djCashier": {
                       "state": 1,
                       "show": true,
                       "position": [
@@ -552,7 +575,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "djCashier": {
                       "state": 1,
                       "show": true,
                       "position": [
@@ -566,7 +589,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "djCashier": {
                       "state": 3,
                       "show": true,
                       "position": [
@@ -706,7 +729,7 @@
           "dialogues": [
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "ebCashier": {
                       "state": 3,
                       "show": true,
                       "position": [
@@ -734,7 +757,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "ebCashier": {
                       "state": 1,
                       "show": true,
                       "position": [
@@ -748,7 +771,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "ebCashier": {
                       "state": 4,
                       "show": true,
                       "position": [
@@ -764,7 +787,7 @@
              {
                 "sprite_states": {
                    "Dan Johngel": {
-                      "state": 2,
+                      "state": 3,
                       "show": true,
                       "position": [
                          450,
@@ -777,7 +800,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "ebCashier": {
                       "state": 4,
                       "show": true,
                       "position": [
@@ -791,7 +814,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "ebCashier": {
                       "state": 2,
                       "show": true,
                       "position": [
@@ -807,7 +830,7 @@
        },
        {
          "game": {
-             "difficulty":3
+             "difficulty":2
          }
        },
        {
@@ -815,7 +838,7 @@
           "dialogues": [
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "ebCashier": {
                       "state": 5,
                       "show": true,
                       "position": [
@@ -839,7 +862,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "ebCashier": {
                       "state": 5,
                       "show": true,
                       "position": [
@@ -854,7 +877,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "ebCashier": {
                       "state": 5,
                       "show": true,
                       "position": [
@@ -869,7 +892,7 @@
              },
              {
                 "sprite_states": {
-                   "Cashier": {
+                   "ebCashier": {
                       "state": 5,
                       "show": true,
                       "position": [
@@ -882,6 +905,16 @@
                 "name": "Cashier"
              },
              {
+                "sprite_states": {
+                    "Gift": {
+                       "state": 1,
+                       "show": true,
+                       "position": [
+                          450,
+                          70
+                       ]
+                    }
+                 },
                 "name": "Sacred Gift Card",
                 "text": "You obtained the first sacred gift card!"
              },
@@ -1158,7 +1191,7 @@
              },
              {
                 "sprite_states": {
-                   "Employee": {
+                   "asCashier": {
                       "state": 2,
                       "show": true,
                       "position": [
@@ -1172,7 +1205,7 @@
              },
              {
                 "sprite_states": {
-                   "Employee": {
+                   "asCashier": {
                       "state": 2,
                       "show": true,
                       "position": [
@@ -1200,7 +1233,7 @@
              },
              {
                 "sprite_states": {
-                   "Employee": {
+                   "asCashier": {
                       "state": 2,
                       "show": true,
                       "position": [
@@ -1228,7 +1261,7 @@
              },
              {
                 "sprite_states": {
-                   "Employee": {
+                   "asCashier": {
                       "state": 2,
                       "show": true,
                       "position": [
@@ -1242,7 +1275,7 @@
              },
              {
                 "sprite_states": {
-                   "Employee": {
+                   "asCashier": {
                       "state": 2,
                       "show": true,
                       "position": [
@@ -1257,12 +1290,12 @@
              },
              {
                 "sprite_states": {
-                   "Employee": {
+                   "evilEmployee": {
                       "state": 3,
                       "show": true,
                       "position": [
                          450,
-                         70
+                         1
                       ]
                    }
                 },
@@ -1285,12 +1318,12 @@
              },
              {
                 "sprite_states": {
-                   "Employee": {
+                   "evilEmployee": {
                       "state": 3,
                       "show": true,
                       "position": [
                          450,
-                         70
+                         1
                       ]
                    }
                 },
@@ -1315,7 +1348,7 @@
        },
        {
          "game": {
-             "difficulty":4
+             "difficulty":3
          }
        },
        {
@@ -1323,12 +1356,12 @@
           "dialogues": [
              {
                 "sprite_states": {
-                   "Employee": {
+                   "evilEmployee": {
                       "state": 5,
                       "show": true,
                       "position": [
                          450,
-                         70
+                         1
                       ]
                    }
                 },
@@ -1365,12 +1398,12 @@
              },
              {
                 "sprite_states": {
-                   "Employee": {
+                   "evilEmployee": {
                       "state": 5,
                       "show": true,
                       "position": [
                          450,
-                         70
+                         1
                       ]
                    }
                 },
@@ -1379,6 +1412,17 @@
                 "next_dialogue": 1
              },
              {
+                "sprite_states": {
+                    "Gift": {
+                       "state": 1,
+                       "show": true,
+                       "position": [
+                          450,
+                          70
+                       ]
+                    }
+                 },
+                
                 "name": "Sacred Gift Card",
                 "text": "You obtained the second sacred gift card!"
              },
@@ -1543,7 +1587,7 @@
              {
                 "sprite_states": {
                    "Dan Johngel": {
-                      "state": 4,
+                      "state": 3,
                       "show": true,
                       "position": [
                          450,
@@ -1557,7 +1601,7 @@
              {
                 "sprite_states": {
                    "Dan Johngel": {
-                      "state": 4,
+                      "state": 3,
                       "show": true,
                       "position": [
                          450,
@@ -1585,7 +1629,7 @@
              {
                 "sprite_states": {
                    "Dan Johngel": {
-                      "state": 4,
+                      "state": 3,
                       "show": true,
                       "position": [
                          450,
@@ -1599,7 +1643,7 @@
              {
                 "sprite_states": {
                    "Dan Johngel": {
-                      "state": 4,
+                      "state": 1,
                       "show": true,
                       "position": [
                          450,
@@ -1614,7 +1658,7 @@
              {
                 "sprite_states": {
                    "Dan Johngel": {
-                      "state": 1,
+                      "state": 2,
                       "show": true,
                       "position": [
                          450,
@@ -1656,7 +1700,7 @@
              {
                 "sprite_states": {
                    "Dan Johngel": {
-                      "state": 3,
+                      "state": 2,
                       "show": true,
                       "position": [
                          450,
@@ -1670,7 +1714,7 @@
              {
                 "sprite_states": {
                    "Dan Johngel": {
-                      "state": 1,
+                      "state": 2,
                       "show": true,
                       "position": [
                          450,
@@ -1726,18 +1770,8 @@
           ]
        },
        {
-         "bg":"hallway1.JPG",
-         "dialogues":[
-            {
-            "text":"",
-            "name":""
-            }
-
-         ]
-       },
-       {
          "game": {
-             "difficulty":5
+             "difficulty":4
          }
  
        },
@@ -1772,7 +1806,7 @@
              {
                 "sprite_states": {
                    "Dan Johngel": {
-                      "state": 4,
+                      "state": 2,
                       "show": true,
                       "position": [
                          450,
@@ -1796,7 +1830,7 @@
              {
                 "sprite_states": {
                    "Dan Johngel": {
-                      "state": 4,
+                      "state": 1,
                       "show": true,
                       "position": [
                          450,
@@ -1811,7 +1845,7 @@
              {
                 "sprite_states": {
                    "Dan Johngel": {
-                      "state": 4,
+                      "state": 1,
                       "show": true,
                       "position": [
                          450,
@@ -1854,7 +1888,7 @@
              {
                 "sprite_states": {
                    "Dan Johngel": {
-                      "state": 1,
+                      "state": 2,
                       "show": true,
                       "position": [
                          450,

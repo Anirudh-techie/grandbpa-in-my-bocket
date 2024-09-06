@@ -18,8 +18,8 @@ class Sprite:
         for root_dir, cur_dir, files in os.walk(fr"res/characters/{id}"):
             for file in files:
                 # Ensure only image files are processed, this example assumes files are PNG
-                if file.endswith('.png') or file.endswith('.jpg') or file.endswith('.PNG'):
-                    print(f"Found image: {file}")
+                if file.endswith('.png') or file.endswith('.jpg') or file.endswith('.PNG') or file.endswith('.JPG'):
+
                     image_path = os.path.join(root_dir, file)
                     self.image = pg.transform.scale(pg.image.load(image_path).convert_alpha(),(width, height)) # .convert_alpha() makes it transperant
                     self.images.append(self.image)  # Add the loaded image to the list

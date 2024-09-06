@@ -56,7 +56,9 @@ Text background
 Text background for each of the options when it pops up
 any props that we wanna use or something idk
 
+dan johngel
 
+angry = 2
 
 
 
