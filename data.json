@@ -23,11 +23,6 @@
     },
     "scenes": [
        {
-          "game": {
-             "difficulty": 3
-          }
-       },
-       {
           "bg": "outsidedj.png",
           "dialogues": [
              {
@@ -311,7 +306,7 @@
        },
        {
          "game": {
-             "difficulty":3
+             "difficulty":1
          }
        },
        {
@@ -1320,7 +1315,7 @@
        },
        {
          "game": {
-             "difficulty":3
+             "difficulty":4
          }
        },
        {
@@ -1444,11 +1439,14 @@
        },
        {
          "bg":"hallway2.JPG",
-         "dialogues":{
+         
+         "dialogues":[
+            {
             "text":"",
             "name":""
+            }
 
-         }
+         ]
          
        },
        
@@ -1729,25 +1727,29 @@
        },
        {
          "bg":"hallway1.JPG",
-         "dialogues":{
+         "dialogues":[
+            {
             "text":"",
             "name":""
+            }
 
-         }
+         ]
        },
        {
          "game": {
-             "difficulty":3
+             "difficulty":5
          }
  
        },
        {
          "bg":"hallway2.JPG",
-         "dialogues":{
+         "dialogues":[
+            {
             "text":"",
             "name":""
+            }
 
-         }
+         ]
 
        },
        {
