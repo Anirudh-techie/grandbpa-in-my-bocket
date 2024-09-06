@@ -12,7 +12,7 @@ attack_dmgs = [1, 2, 2, 4, 5, 5, 5, 5, 5, 5]
 boss_dmgs = [2, 4, 5, 10, 25, 50, 100, 150, 200, 250]
 bpms = [90, 110, 116, 150, 190, 220, 260, 300, 350, 400]
 
-songs=[pygame.mixer.Sound("res/game/songs/battle_theme_regular.mp3"),pygame.mixer.Sound("res/game/songs/battle_theme_regular.mp3"),pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/game/songs/granbpa vibe.mp3")]
+songs=[pygame.mixer.Sound("res/game/songs/battle_theme_regular.mp3"),pygame.mixer.Sound("res/game/songs/battle_theme_regular.mp3"),pygame.mixer.Sound("res/game/songs/metal_song.mp3"),pygame.mixer.Sound("res/game/songs/granbpa vibe.mp3")]
 
 deathBgs = [pygame.image.load("res/game/backgrounds/davyloss.jpg"), pygame.image.load("res/game/backgrounds/gamestoreloss.jpg"),pygame.image.load("res/game/backgrounds/applewin.jpg"), pygame.image.load("res/game/backgrounds/penicillinloss.JPG")]
 
@@ -40,7 +40,7 @@ class GameScene:
 
       self.bad_guy_width, self.bad_guy_height = 300, 500
       #dj is difficulty 1, eb is difficlty 2, apple is difficulty 3, penicillin is difficulty 4
-      self.bad_guy_sprites = [pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad_guy.png"), (self.bad_guy_width, self.bad_guy_height)), pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad guy 2.png"), (self.bad_guy_width, self.bad_guy_height)),pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad guy 3.png"), (self.bad_guy_width, self.bad_guy_height))]
+      self.bad_guy_sprites = [pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad_guy.PNG"), (self.bad_guy_width, self.bad_guy_height)), pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad_guy2.png"), (self.bad_guy_width, self.bad_guy_height)),pygame.transform.scale(pygame.image.load("res/game/bad_guy/bad_guy3.PNG"), (self.bad_guy_width, self.bad_guy_height))]
       self.bad_guy = self.bad_guy_sprites[0]
 
       self.is_finished_bool = False
