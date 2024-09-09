@@ -38,6 +38,7 @@ class Scene:
        current_dialogue = self.dialogues[self.currentDialogue]
        self.currentDialogue += current_dialogue.go_next()
        if self.currentDialogue > len(self.dialogues) - 1:
+           self.currentDialogue = len (self.dialogues) - 1
            self.is_finished_bool = True
            return
     

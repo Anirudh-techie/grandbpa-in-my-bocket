@@ -8,9 +8,9 @@ pygame.mixer.init()
 
 boss_hps = [200, 300, 500, 1000,1500,2000, 3000, 4000, 5000, 6000]
 player_hps = [100,125, 125, 200, 250, 250, 250, 250, 250, 250] 
-attack_dmgs = [1, 2, 2, 4, 5, 5, 5, 5, 5, 5]
+attack_dmgs = [1, 3, 5, 8, 5, 5, 5, 5, 5, 5]
 boss_dmgs = [2, 4, 5, 10, 25, 50, 100, 150, 200, 250]
-bpms = [90, 110, 116, 150, 190, 220, 260, 300, 350, 400]
+bpms = [90, 100, 116, 150, 190, 220, 260, 300, 350, 400]
 
 songs=[pygame.mixer.Sound("res/game/songs/small granbpa vibe.mp3"),pygame.mixer.Sound("res/game/songs/battle_theme_regular.mp3"),pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/game/songs/granbpa vibe.mp3")]
 
@@ -45,7 +45,7 @@ class GameScene:
       self.varToOnlyLoopOnceForWinScreen = True
 
       self.bad_guy_width, self.bad_guy_height = 600, 500
-      self.bad_guy_sprites = [pygame.transform.scale(bad_guys[difficulty-1][0], (self.bad_guy_width, self.bad_guy_height)), pygame.transform.scale(bad_guys[difficulty-1][0], (self.bad_guy_width, self.bad_guy_height)),pygame.transform.scale(bad_guys[difficulty-1][0], (self.bad_guy_width, self.bad_guy_height))]
+      self.bad_guy_sprites = [pygame.transform.scale(bad_guys[difficulty-1][0], (self.bad_guy_width, self.bad_guy_height)), pygame.transform.scale(bad_guys[difficulty-1][1], (self.bad_guy_width, self.bad_guy_height)),pygame.transform.scale(bad_guys[difficulty-1][2], (self.bad_guy_width, self.bad_guy_height))]
       self.bad_guy = self.bad_guy_sprites[0]
 
       self.is_finished_bool = False
@@ -147,7 +147,6 @@ class GameScene:
 
 
       else:
-         self.tickbeat(dt)
  
          self.screen.blit(self.background_sprite, (0,0))
       
@@ -165,6 +164,7 @@ class GameScene:
          self.screen.blit(self.up_arrow_img, (425, self.y_perfect))
          self.screen.blit(self.right_arrow_img, (550, self.y_perfect))
          
+         self.tickbeat(dt)
 
          
          for arrow in self.up_arrows:
@@ -257,11 +257,10 @@ class GameScene:
 
       if self.show_perfect:
             cs = self.streakFont.render(f"HIT! {int(self.curr_streak)}x", True, (0,200,0))
-            self.screen.blit(cs, (((175+550)/2) + 50 - (cs.get_width()/2), 600))
+            self.screen.blit(cs, ( 425 - (cs.get_width()/2), 600))
 
       if self.beattimer >= 30/self.bpm and self.anim_state_number:
          self.anim_state_number = False
-         pass
          
       if self.beattimer >= 60/self.bpm:
          
