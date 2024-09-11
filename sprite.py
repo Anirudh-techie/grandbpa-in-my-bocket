@@ -33,8 +33,8 @@ class Sprite:
     def render(self):
 
         if self.visibility == True:
-            if self.x >= 0 and self.y >= 0:
-                self.rect.topleft = (self.x + (self.rect.width/2), self.y + (self.rect.height/2)) # set x and y to the middle of the rect
+            # if self.x >= 0 and self.y >= 0:
+            self.rect.topleft = (self.x + (self.rect.width/2), self.y + (self.rect.height/2)) # set x and y to the middle of the rect
             self.screen.blit(self.image, self.rect)
         else:
             return

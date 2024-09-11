@@ -6,26 +6,44 @@ from game.particles import Particle, Particles
 from game.fireball import Fireball
 pygame.mixer.init()
 
-boss_hps = [200, 300, 500, 1000,1500,2000, 3000, 4000, 5000, 6000]
-player_hps = [100,125, 125, 200, 250, 250, 250, 250, 250, 250] 
-attack_dmgs = [1, 3, 5, 8, 5, 5, 5, 5, 5, 5]
-boss_dmgs = [2, 4, 5, 10, 25, 50, 100, 150, 200, 250]
-bpms = [90, 100, 116, 150, 190, 220, 260, 300, 350, 400]
+boss_hps = [200, 300, 500, 1000,5750,2000, 3000, 4000, 5000, 6000]
+player_hps = [100,125, 125, 200, 2500, 250, 250, 250, 250, 250] 
+attack_dmgs = [1, 3, 5, 8, 10, 5, 5, 5, 5, 5]
+boss_dmgs = [2, 4, 5, 10, 15, 50, 100, 150, 200, 250]
+bpms = [90, 100, 133, 150, 250, 220, 260, 300, 350, 400]
 
-songs=[pygame.mixer.Sound("res/game/songs/small granbpa vibe.mp3"),pygame.mixer.Sound("res/game/songs/battle_theme_regular.mp3"),pygame.mixer.Sound("res/game/songs/masterofpuppets.mp3"),pygame.mixer.Sound("res/game/songs/granbpa vibe.mp3")]
+songs=[pygame.mixer.Sound("res/game/songs/small granbpa vibe.mp3"),
+       pygame.mixer.Sound("res/game/songs/battle_theme_regular.mp3"),
+       pygame.mixer.Sound("res/game/songs/metal_song.mp3"),
+       pygame.mixer.Sound("res/game/songs/granbpa vibe.mp3"),
+       pygame.mixer.Sound("res/game/songs/grandbpa vibe harder.mp3"),
+       ]
 
-deathBgs = [pygame.image.load("res/game/backgrounds/davyloss.jpg"), pygame.image.load("res/game/backgrounds/gamestoreloss.jpg"),pygame.image.load("res/game/backgrounds/applewin.jpg"), pygame.image.load("res/game/backgrounds/penicillinloss.JPG")]
+deathBgs = [pygame.image.load("res/game/backgrounds/davyloss.jpg"), 
+            pygame.image.load("res/game/backgrounds/gamestoreloss.jpg"),
+            pygame.image.load("res/game/backgrounds/applewin.jpg"), 
+            pygame.image.load("res/game/backgrounds/penicillinloss.JPG"),
+            pygame.image.load("res/game/backgrounds/penicillinloss.JPG"),
+            ]
 
-winBgs = [pygame.image.load("res/game/backgrounds/davywin.jpg"), pygame.image.load("res/game/backgrounds/gamestorewin.jpg"),pygame.image.load("res/game/backgrounds/applewin.jpg"), pygame.image.load("res/game/backgrounds/penicillinwin.JPG")]
+winBgs = [pygame.image.load("res/game/backgrounds/davywin.jpg"),
+           pygame.image.load("res/game/backgrounds/gamestorewin.jpg"),
+           pygame.image.load("res/game/backgrounds/applewin.jpg"), 
+           pygame.image.load("res/game/backgrounds/penicillinwin.JPG"),
+           pygame.image.load("res/game/backgrounds/penicillinwin.JPG")
+           ]
 
 bad_guys = [
    [pygame.image.load("res/game/bad_guy/djNeutral.png"), pygame.image.load("res/game/bad_guy/djBobbing.png"), pygame.image.load("res/game/bad_guy/djHit.png")],
    [pygame.image.load("res/game/bad_guy/ebNeutral.png"), pygame.image.load("res/game/bad_guy/ebBobbing.png"), pygame.image.load("res/game/bad_guy/ebHit.png")],
    [pygame.image.load("res/game/bad_guy/appleNeutral.png"), pygame.image.load("res/game/bad_guy/appleBobbing.png"), pygame.image.load("res/game/bad_guy/appleHit.png")],
    [pygame.image.load("res/game/bad_guy/penicillinNeutral.png"), pygame.image.load("res/game/bad_guy/penicillinBobbing.png"), pygame.image.load("res/game/bad_guy/penicillinHit.png")],
+   [pygame.image.load("res/game/bad_guy/penicillinNeutral.png"), pygame.image.load("res/game/bad_guy/penicillinBobbing.png"), pygame.image.load("res/game/bad_guy/penicillinHit.png")],
 ]
 
-
+thresholds = [
+   50, 50, 50, 50, 50
+]
 class GameScene:
    def __init__(self, screen,difficulty) -> None:
       
@@ -76,8 +94,8 @@ class GameScene:
       self.down_arrows:list[Arrow] = []
       
       
-      self.perfect_threshold = 20
-      self.penalty_threshold = 50
+      self.perfect_threshold = thresholds[difficulty- 1]
+      self.penalty_threshold = self.perfect_threshold + 30
       
       self.boss_health = boss_hps[difficulty-1]
       self.boss_max_health = self.boss_health
@@ -108,7 +126,7 @@ class GameScene:
       self.up_arrow_img = pygame.transform.rotate(self.right_arrow_img, 90)
       self.down_arrow_img = pygame.transform.rotate(self.right_arrow_img, 270)
 
-      self.second_arrow_chance = 5
+      self.second_arrow_chance = 2
       
       self.arrow_particle_L = Particles(212,87, 0)
       self.arrow_particle_R = Particles(587,87, 0)
@@ -307,28 +325,28 @@ class GameScene:
 
       
 
-      elif key == pygame.K_UP or key == pygame.K_w:
+      elif key == pygame.K_UP or key == pygame.K_w or key == pygame.K_h:
          if len(self.up_arrows) == 0:
             self.player_health -= self.boss_dmg
          else:
             arrow = self.up_arrows.pop(0)
             self.boss_health -= self.validate(arrow)
 
-      elif key == pygame.K_LEFT or key == pygame.K_a:
+      elif key == pygame.K_LEFT or key == pygame.K_a or key == pygame.K_f:
          if len(self.left_arrows) == 0:
             self.player_health -= self.boss_dmg
          else:
             arrow = self.left_arrows.pop(0)
             self.boss_health -= self.validate(arrow)
 
-      elif key == pygame.K_RIGHT or key == pygame.K_d:
+      elif key == pygame.K_RIGHT or key == pygame.K_d or key == pygame.K_j:
          if len(self.right_arrows) == 0:
             self.player_health -= self.boss_dmg
          else:
             arrow = self.right_arrows.pop(0)
             self.boss_health -= self.validate(arrow)
 
-      elif key == pygame.K_DOWN or key == pygame.K_s:
+      elif key == pygame.K_DOWN or key == pygame.K_s or key == pygame.K_g:
 
          if len(self.down_arrows) == 0:
             self.player_health -= self.boss_dmg

@@ -1,0 +1,1961 @@
+{
+   "sprites": {
+      "evilEmployee": {
+         "name": "Employee?"
+      },
+      "Paniel": {
+         "name": "Paniel"
+      },
+      "djCashier": {
+         "name": "Davy Jones Cashier"
+      },
+      "ebCashier": {
+         "name": "Video Game Store Cashier"
+      },
+      "asCashier": {
+         "name": "Dreadful Phone Store Cashier"
+      },
+      "Sign": {
+         "name": "Sign",
+         "width": 1100,
+         "height": 850
+      },
+      "Gift": {
+         "name": "Gift",
+         "width": 800,
+         "height": 700
+      },
+      "Dan Johngel": {
+         "name": "Dan Johngel"
+      },
+      "Ending": {
+         "name": "Ending",
+         "width": 1920,
+         "height": 1080
+      },
+      "Credits": {
+         "name": "Credits",
+         "width": 500,
+         "height": 1000
+      }
+   },
+   "scenes": [
+      {
+         "bg": "outsidedj.png",
+         "dialogues": [
+            {
+               "name": "Narrator",
+               "text":"You are a pirate by the name of Captain Jamuel, you were born to boogie. You were born to listen to people, as your mother always said [PRESS SPACE TO ADVANCE DIALOGUE SECTIONS]"
+            },
+            {
+               "name": "Narrator",
+               "text":"Your father also said that [DURING BOOGIE SECTIONS, PRESS “A” or “LEFT ARROW” TO SLIDE TO THE LEFT, PRESS “S” or “DOWN ARROW” TO CRISS, PRESS “W” or “UP ARROW” TO CROSS AND PRESS “D” or “RIGHT ARROW” TO SLIDE TO THE RIGHT.]"
+            },
+            {
+               "name": "Narrator",
+               "text": "As well as being born to listen to people you were also born to speak to people, as your pet dog used to always say [USE UP ARROW OR DOWN ARROW TO SELECT THE DIALOGUE OPTION AND SPACE TO SELECT THE OPTION YOU WISH TO SAY]"
+            },
+   {
+                     "name": "Narrator",
+                     "text": "Captain Jamuel and his first mate, Paniel, are going to buy a new getup from Chatstone, the style nexus."
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "I am so hyped and ready to buy a new getup from Chatstone, the style nexus",
+                     "name": "Paniel",
+                     "next_dialogue": 1
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "What about you Captain?",
+                     "name": "Paniel",
+                     "choices": [
+                        [
+                           "I am so hyped",
+                           1
+                        ],
+                        [
+                           "Whatever",
+                           1
+                        ]
+                     ]
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Yeah well I am sure this getup will be quite fashionable.",
+                     "name": "Paniel"
+                  }
+               ]
+            },
+            {
+               "bg": "davyjonesinterior.JPG",
+               "dialogues": [
+                  {
+                     "sprite_states": {
+                        "djCashier": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Welcome to Davy Jones! Are you looking for anything specific?",
+                     "name": "Cashier",
+                     "choices": [
+                        [
+                           "A brand new getup!!!",
+                           2
+                        ],
+                        [
+                           "Nope",
+                           1
+                        ]
+                     ]
+                  },
+                  {
+                     "sprite_states": {
+                        "djCashier": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Alright then. I'll be at the register if you need anything.",
+                     "name": "Cashier",
+                     "next_dialogue": 2
+                  },
+                  {
+                     "sprite_states": {
+                        "djCashier": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "A brand new getup? I'm assuming you guys are pirates. Well, the pirate section is just over there.",
+                     "name": "Cashier"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Thanks!",
+                     "name": "Paniel"
+                  }
+               ]
+            },
+            {
+               "bg": "davyjonesinterior.JPG",
+               "dialogues": [
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 4,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Captain! This garb would look absolutely ravishing on you. You should buy it.",
+                     "name": "Paniel",
+                     "choices": [
+                        [
+                           "NO",
+                           1
+                        ],
+                        [
+                           "okay",
+                           2
+                        ]
+                     ]
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Okay then Captain. It's up to you",
+                     "name": "Paniel",
+                     "next_dialogue": 2
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "I am sure it will look stunning on you sir",
+                     "name": "Paniel"
+                  }
+               ]
+            },
+            {
+               "bg": "checkout.JPG",
+               "dialogues": [
+                  {
+                     "sprite_states": {
+                        "djCashier": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Did you find what you were looking for",
+                     "name": "Cashier"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Oh yessiree bob I did so find it, I would like to purchase this beautiful garb",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Hm...",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Sign": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              250,
+                              70
+                           ]
+                        }
+                     },
+                     "name": "Sign on table",
+                     "text": "Dance battle the cashier for a 2% discount."
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Perhaps we can use this discount?",
+                     "name": "Paniel",
+                     "choices": [
+                        [
+                           "I wouldn't mind that.",
+                           1
+                        ],
+                        [
+                           "Let's dance.",
+                           1
+                        ]
+                     ]
+                  },
+                  {
+                     "sprite_states": {
+                        "djCashier": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Fine... Let's boogie!",
+                     "name": "Cashier",
+                     "next_dialogue": 1
+                  }
+               ]
+            },
+            {
+               "game": {
+                  "difficulty": 1
+               }
+            },
+            {
+               "bg": "checkout.JPG",
+               "dialogues": [
+                  {
+                     "sprite_states": {
+                        "djCashier": {
+                           "state": 4,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Wow you are kinda crazy at the boogie",
+                     "name": "Cashier"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "You're so talented, Captain!",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "djCashier": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Well, here's your discount.",
+                     "name": "Cashier"
+                  },
+                  {
+                     "sprite_states": {
+                        "djCashier": {
+                           "state": 4,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Huh? (phone ringing sound)",
+                     "name": "Cashier"
+                  },
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "You must not honour the 2% discount!",
+                     "name": "Dan Johngel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Do you have any idea what impacts that will make on our net profit figures? I'll be ruined!",
+                     "name": "Dan Johngel"
+                  },
+                  {
+                     "sprite_states": {
+                        "djCashier": {
+                           "state": 4,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Oh! Uh- of course sir.",
+                     "name": "Cashier"
+                  },
+                  {
+                     "sprite_states": {
+                        "djCashier": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Sorry guys. You won the dance battle fair and square but I can't honour the discount.",
+                     "name": "Cashier"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "What!? That's not fair!",
+                     "name": "Paniel",
+                     "next_dialogue": 1,
+                     "choices": [
+                        [
+                           "What are we going to do?",
+                           1
+                        ],
+                        [
+                           "We'll show them",
+                           3
+                        ]
+                     ]
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "There's only one thing we can do.",
+                     "name": "Paniel",
+                     "next_dialogue": 1
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "We need to confront the CEO himself and make sure he can offer the discount!",
+                     "name": "Paniel",
+                     "next_dialogue": 3
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "You're so right, Captain!",
+                     "name": "Paniel",
+                     "next_dialogue": 2
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "If we confront the CEO, he'll have to give us the 2% discount.",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Well, we'll be off. Thanks for the dance battle.",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "djCashier": {
+                           "state": 4,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Wait! Just one more thing before you go.",
+                     "name": "Cashier"
+                  },
+                  {
+                     "sprite_states": {
+                        "djCashier": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "If you want to access the CEO, Dan Johngel, you'll need to find the two sacred gift cards to unlock his office.",
+                     "name": "Cashier"
+                  },
+                  {
+                     "sprite_states": {
+                        "djCashier": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Legend has it, they're guarded by the fiercest warriors within the two most prestigious technology shops in the whole Nexus.",
+                     "name": "Cashier"
+                  },
+                  {
+                     "sprite_states": {
+                        "djCashier": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Anyways, please come again.",
+                     "name": "Cashier"
+                  }
+               ]
+            },
+            {
+               "bg": "outsidedj.png",
+               "dialogues": [
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Sacred gift cards? Technology shops? What was that guy talking about?",
+                     "name": "Paniel",
+                     "choices": [
+                        [
+                           "A sporting goods shop",
+                           1
+                        ],
+                        [
+                           "A video game shop",
+                           3
+                        ],
+                        [
+                           "An expensive tech shop",
+                           5
+                        ]
+                     ]
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Captain... Are you silly?",
+                     "name": "Paniel",
+                     "next_dialogue": 1
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "There's no way they'd be there. That's not a prestigious technology shop at all.",
+                     "name": "Paniel",
+                     "next_dialogue": -2
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Great thinking Captain!",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "We should head there right away.",
+                     "name": "Paniel",
+                     "next_dialogue": 3
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "That could definitely be one of the two shops.",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "However, that may be a real challenge. Perhaps we should go somewhere else first.",
+                     "name": "Paniel",
+                     "next_dialogue": -6
+                  }
+               ]
+            },
+            {
+               "bg": "ebgames.JPG",
+               "dialogues": [
+                  {
+                     "sprite_states": {
+                        "ebCashier": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Welcome to the game shop. Can I help you with anything",
+                     "name": "Cashier"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Give us the card!",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "ebCashier": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "I'm sorry I don't know what you're talking about. Gift cards are on the wall over there.",
+                     "name": "Cashier"
+                  },
+                  {
+                     "sprite_states": {
+                        "ebCashier": {
+                           "state": 4,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Huh?",
+                     "name": "Cashier",
+                     "next_dialogue": 1
+                  },
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Those filthy scallywags are after my cards! Don't let them get away!",
+                     "name": "Dan Johngel"
+                  },
+                  {
+                     "sprite_states": {
+                        "ebCashier": {
+                           "state": 4,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Of course sir! I'll deal with them right away",
+                     "name": "Cashier"
+                  },
+                  {
+                     "sprite_states": {
+                        "ebCashier": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Okay you pirate scum! It's showtime!",
+                     "name": "Cashier"
+                  }
+               ]
+            },
+            {
+               "game": {
+                  "difficulty": 2
+               }
+            },
+            {
+               "bg": "ebgames.JPG",
+               "dialogues": [
+                  {
+                     "sprite_states": {
+                        "ebCashier": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "How... I've trained for so long... But it was all for nothing...",
+                     "name": "Cashier",
+                     "choices": [
+                        [
+                           "Give us the card",
+                           3
+                        ],
+                        [
+                           "I'm sorry",
+                           1
+                        ]
+                     ]
+                  },
+                  {
+                     "sprite_states": {
+                        "ebCashier": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "No it's okay. You won fair and square.",
+                     "name": "Cashier",
+                     "next_dialogue": 1
+                  },
+                  {
+                     "sprite_states": {
+                        "ebCashier": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Here's the sacred card. You've earned it.",
+                     "name": "Cashier",
+                     "next_dialogue": 2
+                  },
+                  {
+                     "sprite_states": {
+                        "ebCashier": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Fine. I suppose you've earned it.",
+                     "name": "Cashier"
+                  },
+                  {
+                     "sprite_states": {
+                        "Gift": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "name": "Sacred Gift Card",
+                     "text": "You obtained the first sacred gift card!"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Awesome! Thanks!",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Let's go Captain.",
+                     "name": "Paniel"
+                  }
+               ]
+            },
+            {
+               "bg": "ebgames.JPG",
+               "dialogues": [
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "You made light work of them, Captain Jamuel. The crew would be so proud.",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "It's a real shame what happened to them.",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Alas, we must push on. We need to get the second sacred gift card if we're going to confront Dan Johngel.",
+                     "name": "Paniel"
+                  }
+               ]
+            },
+            {
+               "bg": "hallway1.JPG",
+               "dialogues": [
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "So, what do you think the second prestigious technology shop will be?",
+                     "name": "Paniel",
+                     "choices": [
+                        [
+                           "An expensive phone shop",
+                           1
+                        ],
+                        [
+                           "A phone case stand",
+                           3
+                        ],
+                        [
+                           "A football shop",
+                           5
+                        ]
+                     ]
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Brilliant idea, Captain Jamuel!",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "We should head there right away. There's no time to lose.",
+                     "name": "Paniel",
+                     "next_dialogue": 5
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Hmm. There are a few of those around, but are they really prestigious?",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Maybe think it over a bit more.",
+                     "name": "Paniel",
+                     "next_dialogue": -4
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Captain Jamuel... you bust a fine move but you're not the brightest",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "How about we think it over a bit more?",
+                     "name": "Paniel",
+                     "next_dialogue": -6
+                  }
+               ]
+            },
+            {
+               "bg": "apple.JPG",
+               "dialogues": [
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 4,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "My god... Look, Captain! We have made it to the dreadful phone store!",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Let's get in there and get that gift card!",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 4,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Captain, Sir... what happened here?",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Where is everyone...?",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 4,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Huh? Who's there?",
+                     "name": "Paniel",
+                     "next_dialogue": 1
+                  },
+                  {
+                     "sprite_states": {
+                        "asCashier": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "You never should have come here.",
+                     "name": "Employee"
+                  },
+                  {
+                     "sprite_states": {
+                        "asCashier": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Lord Johngel told me what you've done. You'll never take the card from me.",
+                     "name": "Employee"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Haha. You clearly haven't seen the moves that Captain Jamuel can bust.",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "asCashier": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "The moves that your filthy bilge rat of a Captain can do won't matter here.",
+                     "name": "Employee"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "What's this landlubber going to do?",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "asCashier": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "...",
+                     "name": "Employee"
+                  },
+                  {
+                     "sprite_states": {
+                        "asCashier": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                     "name": "Employee",
+                     "next_dialogue": 1
+                  },
+                  {
+                     "sprite_states": {
+                        "evilEmployee": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              1
+                           ]
+                        }
+                     },
+                     "text": "You fools. You won't stand a chance against me!",
+                     "name": "Employee?"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Oh my goodness gracious! What's happened to him?",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "evilEmployee": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              1
+                           ]
+                        }
+                     },
+                     "text": "You'll never take the card. I'll protect the lord with my life!",
+                     "name": "Employee?"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "We'll settle this the only way we know how. Time to boogie down, Captain!",
+                     "name": "Paniel"
+                  }
+               ]
+            },
+            {
+               "game": {
+                  "difficulty": 3
+               }
+            },
+            {
+               "bg": "apple.JPG",
+               "dialogues": [
+                  {
+                     "sprite_states": {
+                        "evilEmployee": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              1
+                           ]
+                        }
+                     },
+                     "text": "You... bested me. How???",
+                     "name": "Employee?"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Nothing gets between a pirate and his getup.",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Now show us the card.",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "evilEmployee": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              1
+                           ]
+                        }
+                     },
+                     "text": "Fine....",
+                     "name": "Employee?",
+                     "next_dialogue": 1
+                  },
+                  {
+                     "sprite_states": {
+                        "Gift": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "name": "Sacred Gift Card",
+                     "text": "You obtained the second sacred gift card!"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 4,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Captain! We have got the last gift card!",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Now it's time to get our 2% discount for our new getup!",
+                     "name": "Paniel",
+                     "choices": [
+                        [
+                           "Let's go!",
+                           1
+                        ],
+                        [
+                           "Yeah!",
+                           1
+                        ]
+                     ]
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 4,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "That's the spirit, Captain!",
+                     "name": "Paniel",
+                     "next_dialogue": 1
+                  }
+               ]
+            },
+            {
+               "bg": "hallway2.JPG",
+               "dialogues": [
+                  {
+                     "text": "",
+                     "name": ""
+                  }
+               ]
+            },
+            {
+               "bg": "office.JPG",
+               "dialogues": [
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 4,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "H-Here we are sir!",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "I hope this guy isn't too much we can't handle",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Are you ready Captain?",
+                     "name": "Paniel",
+                     "choices": [
+                        [
+                           "Yes I am!",
+                           1
+                        ],
+                        [
+                           "No I am not!",
+                           2
+                        ]
+                     ]
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Then let's get him!",
+                     "name": "Paniel",
+                     "next_dialogue": 2
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "W-well that's too bad sir. We have to get our 2% discount...",
+                     "name": "Paniel"
+                  }
+               ]
+            },
+            {
+               "bg": "office.JPG",
+               "dialogues": [
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "So... You finally made it.",
+                     "name": "Dan Johngel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "You've done well to make it this far.",
+                     "name": "Dan Johngel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Give us the discount, Johngel!",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "I don't know about that you bilgerat.",
+                     "name": "Dan Johngel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Imma show you how great I am.",
+                     "name": "Dan Johngel",
+                     "next_dialogue": 1
+                  },
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Guh-",
+                     "name": "Dan Johngel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Not... Now...",
+                     "name": "Dan Johngel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 4,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "He's down! Captain, now's our chance!",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Wait! Only I... can give you... the discount...",
+                     "name": "Dan Johngel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "I'm having a heart attack... because of my diabetes...",
+                     "name": "Dan Johngel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "If you get me penicillin from the chemist... I'll give you the 2% discount...",
+                     "name": "Dan Johngel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Awesome! Thanks!",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Let's go, Captain.",
+                     "name": "Paniel"
+                  }
+               ]
+            },
+            {
+               "game": {
+                  "difficulty": 4
+               }
+            },
+            {
+               "bg": "hallway2.JPG",
+               "dialogues": [
+                  {
+                     "text": "",
+                     "name": ""
+                  }
+               ]
+            },
+            {
+               "bg": "office.JPG",
+               "dialogues": [
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 4,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        },
+                        "Credits": {
+                           "position": [
+                              710,
+                              1200
+                           ]
+                        }
+                     },
+                     "text": "Johngel! We're back with the penicillin!",
+                     "name": "Paniel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Please... give it to me...",
+                     "name": "Dan Johngel",
+                     "choices": [
+                        [
+                           "Here you go",
+                           1
+                        ],
+                        [
+                           "I'm not sure I want to.",
+                           5
+                        ]
+                     ]
+                  },
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Thank you, Captain Jamuel. You have saved my life.",
+                     "name": "Dan Johngel",
+                     "next_dialogue": 1
+                  },
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Just this once, I'll give you guys a 2% discount off one item from Davy Jones.",
+                     "name": "Dan Johngel",
+                     "next_dialogue": 1
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 3,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "This is the greatest day of my life!",
+                     "name": "Paniel"
+                  },
+                  {
+                     "text": "",
+                     "sprite_states": {
+                        "Ending": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              0,
+                              0
+                           ]
+                        }
+                     },
+                     "next_dialogue": 4
+                  },
+                  {
+                     "sprite_states": {
+                        "Dan Johngel": {
+                           "state": 2,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Huh!? How... could you...?",
+                     "name": "Dan Johngel"
+                  },
+                  {
+                     "sprite_states": {
+                        "Paniel": {
+                           "state": 5,
+                           "show": true,
+                           "position": [
+                              450,
+                              70
+                           ]
+                        }
+                     },
+                     "text": "Captain! What are you doing?",
+                     "name": "Paniel"
+                  },
+                  {
+                     "text": "",
+                     "sprite_states": {
+                        "Ending": {
+                           "state": 1,
+                           "show": true,
+                           "position": [
+                              0,
+                              0
+                           ]
+                        }
+                     }
+                  },
+                  {
+                     "text": "",
+                     "name": "",
+                     "sprite_states": {
+                        "Credits": {
+                           "show": true,
+                           "position": [
+                              710,
+                              50
+                           ],
+                           "smooth": true,
+                           "speed": 0.03
+                        }
+                     }
+                  }
+               ]
+            }
+         ]
+      }
