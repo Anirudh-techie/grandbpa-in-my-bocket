@@ -10,6 +10,9 @@ class Game:
         # Initialize Pygame and its mixer for sound
         pg.init()
         pg.mixer.init()
+        display_info = pg.display.Info()
+        print(f"Display resolution: {display_info.current_w} x {display_info.current_h}")
+        print(pg.display.list_modes())
 
         # Flag to keep track of the game running state
         self.running = True
@@ -20,6 +23,7 @@ class Game:
 
         # Set up the display mode to fullscreen and get screen dimensions
         self.screen = pg.display.set_mode((0, 0), pg.FULLSCREEN)
+        # self.screen = pg.display.set_mode((1920, 1080))
         self.screen_width, self.screen_height = self.screen.get_size()
         
         # Retrieve scene data for the game
@@ -34,6 +38,7 @@ class Game:
         self.startScreen = StartScreen(self.screen, self.screen_width, self.screen_height)
         self.isStartScreen = True  # Flag to indicate if the start screen is active
         
+        
     def handle_events(self):
         # Check if the start screen has been quit
         if self.startScreen.get_quitted():
@@ -47,6 +52,11 @@ class Game:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     self.running = False
+                if event.type == pg.MOUSEBUTTONDOWN:
+                    if pg.mouse.get_pressed()[0]:
+                        self.scenes[self.current_scene].next_dialogue()
+
+
                 elif event.type == pg.KEYDOWN:
                     if event.key == pg.K_ESCAPE:
                         self.running = False
