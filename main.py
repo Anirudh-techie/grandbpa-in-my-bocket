@@ -22,7 +22,7 @@ class Game:
         pg.display.set_icon(new_icon)
 
         # Set up the display mode to fullscreen and get screen dimensions
-        self.screen = pg.display.set_mode((0, 0), pg.FULLSCREEN)
+        # self.screen = pg.display.set_mode((0, 0), pg.FULLSCREEN)
         # self.screen = pg.display.set_mode((1920, 1080))
         self.screen_width, self.screen_height = self.screen.get_size()
         

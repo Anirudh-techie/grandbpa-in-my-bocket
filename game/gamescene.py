@@ -60,6 +60,7 @@ class GameScene:
       self.dancing_jamuel_sprites = [pygame.transform.scale(pygame.image.load("res/game/jamuel/jamuelNeutral.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/jamuelBobbing.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/jamuelDance.png"), (self.jamuel_width, self.jamuel_height))]
       self.jamuel = self.dancing_jamuel_sprites[0]
       self.reset_arrows_y = -40
+      self.previous_streak_value = 0
 
       self.varToOnlyLoopOnceForWinScreen = True
 
@@ -154,6 +155,7 @@ class GameScene:
 
    def render(self,dt):
       self.update()
+      
 
       if not self.is_lost:
          self.screen.blit(self.death_screen_sprite, (0,0))
@@ -166,6 +168,18 @@ class GameScene:
 
 
       else:
+         self.tickbeat(dt)
+         if self.curr_streak != self.previous_streak_value:
+            pass
+            #self.animate
+            
+         #streak blit
+         if self.show_perfect:
+            cs = self.streakFont.render(f"HIT! {int(self.curr_streak)}x", True, (0,200,0))
+            self.screen.blit(cs, ( 425 - (cs.get_width()/2), 600))
+         
+         self.previous_streak_value = self.curr_streak
+         
  
          self.screen.blit(self.background_sprite, (0,0))
       
@@ -183,7 +197,7 @@ class GameScene:
          self.screen.blit(self.up_arrow_img, (425, self.y_perfect))
          self.screen.blit(self.right_arrow_img, (550, self.y_perfect))
          
-         self.tickbeat(dt)
+         
 
          
          for arrow in self.up_arrows:
@@ -280,10 +294,7 @@ class GameScene:
 
       if self.curr_streak <= 0:
           self.show_perfect = False
-      #streak blit
-      if self.show_perfect:
-            cs = self.streakFont.render(f"HIT! {int(self.curr_streak)}x", True, (0,200,0))
-            self.screen.blit(cs, ( 425 - (cs.get_width()/2), 600))
+      
 
       if self.beattimer >= 30/self.bpm and self.anim_state_number:
          self.anim_state_number = False
