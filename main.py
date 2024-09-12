@@ -52,9 +52,9 @@ class Game:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     self.running = False
-                if event.type == pg.MOUSEBUTTONDOWN:
-                    if pg.mouse.get_pressed()[0]:
-                        self.scenes[self.current_scene].next_dialogue()
+                # if event.type == pg.MOUSEBUTTONDOWN:
+                #     if pg.mouse.get_pressed()[0]:
+                #         self.scenes[self.current_scene].next_dialogue()
 
 
                 elif event.type == pg.KEYDOWN:
