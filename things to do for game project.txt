@@ -1,40 +1,11 @@
-WE SHOULD GET THE FIRST SCENE FINALISED AND SEE IF THERE IS ANYTHING WRONG WITH IT SO WE KNOW WHAT WE NEED TO ADD
-
-ok so for boss hp
-time = 60s, maybe a set streak will add some time
-
-1. we need to track boss health
-2. we need to track player health
-3. we need to track player damage
-4. we need to track streak
-
-boss hp - 200 - 2000
-player hp 100-250
-
-player damage system 
-base attack 1-5
-streak 3-10, adds 5 as dmg buff.
-streak 10+ adds 10 as damage buff.
-
-
 
 
 FOR THE GAME:
-firstly change the aspect ratio and adjust all assets according to it, I think it is
-DISPLAYSURF = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
-
-add a health bar for the boss and the player for dance dance, its easy
-
-Add a death screen when the player dies in the dance dance game,
-
-the mouse selection for the different choices is broken for the story part, its not exactly on the borders of the rectangle
-the sound effects are broken for when the text is animating out, it just plays the whole time for the story part idk why
-also we could add an extra start screen, so before the game starts theres a thing explainong the story in big scrolling text over the screen, it will be like
- "you are a well esteemed pirate who has seen the goldmine of chatstone, you must adventure through chatstone and steal the booty"
- something like that.
-
-
+make the controls for the stuff apparent to user, at the startscreen add a controls button that opens a new window
+make the manager not so low down
+add some more story
+make johngel the right sprites for the stuff and add the johngel on the phone sprite
 
 ART:
 title text for the title screen
@@ -59,10 +30,3 @@ any props that we wanna use or something idk
 dan johngel
 
 angry = 2
-
-
-
-
-def render
-    if sene = 'losescreen'
-

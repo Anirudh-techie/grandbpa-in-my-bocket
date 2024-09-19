@@ -6,11 +6,11 @@ from game.particles import Particle, Particles
 from game.fireball import Fireball
 pygame.mixer.init()
 
-boss_hps = [200, 300, 500, 1000,5750,2000, 3000, 4000, 5000, 6000]
+boss_hps = [200, 300, 500, 1000,5000,2000, 3000, 4000, 5000, 6000]
 player_hps = [100,125, 125, 200, 2500, 250, 250, 250, 250, 250] 
 attack_dmgs = [1, 3, 5, 8, 10, 5, 5, 5, 5, 5]
 boss_dmgs = [2, 4, 5, 10, 15, 50, 100, 150, 200, 250]
-bpms = [90, 100, 133, 150, 250, 220, 260, 300, 350, 400]
+bpms = [90, 100, 133, 150, 400, 220, 260, 300, 350, 400]
 
 songs=[pygame.mixer.Sound("res/game/songs/small granbpa vibe.mp3"),
        pygame.mixer.Sound("res/game/songs/battle_theme_regular.mp3"),
@@ -48,7 +48,7 @@ class GameScene:
    def __init__(self, screen,difficulty) -> None:
       
       self.difficulty = difficulty
-      self.font =  pygame.font.Font("res/fonts/blackpearl-font/Blackpearl-vPxA.ttf", 25)
+      self.font =  pygame.font.Font("res/fonts/blackpearl-font/Blackpearl-vPxA.ttf", 17)
       self.streakFont = pygame.font.Font("res/fonts/blackpearl-font/Blackpearl-vPxA.ttf", 35)
       self.winSound = pygame.mixer.Sound("res/soundfx/gameWinSound.mp3")
       self.screen = screen
@@ -59,6 +59,8 @@ class GameScene:
       self.jamuel_width, self.jamuel_height = 260, 380
       self.dancing_jamuel_sprites = [pygame.transform.scale(pygame.image.load("res/game/jamuel/jamuelNeutral.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/jamuelBobbing.png"), (self.jamuel_width, self.jamuel_height)), pygame.transform.scale(pygame.image.load("res/game/jamuel/jamuelDance.png"), (self.jamuel_width, self.jamuel_height))]
       self.jamuel = self.dancing_jamuel_sprites[0]
+      self.reset_arrows_y = -40
+      self.previous_streak_value = 0
 
       self.varToOnlyLoopOnceForWinScreen = True
 
@@ -105,15 +107,15 @@ class GameScene:
       self.attack_dmg = attack_dmgs[difficulty-1]
       self.boss_dmg = boss_dmgs[difficulty-1]
 
-      self.boss_health_bar_width = self.screen.get_width() * 1/3
+      self.boss_health_bar_width = self.screen.get_width() * 5/12
       self.boss_health_bar_height = 20
-      self.boss_health_bar_x = self.screen.get_width()/2 - 50
-      self.boss_health_bar_y = 75
+      self.boss_health_bar_x = self.screen.get_width()/2
+      self.boss_health_bar_y = 20
 
       self.player_health_bar_width = self.screen.get_width() * 1/6
       self.player_health_bar_height = 20
-      self.player_health_bar_x = self.screen.get_width()/2 - 50
-      self.player_health_bar_y = 135
+      self.player_health_bar_x = self.screen.get_width()/2 + 60
+      self.player_health_bar_y = 300
 
       
 
@@ -167,6 +169,7 @@ class GameScene:
 
    def render(self,dt):
       self.update()
+      
 
       if not self.is_lost:
          self.screen.blit(self.death_screen_sprite, (0,0))
@@ -179,6 +182,18 @@ class GameScene:
 
 
       else:
+         self.tickbeat(dt)
+         if self.curr_streak != self.previous_streak_value:
+            pass
+            #self.animate
+            
+         #streak blit
+         if self.show_perfect:
+            cs = self.streakFont.render(f"HIT! {int(self.curr_streak)}x", True, (0,200,0))
+            self.screen.blit(cs, ( 425 - (cs.get_width()/2), 600))
+         
+         self.previous_streak_value = self.curr_streak
+         
  
          self.screen.blit(self.background_sprite, (0,0))
       
@@ -196,7 +211,7 @@ class GameScene:
          self.screen.blit(self.up_arrow_img, (425, self.y_perfect))
          self.screen.blit(self.right_arrow_img, (550, self.y_perfect))
          
-         self.tickbeat(dt)
+         
 
          
          for arrow in self.up_arrows:
@@ -227,7 +242,12 @@ class GameScene:
 
 
    def show_stats(self):
-      
+      border_bar_overlay_size_increase = 10
+
+      # grey background rect for player bar
+      pygame.draw.rect(self.screen, (20, 20, 20), (self.player_health_bar_x - (border_bar_overlay_size_increase/2), self.player_health_bar_y - (border_bar_overlay_size_increase/2), self.player_health_bar_width + border_bar_overlay_size_increase , self.player_health_bar_height + border_bar_overlay_size_increase))
+      # grey background rect for boss bar
+      pygame.draw.rect(self.screen, (20, 20, 20), (self.boss_health_bar_x - (border_bar_overlay_size_increase/2), self.boss_health_bar_y - (border_bar_overlay_size_increase/2), self.boss_health_bar_width + border_bar_overlay_size_increase , self.boss_health_bar_height + border_bar_overlay_size_increase))
       # boss health bar
       # red bar underlay
       pygame.draw.rect(self.screen, (255,0,0), (self.boss_health_bar_x, self.boss_health_bar_y, self.boss_health_bar_width, self.boss_health_bar_height))
@@ -235,6 +255,7 @@ class GameScene:
       boss_health_bar_fill_width = (self.boss_health / self.boss_max_health) * self.boss_health_bar_width
       # green bar overlay
       pygame.draw.rect(self.screen, (0, 255, 0), (self.boss_health_bar_x, self.boss_health_bar_y, boss_health_bar_fill_width, self.boss_health_bar_height))
+
 
       # for the player___________________________________________________)_@*)&*@^*(#^)
       # red bar underlay
@@ -245,12 +266,13 @@ class GameScene:
       pygame.draw.rect(self.screen, (0, 255, 0), (self.player_health_bar_x, self.player_health_bar_y, player_health_bar_fill_width, self.player_health_bar_height))
 
 
-      bh = self.font.render(f"{int(self.boss_health)}", True, (0,0,0))
-      self.screen.blit(bh, (self.boss_health_bar_x, self.boss_health_bar_y - 25))
+
+      bh = self.font.render(f"{int(self.boss_health)}", True, (0,0,255))
+      self.screen.blit(bh, (self.boss_health_bar_x + 5, self.boss_health_bar_y))
 
       
-      ph = self.font.render(f"{int(self.player_health)}", True, (0,0,0))
-      self.screen.blit(ph, (self.player_health_bar_x, self.player_health_bar_y - 25))
+      ph = self.font.render(f"{int(self.player_health)}", True, (0,0,255))
+      self.screen.blit(ph, (self.player_health_bar_x + 5, self.player_health_bar_y))
       
 
       for ball in self.fireballs:
@@ -262,34 +284,31 @@ class GameScene:
       self.beattimer += dt
 
       for arrow in self.up_arrows:
-         if arrow.y <= -10:
+         if arrow.y <= self.reset_arrows_y:
             self.up_arrows.remove(arrow)
             self.curr_streak = 0
             self.player_health -= self.boss_dmg
       for arrow in self.down_arrows:
-         if arrow.y <= -10:
+         if arrow.y <= self.reset_arrows_y:
             self.curr_streak = 0
             self.down_arrows.remove(arrow)
             self.player_health -= self.boss_dmg
 
       for arrow in self.left_arrows:
-         if arrow.y <= -10:
+         if arrow.y <= self.reset_arrows_y:
             self.curr_streak = 0
             self.left_arrows.remove(arrow)
             self.player_health -= self.boss_dmg
 
       for arrow in self.right_arrows:
-         if arrow.y <= -10:
+         if arrow.y <= self.reset_arrows_y:
             self.curr_streak = 0
             self.right_arrows.remove(arrow)
             self.player_health -= self.boss_dmg
 
       if self.curr_streak <= 0:
           self.show_perfect = False
-
-      if self.show_perfect:
-            cs = self.streakFont.render(f"HIT! {int(self.curr_streak)}x", True, (0,200,0))
-            self.screen.blit(cs, ( 425 - (cs.get_width()/2), 600))
+      
 
       if self.beattimer >= 30/self.bpm and self.anim_state_number:
          self.anim_state_number = False
@@ -339,28 +358,28 @@ class GameScene:
 
       
 
-      elif key == pygame.K_UP or key == pygame.K_w or key == pygame.K_h:
+      elif key == pygame.K_UP or key == pygame.K_w or key == pygame.K_n:
          if len(self.up_arrows) == 0:
             self.player_health -= self.boss_dmg
          else:
             arrow = self.up_arrows.pop(0)
             self.boss_health -= self.validate(arrow)
 
-      elif key == pygame.K_LEFT or key == pygame.K_a or key == pygame.K_f:
+      elif key == pygame.K_LEFT or key == pygame.K_a or key == pygame.K_z:
          if len(self.left_arrows) == 0:
             self.player_health -= self.boss_dmg
          else:
             arrow = self.left_arrows.pop(0)
             self.boss_health -= self.validate(arrow)
 
-      elif key == pygame.K_RIGHT or key == pygame.K_d or key == pygame.K_j:
+      elif key == pygame.K_RIGHT or key == pygame.K_d or key == pygame.K_m:
          if len(self.right_arrows) == 0:
             self.player_health -= self.boss_dmg
          else:
             arrow = self.right_arrows.pop(0)
             self.boss_health -= self.validate(arrow)
 
-      elif key == pygame.K_DOWN or key == pygame.K_s or key == pygame.K_g:
+      elif key == pygame.K_DOWN or key == pygame.K_s or key == pygame.K_x:
 
          if len(self.down_arrows) == 0:
             self.player_health -= self.boss_dmg
