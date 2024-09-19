@@ -165,7 +165,15 @@ class GameScene:
       st = self.font.render(f"Max Streak:  {int(self.max_steak)}", True, (255,255,255))
       self.screen.blit(st, (cen-st.get_width()/2, h*0.4))
       
+   def show_win_stats(self):
+      cen = self.screen.get_width()/2
+      h = self.screen.get_height()
+      bh = self.font.render(f"Your Health: {int(self.player_health)}", True, (255,255,255))
+      self.screen.blit(bh, (cen-bh.get_width()/2, h*0.35))
 
+      
+      st = self.font.render(f"Max Streak:  {int(self.max_steak)}", True, (255,255,255))
+      self.screen.blit(st, (cen-st.get_width()/2, h*0.4))
 
    def render(self,dt):
       self.update()
@@ -179,7 +187,7 @@ class GameScene:
       if self.is_won:
          self.current_song.stop()
          self.screen.blit(self.win_screen_sprite, (0,0))
-
+         self.show_win_stats()
 
       else:
          self.tickbeat(dt)
@@ -188,12 +196,6 @@ class GameScene:
             #self.animate
             
          #streak blit
-         if self.show_perfect:
-            cs = self.streakFont.render(f"HIT! {int(self.curr_streak)}x", True, (0,200,0))
-            self.screen.blit(cs, ( 425 - (cs.get_width()/2), 600))
-         
-         self.previous_streak_value = self.curr_streak
-         
  
          self.screen.blit(self.background_sprite, (0,0))
       
@@ -227,6 +229,12 @@ class GameScene:
             arrow.update(dt)
             arrow.render(self.screen)
 
+         if self.show_perfect:
+            cs = self.streakFont.render(f"HIT! {int(self.curr_streak)}x", True, (0,200,0))
+            self.screen.blit(cs, ( 425 - (cs.get_width()/2), 600))
+         
+         self.previous_streak_value = self.curr_streak
+         
          
          if self.player_health <= 0:
             self.deathScreen()
