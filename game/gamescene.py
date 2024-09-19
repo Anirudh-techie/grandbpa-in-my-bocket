@@ -140,6 +140,8 @@ class GameScene:
       self.is_won = False
 
       self.show_perfect = False
+
+      self.max_steak = 0
    
    def reset(self):
       self.reset_arrows()
@@ -151,12 +153,24 @@ class GameScene:
       self.beattimer = 0
       self.is_lost = True
 
+   def show_death_stats(self):
+      cen = self.screen.get_width()/2
+      h = self.screen.get_height()
+      bh = self.font.render(f"Boss Health: {int(self.boss_health)}", True, (255,255,255))
+      self.screen.blit(bh, (cen-bh.get_width()/2, h*0.35))
+
+      
+      st = self.font.render(f"Max Streak:  {int(self.max_steak)}", True, (255,255,255))
+      self.screen.blit(st, (cen-st.get_width()/2, h*0.4))
+      
+
+
    def render(self,dt):
       self.update()
 
       if not self.is_lost:
          self.screen.blit(self.death_screen_sprite, (0,0))
-
+         self.show_death_stats()
          return
       
       if self.is_won:
@@ -410,6 +424,7 @@ class GameScene:
          self.show_perfect = True
 
          self.curr_streak+=1
+         self.max_steak = max(self.max_steak, self.curr_streak)
          dmg = self.attack_dmg
 
          if self.curr_streak  <= 16:
